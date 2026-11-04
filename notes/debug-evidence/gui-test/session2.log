@@ -1,0 +1,210 @@
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Multiple symbols for level 1/group 1 on key <FK23>
+>                   Using F23, ignoring XF86TouchpadOff
+> Warning:          Symbol map for key <FK23> redefined
+>                   Using last definition for conflicting fields
+> Warning:          Symbol map for key <FK24> redefined
+>                   Using last definition for conflicting fields
+Errors from xkbcomp are not fatal to the X server
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Multiple symbols for level 1/group 1 on key <FK23>
+>                   Using F23, ignoring XF86TouchpadOff
+> Warning:          Symbol map for key <FK23> redefined
+>                   Using last definition for conflicting fields
+> Warning:          Symbol map for key <FK24> redefined
+>                   Using last definition for conflicting fields
+Errors from xkbcomp are not fatal to the X server
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Multiple symbols for level 1/group 1 on key <FK23>
+>                   Using F23, ignoring XF86TouchpadOff
+> Warning:          Symbol map for key <FK23> redefined
+>                   Using last definition for conflicting fields
+> Warning:          Symbol map for key <FK24> redefined
+>                   Using last definition for conflicting fields
+Errors from xkbcomp are not fatal to the X server
+dbus-daemon[1100100]: [session uid=1000 pid=1100100 pidfd=5] Activating service name='org.freedesktop.portal.Desktop' requested by ':1.0' (uid=1000 pid=1100101 comm="/home/hakergeniusz/Projects/radix/target/debug/rad")
+dbus-daemon[1100100]: [session uid=1000 pid=1100100 pidfd=5] Activating service name='org.freedesktop.impl.portal.PermissionStore' requested by ':1.1' (uid=1000 pid=1100107 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[1100100]: [session uid=1000 pid=1100100 pidfd=5] Successfully activated service 'org.freedesktop.impl.portal.PermissionStore'
+dbus-daemon[1100100]: [session uid=1000 pid=1100100 pidfd=5] Activating service name='org.freedesktop.portal.Documents' requested by ':1.1' (uid=1000 pid=1100107 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[1100100]: [session uid=1000 pid=1100100 pidfd=5] Successfully activated service 'org.freedesktop.portal.Documents'
+dbus-daemon[1100100]: [session uid=1000 pid=1100100 pidfd=5] Activating service name='org.freedesktop.impl.portal.desktop.gnome' requested by ':1.1' (uid=1000 pid=1100107 comm="/usr/lib/xdg-desktop-portal")
+
+** (xdg-desktop-portal-gnome:1100130): WARNING **: 21:51:45.037: GDK backend forced via env var, portal dialogs will not work properly.
+Non-compatible display server, exposing settings only.
+dbus-daemon[1100100]: [session uid=1000 pid=1100100 pidfd=5] Activating service name='org.gtk.vfs.Daemon' requested by ':1.4' (uid=1000 pid=1100130 comm="/usr/lib/xdg-desktop-portal-gnome")
+dbus-daemon[1100100]: [session uid=1000 pid=1100100 pidfd=5] Successfully activated service 'org.gtk.vfs.Daemon'
+fusermount3: failed to access mountpoint /run/user/1000/gvfs: Permission denied
+dbus-daemon[1100100]: [session uid=1000 pid=1100100 pidfd=5] Successfully activated service 'org.freedesktop.impl.portal.desktop.gnome'
+
+(/usr/lib/xdg-desktop-portal:1100107): xdg-desktop-portal-WARNING **: 21:51:45.067: Failed to load RealtimeKit property: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name is not activatable
+
+(/usr/lib/xdg-desktop-portal:1100107): xdg-desktop-portal-WARNING **: 21:51:45.067: Failed to load RealtimeKit property: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name is not activatable
+
+(/usr/lib/xdg-desktop-portal:1100107): xdg-desktop-portal-WARNING **: 21:51:45.067: Failed to load RealtimeKit property: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name is not activatable
+dbus-daemon[1100100]: [session uid=1000 pid=1100100 pidfd=5] Activating service name='org.freedesktop.impl.portal.desktop.gtk' requested by ':1.1' (uid=1000 pid=1100107 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[1100100]: [session uid=1000 pid=1100100 pidfd=5] Successfully activated service 'org.freedesktop.impl.portal.desktop.gtk'
+dbus-daemon[1100100]: [session uid=1000 pid=1100100 pidfd=5] Activating service name='org.freedesktop.secrets' requested by ':1.1' (uid=1000 pid=1100107 comm="/usr/lib/xdg-desktop-portal")
+discover_other_daemon: 1GNOME_KEYRING_CONTROL=/run/user/1000/keyring
+dbus-daemon[1100100]: [session uid=1000 pid=1100100 pidfd=5] Successfully activated service 'org.freedesktop.portal.Desktop'
+MESA-EGL: warning: DRI3 error: Could not get DRI3 device
+MESA-EGL: warning: Ensure your X server supports DRI3 to get accelerated rendering
+dbus-daemon[1100100]: [session uid=1000 pid=1100100 pidfd=5] Activating service name='org.a11y.Bus' requested by ':1.0' (uid=1000 pid=1100101 comm="/home/hakergeniusz/Projects/radix/target/debug/rad")
+dbus-daemon[1100100]: [session uid=1000 pid=1100100 pidfd=5] Successfully activated service 'org.a11y.Bus'
+dbus-daemon[1100100]: [session uid=1000 pid=1100100 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.10' (uid=1000 pid=1100237 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[1100100]: [session uid=1000 pid=1100100 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+
+(radix:1100101): Gtk-WARNING **: 21:51:45.239: No IM module matching GTK_IM_MODULE=xim found
+
+thread 'main' (1100101) panicked at src/convert.rs:184:28:
+RefCell already borrowed
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'main' (1100101) panicked at library/core/src/panicking.rs:225:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x55ccdb790cb1 - <<std[1eedbf103d606f03]::sys::backtrace::BacktraceLock>::print::DisplayBacktrace as core[30d0ffc963bfeec7]::fmt::Display>::fmt
+   1:     0x55ccdb7a7eaa - core[30d0ffc963bfeec7]::fmt::write
+   2:     0x55ccdb7954bc - <std[1eedbf103d606f03]::sys::stdio::unix::Stderr as core[30d0ffc963bfeec7]::io::write::Write>::write_fmt
+   3:     0x55ccdb775686 - std[1eedbf103d606f03]::panicking::default_hook::{closure#0}
+   4:     0x55ccdb78af11 - std[1eedbf103d606f03]::panicking::default_hook
+   5:     0x55ccdb78b0cb - std[1eedbf103d606f03]::panicking::panic_with_hook
+   6:     0x55ccdb775764 - std[1eedbf103d606f03]::panicking::panic_handler::{closure#0}
+   7:     0x55ccdb76db69 - std[1eedbf103d606f03]::sys::backtrace::__rust_end_short_backtrace::<std[1eedbf103d606f03]::panicking::panic_handler::{closure#0}, !>
+   8:     0x55ccdb7761ed - __rustc[7f5b2530cea08c4d]::rust_begin_unwind
+   9:     0x55ccdb7a84cd - core[30d0ffc963bfeec7]::panicking::panic_nounwind_fmt
+  10:     0x55ccdb7a844b - core[30d0ffc963bfeec7]::panicking::panic_nounwind
+  11:     0x55ccdb7a85d7 - core[30d0ffc963bfeec7]::panicking::panic_cannot_unwind
+  12:     0x55ccdb2d0aa7 - gtk4[ffec488e32706255]::text_buffer::TextBufferExtManual::connect_insert_text::insert_text_trampoline::<gtk4[ffec488e32706255]::auto::text_buffer::TextBuffer, <radix[fb89f78c67dbb6b4]::convert::ConversionPane>::wire::{closure#1}>
+                               at /home/hakergeniusz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gtk4-0.10.3/src/text_buffer.rs:69:13
+  13:     0x7f0b840b1bfc - g_closure_invoke
+  14:     0x7f0b840d1cfb - <unknown>
+  15:     0x7f0b840d3ed4 - <unknown>
+  16:     0x7f0b840d4179 - g_signal_emit_valist
+  17:     0x7f0b840d4234 - g_signal_emit
+  18:     0x7f0b83654c5a - gtk_text_buffer_set_text
+  19:     0x55ccdb26b677 - <gtk4[ffec488e32706255]::auto::text_buffer::TextBuffer as gtk4[ffec488e32706255]::auto::text_buffer::TextBufferExt>::set_text
+                               at /home/hakergeniusz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gtk4-0.10.3/src/auto/text_buffer.rs:865:13
+  20:     0x55ccdb25b3c8 - <radix[fb89f78c67dbb6b4]::convert::ConversionPane>::sync_buffers
+                               at /home/hakergeniusz/Projects/radix/src/convert.rs:353:19
+  21:     0x55ccdb2627ea - radix[fb89f78c67dbb6b4]::convert::build
+                               at /home/hakergeniusz/Projects/radix/src/convert.rs:144:10
+  22:     0x55ccdb2a6556 - <radix[fb89f78c67dbb6b4]::win::RadixWindow>::new
+                               at /home/hakergeniusz/Projects/radix/src/win.rs:230:26
+  23:     0x55ccdb2df1b0 - radix[fb89f78c67dbb6b4]::main::{closure#0}
+                               at /home/hakergeniusz/Projects/radix/src/main.rs:23:9
+  24:     0x55ccdb259e85 - gio[f5dabec1747e7d0b]::auto::application::ApplicationExt::connect_activate::activate_trampoline::<libadwaita[42e36a190674002e]::auto::application::Application, radix[fb89f78c67dbb6b4]::main::{closure#0}>
+                               at /home/hakergeniusz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gio-0.21.5/src/auto/application.rs:451:13
+  25:     0x7f0b840b1bfc - g_closure_invoke
+  26:     0x7f0b840d1cfb - <unknown>
+  27:     0x7f0b840d3ed4 - <unknown>
+  28:     0x7f0b840d4179 - g_signal_emit_valist
+  29:     0x7f0b840d4234 - g_signal_emit
+  30:     0x7f0b832ffd5e - g_application_activate
+  31:     0x7f0b833021b1 - <unknown>
+  32:     0x7f0b833023b9 - g_application_run
+  33:     0x55ccdb2b99a5 - <libadwaita[42e36a190674002e]::auto::application::Application as gio[f5dabec1747e7d0b]::application::ApplicationExtManual>::run_with_args::<alloc[f06e8084809a0692]::string::String>
+                               at /home/hakergeniusz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gio-0.21.5/src/application.rs:25:13
+  34:     0x55ccdb2b9d19 - <libadwaita[42e36a190674002e]::auto::application::Application as gio[f5dabec1747e7d0b]::application::ApplicationExtManual>::run
+                               at /home/hakergeniusz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gio-0.21.5/src/application.rs:17:14
+  35:     0x55ccdb2c0f5c - radix[fb89f78c67dbb6b4]::main
+                               at /home/hakergeniusz/Projects/radix/src/main.rs:25:9
+  36:     0x55ccdb287bdb - <fn() -> glib[c9a5ff652b789534]::exit_code::ExitCode as core[30d0ffc963bfeec7]::ops::function::FnOnce<()>>::call_once
+                               at /usr/src/debug/rust/rustc-1.99.1-src/library/core/src/ops/function.rs:250:5
+  37:     0x55ccdb28820e - std[1eedbf103d606f03]::sys::backtrace::__rust_begin_short_backtrace::<fn() -> glib[c9a5ff652b789534]::exit_code::ExitCode, glib[c9a5ff652b789534]::exit_code::ExitCode>
+                               at /usr/src/debug/rust/rustc-1.99.1-src/library/std/src/sys/backtrace.rs:166:18
+  38:     0x55ccdb2c63c1 - std[1eedbf103d606f03]::rt::lang_start::<glib[c9a5ff652b789534]::exit_code::ExitCode>::{closure#0}
+                               at /usr/src/debug/rust/rustc-1.99.1-src/library/std/src/rt.rs:206:18
+  39:     0x55ccdb78a449 - std[1eedbf103d606f03]::rt::lang_start_internal
+  40:     0x55ccdb2c63a7 - std[1eedbf103d606f03]::rt::lang_start::<glib[c9a5ff652b789534]::exit_code::ExitCode>
+                               at /usr/src/debug/rust/rustc-1.99.1-src/library/std/src/rt.rs:205:5
+  41:     0x55ccdb2c0fce - main
+  42:     0x7f0b82c27781 - <unknown>
+  43:     0x7f0b82c278b9 - __libc_start_main
+  44:     0x55ccdb24c2a5 - _start
+  45:                0x0 - <unknown>
+thread caused non-unwinding panic. aborting.
+
+(/usr/lib/xdg-desktop-portal:1100107): xdg-desktop-portal-WARNING **: 21:51:45.268: Failed to close session implementation: The connection is closed
+
+(/usr/lib/xdg-desktop-portal:1100107): xdg-desktop-portal-WARNING **: 21:51:45.268: Failed to create secret proxy: Error calling StartServiceByName for org.freedesktop.secrets: The connection is closed
+A connection to the bus can't be made
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Multiple symbols for level 1/group 1 on key <FK23>
+>                   Using F23, ignoring XF86TouchpadOff
+> Warning:          Symbol map for key <FK23> redefined
+>                   Using last definition for conflicting fields
+> Warning:          Symbol map for key <FK24> redefined
+>                   Using last definition for conflicting fields
+Errors from xkbcomp are not fatal to the X server
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Multiple symbols for level 1/group 1 on key <FK23>
+>                   Using F23, ignoring XF86TouchpadOff
+> Warning:          Symbol map for key <FK23> redefined
+>                   Using last definition for conflicting fields
+> Warning:          Symbol map for key <FK24> redefined
+>                   Using last definition for conflicting fields
+Errors from xkbcomp are not fatal to the X server
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Multiple symbols for level 1/group 1 on key <FK23>
+>                   Using F23, ignoring XF86TouchpadOff
+> Warning:          Symbol map for key <FK23> redefined
+>                   Using last definition for conflicting fields
+> Warning:          Symbol map for key <FK24> redefined
+>                   Using last definition for conflicting fields
+Errors from xkbcomp are not fatal to the X server
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Multiple symbols for level 1/group 1 on key <FK23>
+>                   Using F23, ignoring XF86TouchpadOff
+> Warning:          Symbol map for key <FK23> redefined
+>                   Using last definition for conflicting fields
+> Warning:          Symbol map for key <FK24> redefined
+>                   Using last definition for conflicting fields
+Errors from xkbcomp are not fatal to the X server
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Multiple symbols for level 1/group 1 on key <FK23>
+>                   Using F23, ignoring XF86TouchpadOff
+> Warning:          Symbol map for key <FK23> redefined
+>                   Using last definition for conflicting fields
+> Warning:          Symbol map for key <FK24> redefined
+>                   Using last definition for conflicting fields
+Errors from xkbcomp are not fatal to the X server
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Multiple symbols for level 1/group 1 on key <FK23>
+>                   Using F23, ignoring XF86TouchpadOff
+> Warning:          Symbol map for key <FK23> redefined
+>                   Using last definition for conflicting fields
+> Warning:          Symbol map for key <FK24> redefined
+>                   Using last definition for conflicting fields
+Errors from xkbcomp are not fatal to the X server
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Multiple symbols for level 1/group 1 on key <FK23>
+>                   Using F23, ignoring XF86TouchpadOff
+> Warning:          Symbol map for key <FK23> redefined
+>                   Using last definition for conflicting fields
+> Warning:          Symbol map for key <FK24> redefined
+>                   Using last definition for conflicting fields
+Errors from xkbcomp are not fatal to the X server
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Multiple symbols for level 1/group 1 on key <FK23>
+>                   Using F23, ignoring XF86TouchpadOff
+> Warning:          Symbol map for key <FK23> redefined
+>                   Using last definition for conflicting fields
+> Warning:          Symbol map for key <FK24> redefined
+>                   Using last definition for conflicting fields
+Errors from xkbcomp are not fatal to the X server
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Multiple symbols for level 1/group 1 on key <FK23>
+>                   Using F23, ignoring XF86TouchpadOff
+> Warning:          Symbol map for key <FK23> redefined
+>                   Using last definition for conflicting fields
+> Warning:          Symbol map for key <FK24> redefined
+>                   Using last definition for conflicting fields
+Errors from xkbcomp are not fatal to the X server
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Multiple symbols for level 1/group 1 on key <FK23>
+>                   Using F23, ignoring XF86TouchpadOff
+> Warning:          Symbol map for key <FK23> redefined
+>                   Using last definition for conflicting fields
+> Warning:          Symbol map for key <FK24> redefined
+>                   Using last definition for conflicting fields
+Errors from xkbcomp are not fatal to the X server

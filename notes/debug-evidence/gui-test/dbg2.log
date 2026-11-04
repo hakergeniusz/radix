@@ -1,0 +1,49 @@
+dbus-daemon[1157157]: [session uid=1000 pid=1157157 pidfd=5] Activating service name='org.freedesktop.portal.Desktop' requested by ':1.0' (uid=1000 pid=1157158 comm="/home/hakergeniusz/Projects/radix/target/debug/rad")
+dbus-daemon[1157157]: [session uid=1000 pid=1157157 pidfd=5] Activating service name='org.freedesktop.impl.portal.PermissionStore' requested by ':1.1' (uid=1000 pid=1157165 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[1157157]: [session uid=1000 pid=1157157 pidfd=5] Successfully activated service 'org.freedesktop.impl.portal.PermissionStore'
+dbus-daemon[1157157]: [session uid=1000 pid=1157157 pidfd=5] Activating service name='org.freedesktop.portal.Documents' requested by ':1.1' (uid=1000 pid=1157165 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[1157157]: [session uid=1000 pid=1157157 pidfd=5] Successfully activated service 'org.freedesktop.portal.Documents'
+dbus-daemon[1157157]: [session uid=1000 pid=1157157 pidfd=5] Activating service name='org.freedesktop.impl.portal.desktop.gnome' requested by ':1.1' (uid=1000 pid=1157165 comm="/usr/lib/xdg-desktop-portal")
+
+** (xdg-desktop-portal-gnome:1157192): WARNING **: 22:11:54.481: GDK backend forced via env var, portal dialogs will not work properly.
+Non-compatible display server, exposing settings only.
+dbus-daemon[1157157]: [session uid=1000 pid=1157157 pidfd=5] Activating service name='org.gtk.vfs.Daemon' requested by ':1.4' (uid=1000 pid=1157192 comm="/usr/lib/xdg-desktop-portal-gnome")
+dbus-daemon[1157157]: [session uid=1000 pid=1157157 pidfd=5] Successfully activated service 'org.gtk.vfs.Daemon'
+fusermount3: failed to access mountpoint /run/user/1000/gvfs: Permission denied
+dbus-daemon[1157157]: [session uid=1000 pid=1157157 pidfd=5] Successfully activated service 'org.freedesktop.impl.portal.desktop.gnome'
+
+(/usr/lib/xdg-desktop-portal:1157165): xdg-desktop-portal-WARNING **: 22:11:54.512: Failed to load RealtimeKit property: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name is not activatable
+
+(/usr/lib/xdg-desktop-portal:1157165): xdg-desktop-portal-WARNING **: 22:11:54.512: Failed to load RealtimeKit property: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name is not activatable
+
+(/usr/lib/xdg-desktop-portal:1157165): xdg-desktop-portal-WARNING **: 22:11:54.512: Failed to load RealtimeKit property: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name is not activatable
+dbus-daemon[1157157]: [session uid=1000 pid=1157157 pidfd=5] Activating service name='org.freedesktop.impl.portal.desktop.gtk' requested by ':1.1' (uid=1000 pid=1157165 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[1157157]: [session uid=1000 pid=1157157 pidfd=5] Successfully activated service 'org.freedesktop.impl.portal.desktop.gtk'
+dbus-daemon[1157157]: [session uid=1000 pid=1157157 pidfd=5] Activating service name='org.freedesktop.secrets' requested by ':1.1' (uid=1000 pid=1157165 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[1157157]: [session uid=1000 pid=1157157 pidfd=5] Successfully activated service 'org.freedesktop.portal.Desktop'
+discover_other_daemon: 1GNOME_KEYRING_CONTROL=/run/user/1000/keyring
+MESA-EGL: warning: DRI3 error: Could not get DRI3 device
+MESA-EGL: warning: Ensure your X server supports DRI3 to get accelerated rendering
+dbus-daemon[1157157]: [session uid=1000 pid=1157157 pidfd=5] Activating service name='org.a11y.Bus' requested by ':1.0' (uid=1000 pid=1157158 comm="/home/hakergeniusz/Projects/radix/target/debug/rad")
+dbus-daemon[1157157]: [session uid=1000 pid=1157157 pidfd=5] Successfully activated service 'org.a11y.Bus'
+dbus-daemon[1157157]: [session uid=1000 pid=1157157 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.10' (uid=1000 pid=1157259 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[1157157]: [session uid=1000 pid=1157157 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+
+(radix:1157158): Gtk-WARNING **: 22:11:54.714: No IM module matching GTK_IM_MODULE=xim found
+
+(radix:1157158): Gsk-WARNING **: 22:11:54.754: The new GL renderer has been renamed to gl. Try GSK_RENDERER=help
+dbus-daemon[1157157]: [session uid=1000 pid=1157157 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.10' (uid=1000 pid=1157259 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[1157157]: [session uid=1000 pid=1157157 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+
+(radix:1157158): Gtk-CRITICAL **: 22:11:54.851: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+DBG-INSERT text="9" prog=false app=false state=Input
+DBG-KEY Return -> evaluate
+DBG-EVAL expr="9"
+DBG-INSERT text="9" prog=false app=false state=Input
+DBG-KEY evaluate done, state=ResultShown
+DBG-INSERT text="2" prog=false app=false state=Input
+
+(/usr/lib/xdg-desktop-portal:1157165): xdg-desktop-portal-WARNING **: 22:12:19.565: Failed to create secret proxy: Error calling StartServiceByName for org.freedesktop.secrets: Timeout was reached
+dbus-daemon[1157157]: [session uid=1000 pid=1157157 pidfd=5] Failed to activate service 'org.freedesktop.secrets': timed out (service_start_timeout=120000ms)
+
+(/usr/lib/xdg-desktop-portal:1157165): xdg-desktop-portal-WARNING **: 22:13:58.011: Failed to get application states: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: No such interface “org.freedesktop.impl.portal.Background” on object at path /org/freedesktop/portal/desktop

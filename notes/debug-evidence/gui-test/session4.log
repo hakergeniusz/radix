@@ -1,0 +1,46 @@
+(EE) 
+Fatal server error:
+(EE) Server is already active for display 95
+	If this server is no longer running, remove /tmp/.X95-lock
+	and start again.
+(EE) 
+dbus-daemon[1107904]: [session uid=1000 pid=1107904 pidfd=5] Activating service name='org.freedesktop.portal.Desktop' requested by ':1.0' (uid=1000 pid=1107905 comm="/home/hakergeniusz/Projects/radix/target/debug/rad")
+dbus-daemon[1107904]: [session uid=1000 pid=1107904 pidfd=5] Activating service name='org.freedesktop.impl.portal.PermissionStore' requested by ':1.1' (uid=1000 pid=1107911 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[1107904]: [session uid=1000 pid=1107904 pidfd=5] Successfully activated service 'org.freedesktop.impl.portal.PermissionStore'
+dbus-daemon[1107904]: [session uid=1000 pid=1107904 pidfd=5] Activating service name='org.freedesktop.portal.Documents' requested by ':1.1' (uid=1000 pid=1107911 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[1107904]: [session uid=1000 pid=1107904 pidfd=5] Successfully activated service 'org.freedesktop.portal.Documents'
+dbus-daemon[1107904]: [session uid=1000 pid=1107904 pidfd=5] Activating service name='org.freedesktop.impl.portal.desktop.gnome' requested by ':1.1' (uid=1000 pid=1107911 comm="/usr/lib/xdg-desktop-portal")
+
+** (xdg-desktop-portal-gnome:1107934): WARNING **: 21:54:04.725: GDK backend forced via env var, portal dialogs will not work properly.
+Non-compatible display server, exposing settings only.
+dbus-daemon[1107904]: [session uid=1000 pid=1107904 pidfd=5] Activating service name='org.gtk.vfs.Daemon' requested by ':1.4' (uid=1000 pid=1107934 comm="/usr/lib/xdg-desktop-portal-gnome")
+dbus-daemon[1107904]: [session uid=1000 pid=1107904 pidfd=5] Successfully activated service 'org.gtk.vfs.Daemon'
+fusermount3: failed to access mountpoint /run/user/1000/gvfs: Permission denied
+dbus-daemon[1107904]: [session uid=1000 pid=1107904 pidfd=5] Successfully activated service 'org.freedesktop.impl.portal.desktop.gnome'
+
+(/usr/lib/xdg-desktop-portal:1107911): xdg-desktop-portal-WARNING **: 21:54:04.745: Failed to load RealtimeKit property: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name is not activatable
+
+(/usr/lib/xdg-desktop-portal:1107911): xdg-desktop-portal-WARNING **: 21:54:04.745: Failed to load RealtimeKit property: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name is not activatable
+
+(/usr/lib/xdg-desktop-portal:1107911): xdg-desktop-portal-WARNING **: 21:54:04.745: Failed to load RealtimeKit property: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name is not activatable
+dbus-daemon[1107904]: [session uid=1000 pid=1107904 pidfd=5] Activating service name='org.freedesktop.impl.portal.desktop.gtk' requested by ':1.1' (uid=1000 pid=1107911 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[1107904]: [session uid=1000 pid=1107904 pidfd=5] Successfully activated service 'org.freedesktop.impl.portal.desktop.gtk'
+dbus-daemon[1107904]: [session uid=1000 pid=1107904 pidfd=5] Activating service name='org.freedesktop.secrets' requested by ':1.1' (uid=1000 pid=1107911 comm="/usr/lib/xdg-desktop-portal")
+discover_other_daemon: 1GNOME_KEYRING_CONTROL=/run/user/1000/keyring
+dbus-daemon[1107904]: [session uid=1000 pid=1107904 pidfd=5] Successfully activated service 'org.freedesktop.portal.Desktop'
+MESA-EGL: warning: DRI3 error: Could not get DRI3 device
+MESA-EGL: warning: Ensure your X server supports DRI3 to get accelerated rendering
+dbus-daemon[1107904]: [session uid=1000 pid=1107904 pidfd=5] Activating service name='org.a11y.Bus' requested by ':1.0' (uid=1000 pid=1107905 comm="/home/hakergeniusz/Projects/radix/target/debug/rad")
+dbus-daemon[1107904]: [session uid=1000 pid=1107904 pidfd=5] Successfully activated service 'org.a11y.Bus'
+dbus-daemon[1107904]: [session uid=1000 pid=1107904 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.10' (uid=1000 pid=1108002 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[1107904]: [session uid=1000 pid=1107904 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+
+(radix:1107905): Gtk-WARNING **: 21:54:04.887: No IM module matching GTK_IM_MODULE=xim found
+
+thread 'main' (1107905) has overflowed its stack
+fatal runtime error: stack overflow, aborting
+
+(/usr/lib/xdg-desktop-portal:1107911): xdg-desktop-portal-WARNING **: 21:54:04.908: Failed to close session implementation: The connection is closed
+
+(/usr/lib/xdg-desktop-portal:1107911): xdg-desktop-portal-WARNING **: 21:54:04.908: Failed to create secret proxy: Error calling StartServiceByName for org.freedesktop.secrets: The connection is closed
+A connection to the bus can't be made

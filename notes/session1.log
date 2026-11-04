@@ -1,0 +1,113 @@
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activating service name='org.freedesktop.impl.portal.PermissionStore' requested by ':1.0' (uid=1000 pid=305846 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Successfully activated service 'org.freedesktop.impl.portal.PermissionStore'
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activating service name='org.freedesktop.portal.Documents' requested by ':1.0' (uid=1000 pid=305846 comm="/usr/lib/xdg-desktop-portal")
+
+(xdg-desktop-portal-gtk:305845): Gtk-WARNING **: 16:19:59.301: cannot open display: :98
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Successfully activated service 'org.freedesktop.portal.Documents'
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activating service name='org.freedesktop.impl.portal.desktop.gnome' requested by ':1.0' (uid=1000 pid=305846 comm="/usr/lib/xdg-desktop-portal")
+
+** (xdg-desktop-portal-gnome:305873): WARNING **: 16:19:59.392: Failed to open service channel Wayland connection, portal dialogs may misbehave (Cannot invoke method; proxy is for the well-known name org.gnome.Mutter.ServiceChannel without an owner, and proxy was constructed with the G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START flag).
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activating service name='org.gtk.vfs.Daemon' requested by ':1.3' (uid=1000 pid=305873 comm="/usr/lib/xdg-desktop-portal-gnome")
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Successfully activated service 'org.gtk.vfs.Daemon'
+fusermount3: failed to access mountpoint /run/user/1000/gvfs: Permission denied
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activating service name='org.gnome.Settings.GlobalShortcutsProvider' requested by ':1.3' (uid=1000 pid=305873 comm="/usr/lib/xdg-desktop-portal-gnome")
+
+** (process:305907): WARNING **: 16:19:59.473: Failed to open service channel Wayland connection, portal dialogs may misbehave (Cannot invoke method; proxy is for the well-known name org.gnome.Mutter.ServiceChannel without an owner, and proxy was constructed with the G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START flag).
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Successfully activated service 'org.gnome.Settings.GlobalShortcutsProvider'
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Successfully activated service 'org.freedesktop.impl.portal.desktop.gnome'
+
+(/usr/lib/xdg-desktop-portal:305846): xdg-desktop-portal-WARNING **: 16:19:59.533: Failed to load RealtimeKit property: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name is not activatable
+
+(/usr/lib/xdg-desktop-portal:305846): xdg-desktop-portal-WARNING **: 16:19:59.533: Failed to load RealtimeKit property: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name is not activatable
+
+(/usr/lib/xdg-desktop-portal:305846): xdg-desktop-portal-WARNING **: 16:19:59.533: Failed to load RealtimeKit property: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name is not activatable
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activating service name='org.freedesktop.impl.portal.desktop.gtk' requested by ':1.0' (uid=1000 pid=305846 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Successfully activated service 'org.freedesktop.impl.portal.desktop.gtk'
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activating service name='org.freedesktop.secrets' requested by ':1.0' (uid=1000 pid=305846 comm="/usr/lib/xdg-desktop-portal")
+discover_other_daemon: 1GNOME_KEYRING_CONTROL=/run/user/1000/keyring
+session ready bus=unix:path=/tmp/dbus-VwsF2LszB1,guid=5442eb009f88e5554609ae246ae9fb9f display=:98 dark=0
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activating service name='org.freedesktop.Flatpak' requested by ':1.10' (uid=1000 pid=305930 comm="flatpak run --nosocket=wayland --socket=x11 --env=")
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Successfully activated service 'org.freedesktop.Flatpak'
+F: X11 socket /tmp/.X11-unix/X98 does not exist in filesystem, trying to use abstract socket instead.
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activating service name='org.a11y.Bus' requested by ':1.10' (uid=1000 pid=305930 comm="flatpak run --nosocket=wayland --socket=x11 --env=")
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Successfully activated service 'org.a11y.Bus'
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=305957 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+
+(gnome-calculator:2): Gtk-WARNING **: 16:20:00.626: Failed to open display
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Multiple symbols for level 1/group 1 on key <FK23>
+>                   Using F23, ignoring XF86TouchpadOff
+> Warning:          Symbol map for key <FK23> redefined
+>                   Using last definition for conflicting fields
+> Warning:          Symbol map for key <FK24> redefined
+>                   Using last definition for conflicting fields
+Errors from xkbcomp are not fatal to the X server
+
+(/usr/lib/xdg-desktop-portal:305846): xdg-desktop-portal-WARNING **: 16:20:05.560: Failed to get application states: GDBus.Error:org.freedesktop.portal.Error.Failed: Could not get window list
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Multiple symbols for level 1/group 1 on key <FK23>
+>                   Using F23, ignoring XF86TouchpadOff
+> Warning:          Symbol map for key <FK23> redefined
+>                   Using last definition for conflicting fields
+> Warning:          Symbol map for key <FK24> redefined
+>                   Using last definition for conflicting fields
+Errors from xkbcomp are not fatal to the X server
+
+(/usr/lib/xdg-desktop-portal:305846): xdg-desktop-portal-WARNING **: 16:20:24.613: Failed to create secret proxy: Error calling StartServiceByName for org.freedesktop.secrets: Timeout was reached
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activating service name='org.freedesktop.portal.IBus' requested by ':1.19' (uid=1000 pid=306195 comm="xdg-dbus-proxy --args=87")
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Successfully activated service 'org.freedesktop.portal.IBus'
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=305957 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Failed to activate service 'org.freedesktop.secrets': timed out (service_start_timeout=120000ms)
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=305957 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=305957 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=305957 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=305957 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=305957 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=305957 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=305957 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=305957 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Multiple symbols for level 1/group 1 on key <FK23>
+>                   Using F23, ignoring XF86TouchpadOff
+> Warning:          Symbol map for key <FK23> redefined
+>                   Using last definition for conflicting fields
+> Warning:          Symbol map for key <FK24> redefined
+>                   Using last definition for conflicting fields
+Errors from xkbcomp are not fatal to the X server
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Multiple symbols for level 1/group 1 on key <FK23>
+>                   Using F23, ignoring XF86TouchpadOff
+> Warning:          Symbol map for key <FK23> redefined
+>                   Using last definition for conflicting fields
+> Warning:          Symbol map for key <FK24> redefined
+>                   Using last definition for conflicting fields
+Errors from xkbcomp are not fatal to the X server
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Multiple symbols for level 1/group 1 on key <FK23>
+>                   Using F23, ignoring XF86TouchpadOff
+> Warning:          Symbol map for key <FK23> redefined
+>                   Using last definition for conflicting fields
+> Warning:          Symbol map for key <FK24> redefined
+>                   Using last definition for conflicting fields
+Errors from xkbcomp are not fatal to the X server
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Reloaded configuration
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Reloaded configuration
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Reloaded configuration
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Reloaded configuration
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Reloaded configuration
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Reloaded configuration
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Reloaded configuration
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Reloaded configuration
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Reloaded configuration
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Reloaded configuration
+dbus-daemon[305842]: [session uid=1000 pid=305842 pidfd=5] Reloaded configuration

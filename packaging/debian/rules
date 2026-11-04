@@ -1,0 +1,30 @@
+#!/usr/bin/make -f
+# Radix debian/rules — builds the Rust workspace with cargo.
+
+export DH_VERBOSE = 1
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	# No C toolchain flags needed: the numeric stack is pure Rust.
+	cargo build --release --locked
+
+override_dh_auto_install:
+	install -Dm755 target/release/radix debian/radix/usr/bin/radix
+	install -Dm644 data/io.github.hakergeniusz.Radix.desktop.in \
+	  debian/radix/usr/share/applications/io.github.hakergeniusz.Radix.desktop
+	install -Dm644 data/io.github.hakergeniusz.Radix.metainfo.xml \
+	  debian/radix/usr/share/metainfo/io.github.hakergeniusz.Radix.metainfo.xml
+	for s in 16 24 32 48 64 128 256 512; do \
+	  install -Dm644 data/icons/hicolor/$${s}x$${s}/apps/io.github.hakergeniusz.Radix.png \
+	    debian/radix/usr/share/icons/hicolor/$${s}x$${s}/apps/io.github.hakergeniusz.Radix.png; \
+	done
+	install -Dm644 data/icons/hicolor/scalable/apps/io.github.hakergeniusz.Radix.svg \
+	  debian/radix/usr/share/icons/hicolor/scalable/apps/io.github.hakergeniusz.Radix.svg
+
+override_dh_auto_test:
+	cargo test --locked
+
+override_dh_strip:
+	dh_strip --no-automatic-dbgsym

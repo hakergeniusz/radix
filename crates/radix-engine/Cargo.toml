@@ -1,0 +1,16 @@
+[package]
+name = "radix-engine"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+description = "Radix expression engine: parser, arbitrary-precision evaluation, formatting"
+rust-version = "1.85"
+
+# Pure-Rust, permissive-licence numerics only (MIT/Apache-2.0).
+# No C-linked crates (no rug/gmp-mpfr-sys), no LGPL/GPL deps.
+[dependencies]
+num-bigint = "0.4"
+num-rational = "0.4"
+num-traits = "0.2"
+astro-float = "0.3"
+rand = "0.9"

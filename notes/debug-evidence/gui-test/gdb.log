@@ -1,0 +1,80 @@
+(EE) 
+Fatal server error:
+(EE) Server is already active for display 95
+	If this server is no longer running, remove /tmp/.X95-lock
+	and start again.
+(EE) 
+dbus-daemon[1110414]: [session uid=1000 pid=1110414 pidfd=5] Activating service name='org.freedesktop.portal.Desktop' requested by ':1.0' (uid=1000 pid=1110456 comm="/home/hakergeniusz/Projects/radix/target/debug/rad")
+dbus-daemon[1110414]: [session uid=1000 pid=1110414 pidfd=5] Activating service name='org.freedesktop.impl.portal.PermissionStore' requested by ':1.1' (uid=1000 pid=1110481 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[1110414]: [session uid=1000 pid=1110414 pidfd=5] Successfully activated service 'org.freedesktop.impl.portal.PermissionStore'
+dbus-daemon[1110414]: [session uid=1000 pid=1110414 pidfd=5] Activating service name='org.freedesktop.portal.Documents' requested by ':1.1' (uid=1000 pid=1110481 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[1110414]: [session uid=1000 pid=1110414 pidfd=5] Successfully activated service 'org.freedesktop.portal.Documents'
+dbus-daemon[1110414]: [session uid=1000 pid=1110414 pidfd=5] Activating service name='org.freedesktop.impl.portal.desktop.gnome' requested by ':1.1' (uid=1000 pid=1110481 comm="/usr/lib/xdg-desktop-portal")
+
+** (xdg-desktop-portal-gnome:1110504): WARNING **: 21:55:06.116: GDK backend forced via env var, portal dialogs will not work properly.
+Non-compatible display server, exposing settings only.
+dbus-daemon[1110414]: [session uid=1000 pid=1110414 pidfd=5] Activating service name='org.gtk.vfs.Daemon' requested by ':1.4' (uid=1000 pid=1110504 comm="/usr/lib/xdg-desktop-portal-gnome")
+dbus-daemon[1110414]: [session uid=1000 pid=1110414 pidfd=5] Successfully activated service 'org.gtk.vfs.Daemon'
+fusermount3: failed to access mountpoint /run/user/1000/gvfs: Permission denied
+dbus-daemon[1110414]: [session uid=1000 pid=1110414 pidfd=5] Successfully activated service 'org.freedesktop.impl.portal.desktop.gnome'
+
+(/usr/lib/xdg-desktop-portal:1110481): xdg-desktop-portal-WARNING **: 21:55:06.135: Failed to load RealtimeKit property: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name is not activatable
+
+(/usr/lib/xdg-desktop-portal:1110481): xdg-desktop-portal-WARNING **: 21:55:06.135: Failed to load RealtimeKit property: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name is not activatable
+
+(/usr/lib/xdg-desktop-portal:1110481): xdg-desktop-portal-WARNING **: 21:55:06.135: Failed to load RealtimeKit property: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name is not activatable
+dbus-daemon[1110414]: [session uid=1000 pid=1110414 pidfd=5] Activating service name='org.freedesktop.impl.portal.desktop.gtk' requested by ':1.1' (uid=1000 pid=1110481 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[1110414]: [session uid=1000 pid=1110414 pidfd=5] Successfully activated service 'org.freedesktop.impl.portal.desktop.gtk'
+dbus-daemon[1110414]: [session uid=1000 pid=1110414 pidfd=5] Activating service name='org.freedesktop.secrets' requested by ':1.1' (uid=1000 pid=1110481 comm="/usr/lib/xdg-desktop-portal")
+discover_other_daemon: 1GNOME_KEYRING_CONTROL=/run/user/1000/keyring
+dbus-daemon[1110414]: [session uid=1000 pid=1110414 pidfd=5] Successfully activated service 'org.freedesktop.portal.Desktop'
+dbus-daemon[1110414]: [session uid=1000 pid=1110414 pidfd=5] Activating service name='org.a11y.Bus' requested by ':1.0' (uid=1000 pid=1110456 comm="/home/hakergeniusz/Projects/radix/target/debug/rad")
+dbus-daemon[1110414]: [session uid=1000 pid=1110414 pidfd=5] Successfully activated service 'org.a11y.Bus'
+dbus-daemon[1110414]: [session uid=1000 pid=1110414 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.10' (uid=1000 pid=1110573 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[1110414]: [session uid=1000 pid=1110414 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+Thread 1 "radix" received signal SIGSEGV, Segmentation fault.
+core::char::methods::encode_utf8_raw_unchecked (code=<error reading variable: Cannot access memory at address 0x7fffff7fefd4>, dst=<error reading variable: Cannot access memory at address 0x7fffff7fefd8>) at /usr/src/debug/rust/rustc-1.99.1-src/library/core/src/char/methods.rs:2552
+warning: 2552	/usr/src/debug/rust/rustc-1.99.1-src/library/core/src/char/methods.rs: No such file or directory
+#0  core::char::methods::encode_utf8_raw_unchecked (code=<error reading variable: Cannot access memory at address 0x7fffff7fefd4>, dst=<error reading variable: Cannot access memory at address 0x7fffff7fefd8>) at /usr/src/debug/rust/rustc-1.99.1-src/library/core/src/char/methods.rs:2552
+#1  0x0000555555801f1b in core::char::methods::encode_utf8_raw (code=8722, dst=...) at /usr/src/debug/rust/rustc-1.99.1-src/library/core/src/char/methods.rs:2528
+#2  0x0000555555846154 in core::char::methods::{impl#0}::encode_utf8 (self=8722 '−', dst=...) at /usr/src/debug/rust/rustc-1.99.1-src/library/core/src/char/methods.rs:735
+#3  core::str::pattern::{impl#4}::into_searcher (self=8722 '−', haystack=...) at /usr/src/debug/rust/rustc-1.99.1-src/library/core/src/str/pattern.rs:569
+#4  0x0000555555809b96 in core::str::{impl#0}::match_indices<char> (self=..., pat=8722 '−') at /usr/src/debug/rust/rustc-1.99.1-src/library/core/src/str/mod.rs:2124
+#5  alloc::str::{impl#5}::replace<char> (self=..., from=8722 '−', to=...) at /usr/src/debug/rust/rustc-1.99.1-src/library/alloc/src/str.rs:330
+#6  0x00005555557ef72c in radix::convert::ConversionPane::recompute (self=0x555557c697f0) at src/convert.rs:376
+#7  0x0000555555851d24 in radix::convert::{impl#0}::wire::{closure#1} (buf=0x7fffff800130, iter=0x7fffff8000b0, text=...) at src/convert.rs:190
+#8  0x0000555555860317 in gtk4::text_buffer::TextBufferExtManual::connect_insert_text::insert_text_trampoline<gtk4::auto::text_buffer::TextBuffer, radix::convert::{impl#0}::wire::{closure_env#1}> (this=0x555557c17320, location=0x7fffff8007b0, text=0x555557d129a0, len=1, f=0x555557c697f0) at /home/hakergeniusz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gtk4-0.10.3/src/text_buffer.rs:89
+#9  0x00007ffff7cd1b0d in g_closure_invoke () from /usr/lib/libgobject-2.0.so.0
+#10 0x00007ffff7cf1cfb in ?? () from /usr/lib/libgobject-2.0.so.0
+#11 0x00007ffff7cf3ed4 in ?? () from /usr/lib/libgobject-2.0.so.0
+#12 0x00007ffff7cf4179 in g_signal_emit_valist () from /usr/lib/libgobject-2.0.so.0
+#13 0x00007ffff7cf4234 in g_signal_emit () from /usr/lib/libgobject-2.0.so.0
+#14 0x00007ffff7254c5a in gtk_text_buffer_set_text () from /usr/lib/libgtk-4.so.1
+#15 0x00005555557fb247 in gtk4::auto::text_buffer::TextBufferExt::set_text<gtk4::auto::text_buffer::TextBuffer> (self=0x7fffff800df8, text=...) at /home/hakergeniusz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gtk4-0.10.3/src/auto/text_buffer.rs:865
+#16 0x00005555557f07f9 in radix::convert::ConversionPane::recompute (self=0x555557c697f0) at src/convert.rs:428
+#17 0x0000555555851d24 in radix::convert::{impl#0}::wire::{closure#1} (buf=0x7fffff801270, iter=0x7fffff8011f0, text=...) at src/convert.rs:190
+#18 0x0000555555860317 in gtk4::text_buffer::TextBufferExtManual::connect_insert_text::insert_text_trampoline<gtk4::auto::text_buffer::TextBuffer, radix::convert::{impl#0}::wire::{closure_env#1}> (this=0x555557c17320, location=0x7fffff8018f0, text=0x555557d12900, len=1, f=0x555557c697f0) at /home/hakergeniusz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gtk4-0.10.3/src/text_buffer.rs:89
+#19 0x00007ffff7cd1b0d in g_closure_invoke () from /usr/lib/libgobject-2.0.so.0
+#20 0x00007ffff7cf1cfb in ?? () from /usr/lib/libgobject-2.0.so.0
+#21 0x00007ffff7cf3ed4 in ?? () from /usr/lib/libgobject-2.0.so.0
+#22 0x00007ffff7cf4179 in g_signal_emit_valist () from /usr/lib/libgobject-2.0.so.0
+#23 0x00007ffff7cf4234 in g_signal_emit () from /usr/lib/libgobject-2.0.so.0
+#24 0x00007ffff7254c5a in gtk_text_buffer_set_text () from /usr/lib/libgtk-4.so.1
+#25 0x00005555557fb247 in gtk4::auto::text_buffer::TextBufferExt::set_text<gtk4::auto::text_buffer::TextBuffer> (self=0x7fffff801f38, text=...) at /home/hakergeniusz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gtk4-0.10.3/src/auto/text_buffer.rs:865
+#26 0x00005555557f07f9 in radix::convert::ConversionPane::recompute (self=0x555557c697f0) at src/convert.rs:428
+#27 0x0000555555851d24 in radix::convert::{impl#0}::wire::{closure#1} (buf=0x7fffff8023b0, iter=0x7fffff802330, text=...) at src/convert.rs:190
+#28 0x0000555555860317 in gtk4::text_buffer::TextBufferExtManual::connect_insert_text::insert_text_trampoline<gtk4::auto::text_buffer::TextBuffer, radix::convert::{impl#0}::wire::{closure_env#1}> (this=0x555557c17320, location=0x7fffff802a30, text=0x555557d12860, len=1, f=0x555557c697f0) at /home/hakergeniusz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gtk4-0.10.3/src/text_buffer.rs:89
+#29 0x00007ffff7cd1b0d in g_closure_invoke () from /usr/lib/libgobject-2.0.so.0
+#30 0x00007ffff7cf1cfb in ?? () from /usr/lib/libgobject-2.0.so.0
+#31 0x00007ffff7cf3ed4 in ?? () from /usr/lib/libgobject-2.0.so.0
+#32 0x00007ffff7cf4179 in g_signal_emit_valist () from /usr/lib/libgobject-2.0.so.0
+#33 0x00007ffff7cf4234 in g_signal_emit () from /usr/lib/libgobject-2.0.so.0
+#34 0x00007ffff7254c5a in gtk_text_buffer_set_text () from /usr/lib/libgtk-4.so.1
+#35 0x00005555557fb247 in gtk4::auto::text_buffer::TextBufferExt::set_text<gtk4::auto::text_buffer::TextBuffer> (self=0x7fffff803078, text=...) at /home/hakergeniusz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gtk4-0.10.3/src/auto/text_buffer.rs:865
+#36 0x00005555557f07f9 in radix::convert::ConversionPane::recompute (self=0x555557c697f0) at src/convert.rs:428
+#37 0x0000555555851d24 in radix::convert::{impl#0}::wire::{closure#1} (buf=0x7fffff8034f0, iter=0x7fffff803470, text=...) at src/convert.rs:190
+#38 0x0000555555860317 in gtk4::text_buffer::TextBufferExtManual::connect_insert_text::insert_text_trampoline<gtk4::auto::text_buffer::TextBuffer, radix::convert::{impl#0}::wire::{closure_env#1}> (this=0x555557c17320, location=0x7fffff803b70, text=0x555557d127c0, len=1, f=0x555557c697f0) at /home/hakergeniusz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gtk4-0.10.3/src/text_buffer.rs:89
+#39 0x00007ffff7cd1b0d in g_closure_invoke () from /usr/lib/libgobject-2.0.so.0
+
+(/usr/lib/xdg-desktop-portal:1110481): xdg-desktop-portal-WARNING **: 21:55:06.406: Failed to create secret proxy: Error calling StartServiceByName for org.freedesktop.secrets: The connection is closed
+A connection to the bus can't be made

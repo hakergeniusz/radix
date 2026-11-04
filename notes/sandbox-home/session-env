@@ -1,0 +1,4 @@
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/tmp/dbus-bFg05rpyos\,guid=f416b4947faea5da8b7542ac6ae9fe66
+export DISPLAY=:98
+export XDG_DATA_HOME=/home/hakergeniusz/Projects/radix/notes/sandbox-home
+export XDG_CONFIG_HOME=/home/hakergeniusz/Projects/radix/notes/sandbox-home/config

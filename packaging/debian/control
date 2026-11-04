@@ -1,0 +1,27 @@
+Source: radix
+Section: science
+Priority: optional
+Maintainer: hakergeniusz <radix@users.noreply.github.com>
+Build-Depends:
+ debhelper-compat (= 13),
+ cargo,
+ rustc (>= 1.85),
+ libgtk-4-dev,
+ libadwaita-1-dev,
+ pkg-config
+Standards-Version: 4.6.2
+Homepage: https://github.com/hakergeniusz/radix
+Vcs-Git: https://github.com/hakergeniusz/radix.git
+
+Package: radix
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libgtk-4-1, libadwaita-1-0, glib-networking
+Recommends: xdg-desktop-portal
+Description: An independent desktop calculator
+ Radix is a history-centric desktop calculator with Basic, Advanced,
+ Financial, Programming, Keyboard and Conversion modes, arbitrary-precision
+ arithmetic, exact rational results where possible, trigonometry with
+ configurable angle units, bitwise operations with selectable word size,
+ live unit and currency conversion, and four result formats.
+ .
+ Built from the approved behavioral specification in docs/ (clean-room).

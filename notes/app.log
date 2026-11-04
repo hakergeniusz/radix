@@ -1,0 +1,753 @@
+MESA-EGL: warning: DRI3 error: Could not get DRI3 device
+MESA-EGL: warning: Ensure your X server supports DRI3 to get accelerated rendering
+
+(gnome-calculator:2): IBUS-WARNING **: 16:31:53.172: Create input context failed: The connection is closed.
+
+(gnome-calculator:2): IBUS-WARNING **: 16:31:53.172: Create input context failed: The connection is closed.
+
+(gnome-calculator:2): IBUS-WARNING **: 16:31:53.172: Create input context failed: The connection is closed.
+
+(gnome-calculator:2): IBUS-WARNING **: 16:31:53.172: Create input context failed: The connection is closed.
+
+(gnome-calculator:2): IBUS-WARNING **: 16:31:53.172: Create input context failed: The connection is closed.
+
+(gnome-calculator:2): IBUS-WARNING **: 16:31:53.172: Create input context failed: The connection is closed.
+
+(gnome-calculator:2): IBUS-WARNING **: 16:31:53.172: Create input context failed: The connection is closed.
+
+(gnome-calculator:2): IBUS-WARNING **: 16:31:53.172: Create input context failed: The connection is closed.
+
+(gnome-calculator:2): IBUS-WARNING **: 16:31:53.172: Create input context failed: The connection is closed.
+
+(gnome-calculator:2): IBUS-WARNING **: 16:31:53.172: Create input context failed: The connection is closed.
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:31:53.177: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gdk-WARNING **: 16:32:15.138: gdk_frame_timings_submitted() called on submitted frame.
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:32:15.139: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:32:15.804: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:32:15.820: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:32:15.835: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:32:30.541: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:32:47.723: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:32:48.109: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:33:41.226: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:33:42.512: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:33:56.624: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:34:27.297: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:34:27.738: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:34:27.803: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:35:12.475: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:35:12.574: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:35:13.751: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:35:32.759: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:35:33.571: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:36:25.014: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:37:26.456: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+MESA-EGL: warning: DRI3 error: Could not get DRI3 device
+MESA-EGL: warning: Ensure your X server supports DRI3 to get accelerated rendering
+
+(yelp:55): Gtk-CRITICAL **: 16:39:57.340: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+** (process:341049): WARNING **: 16:39:57.350: Error writing credentials to socket: Error sending message: Broken pipe
+
+(yelp:55): Gtk-CRITICAL **: 16:39:57.495: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+** (process:2): WARNING **: 16:39:57.496: Failed to get atspi registered event listeners: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+
+(yelp:55): Gdk-WARNING **: 16:40:43.267: gdk_frame_timings_submitted() called on submitted frame.
+
+(yelp:55): Gtk-CRITICAL **: 16:41:19.896: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-WARNING **: 16:43:45.695: Cannot begin irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 16:43:45.695: Cannot end irreversible action while in user action
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:55:03.102: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:56:19.915: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:56:20.036: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:56:49.542: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:58:14.238: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:58:48.919: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 16:58:49.659: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:00:24.877: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:01:06.323: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:02:16.652: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:02:57.965: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:02:59.803: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:03:01.175: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:03:02.508: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:03:03.862: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:03:05.115: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:04:15.476: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:04:15.811: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:04:17.132: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:04:17.446: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:04:18.827: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:04:19.145: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:04:20.480: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:04:20.793: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:04:22.143: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:04:22.452: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:04:23.730: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:04:24.041: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:06:29.571: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:06:29.852: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:07:18.834: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:29.955: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:29.974: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:29.974: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:29.974: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:29.994: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:30.019: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:30.019: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:30.019: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:30.036: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:30.055: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:08:30.951: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:31.979: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:32.002: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:32.019: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:32.040: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:32.060: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:32.085: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:32.101: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:32.122: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:33.955: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:33.976: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:33.996: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:34.017: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:34.037: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:34.058: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:35.889: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:35.909: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:35.929: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:35.950: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:35.970: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:35.991: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:37.857: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:37.877: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:39.741: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:39.762: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:39.823: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:08:39.843: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:09:56.915: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:09:56.916: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:09:56.923: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:09:56.930: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:09:56.935: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:09:56.947: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:09:56.948: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:09:56.954: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:09:56.965: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:09:56.967: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:09:56.973: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:09:56.981: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:11:01.384: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:11:01.390: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:11:01.397: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:11:01.403: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:11:01.409: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:11:01.415: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:11:49.467: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:11:49.468: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:11:49.474: Events queue growing too big, will start to drop.
+
+(gnome-calculator:2): IBUS-WARNING **: 17:11:49.481: Events queue growing too big, will start to drop.
+MESA-EGL: warning: DRI3 error: Could not get DRI3 device
+MESA-EGL: warning: Ensure your X server supports DRI3 to get accelerated rendering
+
+(gnome-calculator:2): Gtk-WARNING **: 17:16:33.975: No IM module matching GTK_IM_MODULE=xim found
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:16:34.425: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gdk-WARNING **: 17:16:34.939: gdk_frame_timings_submitted() called on submitted frame.
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:18:38.315: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:18:41.637: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:18:43.475: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:18:43.486: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:18:43.534: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:18:45.456: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:18:45.475: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:18:45.522: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:18:47.411: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:18:47.426: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:19:43.745: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:19:44.834: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:19:44.837: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:19:50.679: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:19:50.707: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:19:50.741: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:20:53.846: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:20:54.359: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:20:54.570: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:20:54.587: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:28:24.483: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:28:24.670: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 17:28:24.682: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-WARNING **: 17:39:20.823: Cannot begin irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 17:39:20.826: Cannot end irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 17:39:52.795: Cannot begin irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 17:39:52.795: Cannot end irreversible action while in user action
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:04:26.191: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:04:28.958: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:04:31.723: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:04:34.485: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:06:02.034: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:06:05.753: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:06:09.477: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:08:09.200: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:08:12.874: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:08:16.565: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:08:20.316: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:08:24.044: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:09:08.039: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:09:11.774: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:10:14.454: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:10:18.215: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:10:21.918: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:11:08.733: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:11:12.425: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:11:16.127: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:12:53.302: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:19:06.925: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:19:10.608: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:19:14.277: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:19:17.961: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:19:21.652: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:20:26.197: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:20:31.819: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:22:47.930: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:27:34.536: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:31:33.224: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:32:02.192: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:32:02.401: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:32:03.170: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:32:30.662: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:32:30.851: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:33:03.311: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:36:04.656: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:36:04.851: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:36:38.651: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:38:11.922: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:43:02.213: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:43:40.621: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:43:41.761: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:44:26.702: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:45:05.307: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:45:06.376: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:45:08.229: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:48:51.797: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:48:53.250: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:48:55.214: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:48:57.304: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:50:57.126: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:50:59.228: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:51:01.292: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:52:03.902: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:52:34.750: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:53:01.122: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:53:31.060: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:54:04.001: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:59:08.851: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 18:59:30.990: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:00:21.691: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:01:34.884: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:01:56.530: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:02:05.616: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:02:05.804: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:03:23.274: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:07:13.249: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:07:21.055: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:08:34.149: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:09:01.179: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:10:01.377: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:10:01.536: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:11:01.404: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:11:01.564: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:11:37.110: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:11:37.304: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:12:54.121: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:12:54.315: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:12:55.170: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:13:11.957: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:13:12.746: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:13:12.905: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:13:56.780: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:13:56.958: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:15:28.181: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:15:28.355: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:15:30.003: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:15:30.164: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:16:14.277: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:16:14.468: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:16:27.336: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:16:27.353: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:16:46.734: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:17:28.176: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:17:43.419: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:18:02.815: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:18:34.762: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:19:01.729: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:19:01.888: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-WARNING **: 19:20:40.210: Cannot begin irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 19:20:40.210: Cannot end irreversible action while in user action
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:21:10.943: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:22:29.321: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:22:29.529: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:24:05.033: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:24:05.206: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:24:38.390: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:24:38.575: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:25:18.228: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:25:18.399: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-WARNING **: 19:25:19.546: Cannot begin irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 19:25:19.546: Cannot end irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 19:25:20.233: Cannot begin irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 19:25:20.233: Cannot end irreversible action while in user action
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:25:39.872: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-WARNING **: 19:25:40.435: Cannot begin irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 19:25:40.435: Cannot end irreversible action while in user action
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:26:11.832: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:26:12.045: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:26:12.064: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-WARNING **: 19:27:26.861: Cannot begin irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 19:27:26.872: Cannot end irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 19:27:26.953: Invalid text buffer iterator: either the iterator is uninitialized, or the characters/paintables/widgets in the buffer have been modified since the iterator was created.
+You must use marks, character numbers, or line numbers to preserve a position across buffer modifications.
+You can apply tags and insert marks without invalidating your iterators,
+but any mutation that affects 'indexable' buffer contents (contents that can be referred to by character offset)
+will invalidate all outstanding iterators
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:27:26.953: gtk_accessible_text_get_contents: assertion 'end >= start' failed
+
+(gnome-calculator:2): Gtk-WARNING **: 19:27:26.983: Invalid text buffer iterator: either the iterator is uninitialized, or the characters/paintables/widgets in the buffer have been modified since the iterator was created.
+You must use marks, character numbers, or line numbers to preserve a position across buffer modifications.
+You can apply tags and insert marks without invalidating your iterators,
+but any mutation that affects 'indexable' buffer contents (contents that can be referred to by character offset)
+will invalidate all outstanding iterators
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:27:26.983: gtk_accessible_text_get_contents: assertion 'end >= start' failed
+
+(gnome-calculator:2): Gtk-WARNING **: 19:27:27.013: Invalid text buffer iterator: either the iterator is uninitialized, or the characters/paintables/widgets in the buffer have been modified since the iterator was created.
+You must use marks, character numbers, or line numbers to preserve a position across buffer modifications.
+You can apply tags and insert marks without invalidating your iterators,
+but any mutation that affects 'indexable' buffer contents (contents that can be referred to by character offset)
+will invalidate all outstanding iterators
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:27:27.013: gtk_accessible_text_get_contents: assertion 'end >= start' failed
+
+(gnome-calculator:2): Gtk-WARNING **: 19:27:27.044: Invalid text buffer iterator: either the iterator is uninitialized, or the characters/paintables/widgets in the buffer have been modified since the iterator was created.
+You must use marks, character numbers, or line numbers to preserve a position across buffer modifications.
+You can apply tags and insert marks without invalidating your iterators,
+but any mutation that affects 'indexable' buffer contents (contents that can be referred to by character offset)
+will invalidate all outstanding iterators
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:27:27.044: gtk_accessible_text_get_contents: assertion 'end >= start' failed
+
+(gnome-calculator:2): Gtk-WARNING **: 19:27:27.697: Cannot begin irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 19:27:27.698: Cannot end irreversible action while in user action
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:28:18.652: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:28:18.830: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:28:42.832: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:28:42.981: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:28:43.031: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:29:10.590: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:29:28.158: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:29:43.750: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:29:59.504: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:30:19.141: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:30:42.785: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:31:21.003: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:31:21.171: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:31:21.273: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-WARNING **: 19:36:56.558: Cannot begin irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 19:36:56.569: Cannot end irreversible action while in user action
+MESA-EGL: warning: DRI3 error: Could not get DRI3 device
+MESA-EGL: warning: Ensure your X server supports DRI3 to get accelerated rendering
+
+(gnome-calculator:2): Gtk-WARNING **: 19:41:23.649: No IM module matching GTK_IM_MODULE=xim found
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:41:23.963: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gdk-WARNING **: 19:46:53.410: gdk_frame_timings_submitted() called on submitted frame.
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:46:53.420: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:47:05.472: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:47:05.743: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:47:05.768: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:48:15.999: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:48:28.599: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:48:28.866: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:49:25.101: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:49:25.347: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:50:34.196: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:50:34.458: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:50:45.844: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:50:46.082: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:51:04.934: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:51:19.555: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:51:39.695: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:52:01.840: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:52:02.088: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:52:19.662: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+MESA-EGL: warning: DRI3 error: Could not get DRI3 device
+MESA-EGL: warning: Ensure your X server supports DRI3 to get accelerated rendering
+
+(gnome-calculator:2): Gtk-WARNING **: 19:53:07.705: No IM module matching GTK_IM_MODULE=xim found
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:53:08.087: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gdk-WARNING **: 19:53:26.243: gdk_frame_timings_submitted() called on submitted frame.
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:53:26.246: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:53:34.711: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:53:34.960: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:53:56.769: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:53:57.557: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:53:57.762: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:54:28.203: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:54:28.410: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:54:45.337: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:54:45.623: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:55:45.580: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 19:55:45.784: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-WARNING **: 20:17:44.062: Cannot begin irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 20:17:44.073: Cannot end irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 20:17:45.467: Cannot begin irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 20:17:45.467: Cannot end irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 20:17:47.267: Cannot begin irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 20:17:47.267: Cannot end irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 20:18:15.610: Cannot begin irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 20:18:15.611: Cannot end irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 20:18:18.127: Cannot begin irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 20:18:18.127: Cannot end irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 20:18:20.644: Cannot begin irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 20:18:20.644: Cannot end irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 20:18:24.070: Cannot begin irreversible action while in user action
+
+(gnome-calculator:2): Gtk-WARNING **: 20:18:24.070: Cannot end irreversible action while in user action
+
+(gnome-calculator:2): Gtk-CRITICAL **: 20:20:43.983: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+(gnome-calculator:2): Gtk-CRITICAL **: 20:20:44.328: Unable to register the application: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed

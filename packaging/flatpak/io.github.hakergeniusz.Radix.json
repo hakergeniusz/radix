@@ -1,0 +1,53 @@
+{
+  "id": "io.github.hakergeniusz.Radix",
+  "runtime": "org.gnome.Platform",
+  "runtime-version": "51",
+  "sdk": "org.gnome.Sdk",
+  "sdk-extensions": [
+    "org.freedesktop.Sdk.Extension.rust-stable//51"
+  ],
+  "command": "radix",
+  "finish-args": [
+    "--share=ipc",
+    "--socket=fallback-x11",
+    "--socket=wayland",
+    "--device=dri",
+    "--share=network"
+  ],
+  "build-options": {
+    "append-path": "/usr/lib/sdk/rust-stable/bin",
+    "env": {
+      "CARGO_HOME": "/run/build/radix/cargo"
+    },
+    "build-args": [
+      "--share=network"
+    ]
+  },
+  "modules": [
+    {
+      "name": "radix",
+      "buildsystem": "simple",
+      "sources": [
+        {
+          "type": "dir",
+          "path": "../..",
+          "skip": [
+            "target",
+            ".git",
+            "notes",
+            "vendor"
+          ]
+        }
+      ],
+      "build-commands": [
+        "cargo vendor --locked vendor > .cargo-vendor-config.toml",
+        "cargo build --release --locked --offline --config .cargo-vendor-config.toml",
+        "install -Dm755 target/release/radix /app/bin/radix",
+        "install -Dm644 data/io.github.hakergeniusz.Radix.desktop.in /app/share/applications/io.github.hakergeniusz.Radix.desktop",
+        "install -Dm644 data/io.github.hakergeniusz.Radix.metainfo.xml /app/share/metainfo/io.github.hakergeniusz.Radix.metainfo.xml",
+        "for s in 16 24 32 48 64 128 256 512; do install -Dm644 data/icons/hicolor/${s}x${s}/apps/io.github.hakergeniusz.Radix.png /app/share/icons/hicolor/${s}x${s}/apps/io.github.hakergeniusz.Radix.png; done",
+        "install -Dm644 data/icons/hicolor/scalable/apps/io.github.hakergeniusz.Radix.svg /app/share/icons/hicolor/scalable/apps/io.github.hakergeniusz.Radix.svg"
+      ]
+    }
+  ]
+}

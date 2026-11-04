@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.hakergeniusz.Radix</id>
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  <name>Radix</name>
+  <summary>An independent desktop calculator</summary>
+  <description>
+    <p>
+      Radix is a desktop calculator with a history-centric workflow: every
+      evaluated equation becomes a history row whose results re-render live
+      when the number format, grouping or number base changes.
+    </p>
+    <p>
+      It offers Basic, Advanced, Financial, Programming, Keyboard and
+      Conversion modes; arbitrary-precision arithmetic with exact rational
+      results; trigonometry with configurable angle units; bitwise operations
+      with a selectable word size; live unit and currency conversion; and
+      four result formats (Automatic, Fixed, Scientific, Engineering).
+    </p>
+  </description>
+  <launchable type="desktop-id">io.github.hakergeniusz.Radix.desktop</launchable>
+  <url type="homepage">https://github.com/hakergeniusz/radix</url>
+  <url type="bugtracker">https://github.com/hakergeniusz/radix/issues</url>
+  <developer>
+    <name>hakergeniusz</name>
+  </developer>
+  <content_rating type="oars-1.1"/>
+  <provides>
+    <binary>radix</binary>
+    <id>io.github.hakergeniusz.Radix.desktop</id>
+  </provides>
+  <releases>
+    <release version="0.1.0" date="2026-11-03">
+      <description>
+        <p>Initial independent implementation of the Radix behavioral specification.</p>
+      </description>
+    </release>
+  </releases>
+</component>

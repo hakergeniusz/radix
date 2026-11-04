@@ -1,0 +1,17 @@
+[org/gnome/calculator]
+source-units=['2', 'USD', 'degree', 'fathom', 'degree-kelvin']
+button-mode='conversion'
+unit-category='currency'
+base=10
+window-size=(370, 660)
+history-tape=[('111+1', '112'), ('222+2', '224')]
+window-maximized=false
+target-units=['meter', 'radian', 'DZD', '16', 'degree-celsius']
+refresh-interval=604800
+currency-display='name'
+angle-units='degrees'
+word-size=64
+number-format='automatic'
+show-thousands=false
+show-zeroes=false
+accuracy=9

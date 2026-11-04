@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Radix
+GenericName=Calculator
+Comment=Perform arithmetic, scientific and conversion calculations
+Keywords=calculation;arithmetic;scientific;financial;
+Exec=radix
+Icon=io.github.hakergeniusz.Radix
+Terminal=false
+Type=Application
+Categories=GNOME;GTK;Science;Math;
+StartupNotify=true
+X-GNOME-UsesNotifications=false

@@ -1,0 +1,553 @@
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Multiple symbols for level 1/group 1 on key <FK23>
+>                   Using F23, ignoring XF86TouchpadOff
+> Warning:          Symbol map for key <FK23> redefined
+>                   Using last definition for conflicting fields
+> Warning:          Symbol map for key <FK24> redefined
+>                   Using last definition for conflicting fields
+Errors from xkbcomp are not fatal to the X server
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.impl.portal.PermissionStore' requested by ':1.0' (uid=1000 pid=317911 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Successfully activated service 'org.freedesktop.impl.portal.PermissionStore'
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.portal.Documents' requested by ':1.0' (uid=1000 pid=317911 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Successfully activated service 'org.freedesktop.portal.Documents'
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.impl.portal.desktop.gnome' requested by ':1.0' (uid=1000 pid=317911 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.gtk.vfs.Daemon' requested by ':1.3' (uid=1000 pid=317910 comm="/usr/lib/xdg-desktop-portal-gtk")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Successfully activated service 'org.gtk.vfs.Daemon'
+fusermount3: failed to access mountpoint /run/user/1000/gvfs: Permission denied
+
+** (xdg-desktop-portal-gnome:317940): WARNING **: 16:31:50.719: Failed to open service channel Wayland connection, portal dialogs may misbehave (Cannot invoke method; proxy is for the well-known name org.gnome.Mutter.ServiceChannel without an owner, and proxy was constructed with the G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START flag).
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.gnome.Settings.GlobalShortcutsProvider' requested by ':1.5' (uid=1000 pid=317940 comm="/usr/lib/xdg-desktop-portal-gnome")
+
+** (process:317978): WARNING **: 16:31:50.787: Failed to open service channel Wayland connection, portal dialogs may misbehave (Cannot invoke method; proxy is for the well-known name org.gnome.Mutter.ServiceChannel without an owner, and proxy was constructed with the G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START flag).
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Successfully activated service 'org.gnome.Settings.GlobalShortcutsProvider'
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Successfully activated service 'org.freedesktop.impl.portal.desktop.gnome'
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.secrets' requested by ':1.0' (uid=1000 pid=317911 comm="/usr/lib/xdg-desktop-portal")
+discover_other_daemon: 1GNOME_KEYRING_CONTROL=/run/user/1000/keyring
+session ready bus=unix:path=/tmp/dbus-bFg05rpyos,guid=f416b4947faea5da8b7542ac6ae9fe66 display=:98 dark=0
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.Flatpak' requested by ':1.10' (uid=1000 pid=318001 comm="flatpak run --nosocket=wayland --socket=x11 --env=")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Successfully activated service 'org.freedesktop.Flatpak'
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.a11y.Bus' requested by ':1.10' (uid=1000 pid=318001 comm="flatpak run --nosocket=wayland --socket=x11 --env=")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Successfully activated service 'org.a11y.Bus'
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.portal.IBus' requested by ':1.15' (uid=1000 pid=318034 comm="xdg-dbus-proxy --args=88")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Successfully activated service 'org.freedesktop.portal.IBus'
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Failed to activate service 'org.freedesktop.secrets': timed out (service_start_timeout=120000ms)
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.portal.Flatpak' requested by ':1.19' (uid=1000 pid=318034 comm="xdg-dbus-proxy --args=88")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Successfully activated service 'org.freedesktop.portal.Flatpak'
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Reloaded configuration
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Multiple symbols for level 1/group 1 on key <FK23>
+>                   Using F23, ignoring XF86TouchpadOff
+> Warning:          Symbol map for key <FK23> redefined
+>                   Using last definition for conflicting fields
+> Warning:          Symbol map for key <FK24> redefined
+>                   Using last definition for conflicting fields
+Errors from xkbcomp are not fatal to the X server
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Reloaded configuration
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Reloaded configuration
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Reloaded configuration
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Reloaded configuration
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Reloaded configuration
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Reloaded configuration
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Reloaded configuration
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Reloaded configuration
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Reloaded configuration
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Reloaded configuration
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Reloaded configuration
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Reloaded configuration
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.portal.Documents' requested by ':1.35' (uid=1000 pid=746969 comm="flatpak run --nosocket=wayland --socket=x11 --env=")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Successfully activated service 'org.freedesktop.portal.Documents'
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='ca.desrt.dconf' requested by ':1.43' (uid=1000 pid=751200 comm="/home/hakergeniusz/Downloads/ZCode-3.17.2-linux-x6")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Successfully activated service 'ca.desrt.dconf'
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.portal.Documents' requested by ':1.46' (uid=1000 pid=765544 comm="flatpak run --nosocket=wayland --socket=x11 --env=")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Successfully activated service 'org.freedesktop.portal.Documents'
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.13' (uid=1000 pid=318028 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[317907]: [session uid=1000 pid=317907 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+Gdk-Message: 15:48:14.469: Lost connection to Wayland compositor.
