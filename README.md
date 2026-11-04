@@ -1,9 +1,11 @@
 # Radix
 
 **Radix** (`io.github.hakergeniusz.Radix`) is an independent desktop
-calculator for Linux, written in Rust. It is an independently engineered
-implementation of a documented behavioral specification (see `docs/`) —
-no code, architecture, or branding is derived from any other calculator.
+calculator for Linux, written in Rust. It is a **clean-room, black-box
+rewrite of GNOME Calculator**: its behavior was specified from
+black-box observation of the original (owner-provided screenshots and
+interaction evidence) and documented in `docs/`; no code, architecture,
+or branding is derived from any other calculator.
 
 ## Features
 
