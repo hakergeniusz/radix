@@ -234,3 +234,66 @@ Pixel scans of the originals (window #2 of each pair) supersede parts of §3,
 - **D27 — History row grid [Observed]**: 40-col homogeneous grid, echo 40%,
   "=" centered at 63.75%, result right-aligned 30%, ≈19px text, CHAR wrap.
 - **D28 — Decoration layout [Observed]**: `:close` only.
+
+## 10. Corrections from the 2026-11-04 20:16–20:18 side-by-side batch (round 2)
+
+Twelve new owner screenshots (`/tmp/ref-radix-2`, composites in
+`notes/comparison-2026-11-04/sbs2-*.png`) re-measured pixel-exact; the
+§9 constants that survive are kept, the rest are corrected here.
+
+### 10.1 Windows and chrome
+- **[Observed] Default windows are 360 px (Basic/Conversion) and 700 px
+  (wide modes) tall ≈ 615** — supersedes §9's 410/750 reading (those were
+  user-resized windows). Basic renders **full-bleed**: the history band
+  `#3c3c40` runs edge-to-edge under the header, rows bottom-anchored with
+  1px top separators, pitch 37, row text padding 20/20/7/7 (supersedes
+  D25's "one inset card" for Basic; wide modes keep the inset card).
+- **[Observed] Entry strip** `#333337` = 40px entry row (text centered,
+  19px font) + 28px radix line; ⌫ top-aligned (margin-top 4, end 12).
+  In Programming the radix line shows `{octal}₈ {hex}₁₆` of the entry
+  value at 13px dim; empty in every other mode.
+
+### 10.2 Keypads
+- **[Observed] Button metrics**: 64×44 everywhere except Programming
+  (64×53, every batch), radius ≈7, gaps 4, pad margins 12; `=` spans the
+  last two rows in the rightmost column (92px; 110px in Programming).
+  Hex digits are 36–37 wide; Programming base/word-size buttons 130;
+  Financial formula buttons 109, Term 109, Currency Conversion 221.
+- **[Observed] Programming rows**: r0 = 10×64 (C bold); r1/r2 = 5×64 ops
+  + 5×36 hex + 64 tail; r3 = 5×64 + 5×36 + 64; the two bottom rows share
+  the 110px `=` (so the pad is `r0,r1,r2, [r3;r4 | =]`). Bit panel:
+  `#333337`, digit pitch 15 (11px bold glyphs), nibble groups of 4,
+  row pitch ≈26, indices 63/47/32/31/15/0 dim 11px.
+- **[Observed] Financial rows**: r0 = 10×64; formula rows 3×109 + digits;
+  rows 1–3 are full-width; only r4–r5 share the 92px `=`.
+- **[Implementation note]**: uniform pads use a homogeneous GtkGrid; mixed
+  pads use hbox-per-row. GtkMenuButton's internal toggle keeps the
+  theme's ~11px side padding — its natural width must be zeroed via
+  `menubutton.radix-btn > button { padding: 0 }` or the homogeneous
+  columns inflate (window grew to 385px).
+
+### 10.3 History and scrolling
+- **[Observed] Result column ≈10/40 cols**; at 360 the widget ellipsizes
+  the engine string ("0.8333…"), at 700 the full "0.833333333" shows —
+  the engine string itself is correct (round_scaled(9)).
+- **[Observed] Mode switch resets history scroll to top** (orig
+  Programming shows the oldest rows with row 4 clipped below); row
+  appends still scroll to bottom. Keyboard mode hides the keypad stack
+  entirely (card reaches 12px from the window bottom).
+
+### 10.4 Menus and dialogs
+- **[Observed] Conversion primary menu has NO Clear History** (sections:
+  New Window | Result Format radios | Prefs/Shortcuts/Help | About);
+  the calc-mode menu keeps Clear History (§4 stands for calc modes).
+- **[Observed] Preferences** ≈363×593; "Show Currencies in Auto-
+  Completion List" title wraps to two lines.
+- **[Deferred] Primary-menu popover ≈273px wide in the original; Radix's
+  truncates accelerators at ≈200px — mechanism unresolved, cosmetic.
+
+### 10.5 Verification
+- 63/63 engine tests, clippy clean, GUI battery
+  (`tools/radix-session.sh` + Xvfb) re-shot all 7 scenes; composites
+  `notes/comparison-2026-11-04/sbs2-{basic,convmenu,conversion,advanced,
+  financial,programming,keyboard}.png`. Known accepted deltas: echo wrap
+  point at 360 (font metrics), +10px AdwDialogHost chrome in wide modes,
+  rig renders accent blue (user's system accent is pink).

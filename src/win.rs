@@ -211,7 +211,6 @@ impl RadixWindow {
             .vscrollbar_policy(gtk::PolicyType::Automatic)
             .child(&history_list)
             .vexpand(true)
-            .height_request(150)
             .build();
 
         // ---- Error message line (docs/10 §1.2) ----
@@ -1336,7 +1335,7 @@ pub fn prose_for(kind: &ErrorKind) -> Option<&'static str> {
 fn build_bit_panel() -> (gtk::Box, Vec<gtk::Label>) {
     let panel = gtk::Box::builder()
         .orientation(gtk::Orientation::Vertical)
-        .spacing(11)
+        .spacing(4)
         .build();
     let mut cells = Vec::new();
     for row in 0..2u32 {
@@ -1572,7 +1571,8 @@ pub fn load_css() {
             .error-message {{ color: {err_fg}; font-size: 12px; }}
             .radix-btn {{
                 background: {btn}; border-radius: 7px; font-size: 15px; padding: 0;
-                min-width: 40px; min-height: 40px;
+                /* no CSS min sizes: every pad button pins its exact size via
+                 * width/height-request (hex digits are 36px wide) */
             }}
             /* GtkMenuButton's internal toggle keeps the theme's ~11px side
              * padding, pushing its natural to 67px; with a homogeneous grid

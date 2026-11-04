@@ -183,3 +183,27 @@ libadwaita's flat menubutton chain renders the unit labels at ≈62%
 brightness; the original shows full foreground. Radix pins
 `color: @window_fg_color` on label.conv-unit and the menubutton button.
 [Observed]
+
+- **D30 — Basic is full-bleed [Observed, round 2]**: the 20:16 evidence
+  shows the history band running edge-to-edge under the header in Basic
+  (no card inset/radius); wide modes keep the inset card. `apply_mode_
+  chrome()` toggles margins + `.flush` per mode and also runs at startup
+  (set_mode early-returns on an unchanged mode).
+- **D31 — Window defaults 360/700×615 [Observed]**: supersedes the 410/
+  750 constants (user-resized windows in the old batch). Height 615.
+- **D32 — Keypad sizing model [Observed]**: buttons 64×44 (Programming
+  64×53, hex digits 36, base/word 130, formulas 109, Currency Conversion
+  221); uniform pads = homogeneous grid, mixed pads = hbox rows; `=`
+  spans the last two rows (92/110px). GtkMenuButton's internal toggle
+  needs `padding: 0` or its 67px natural inflates homogeneous columns.
+- **D33 — History scroll model [Observed]**: mode switch resets scroll to
+  top; Keyboard hides the keypad stack; the ScrolledWindow has no min-
+  height floor (a 150px floor grew the window with history — min must be
+  free). Result label max_width_chars 12 so the full engine string fits
+  at 700 while 360 ellipsizes.
+- **D34 — Conversion menu has no Clear History [Observed]**: only the
+  calc-mode menu keeps it.
+- **D35 — Bit panel metrics [Observed]**: 11px bold digit glyphs (pitch
+  15), groups of 4, row pitch ≈26, panel block 66px tall; supersedes the
+  17px cell guess (which forced the card to 761px and overflowed the
+  700px window).

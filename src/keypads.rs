@@ -661,7 +661,6 @@ pub fn programming(base_btn: &MenuButton, word_btn: &MenuButton) -> (gtk::Box, P
         vec![add],
         &mut handles,
     );
-    pad.append(&r3);
 
     let r4 = pad_row(4);
     base_btn.set_css_classes(&["radix-btn"]);
@@ -693,6 +692,7 @@ pub fn programming(base_btn: &MenuButton, word_btn: &MenuButton) -> (gtk::Box, P
     fx.set_height_request(h);
     fx.set_hexpand(false);
     r4.append(&fx);
+    rows45.append(&r3);
     rows45.append(&r4);
     lower.append(&rows45);
     let eq = mk(
