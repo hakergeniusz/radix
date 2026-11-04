@@ -1268,8 +1268,8 @@ impl RadixWindow {
         }
         drop(rows);
         self.sync_has_rows();
-        // Re-render a result shown IN the entry (Keyboard recall); the
-        // post-evaluation entry is empty by design (docs/16 D22).
+        // Re-render a result shown IN the entry (post-evaluation echo,
+        // Keyboard recall); the original re-renders it live too.
         if self.entry.state() == EntryState::ResultShown && !self.entry.text().trim().is_empty() {
             if let Some(text) = self.history.borrow().last().map(|r| r.render(&self.fmt.borrow())) {
                 self.entry.show_result(&text);

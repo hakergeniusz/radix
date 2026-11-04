@@ -364,9 +364,9 @@ impl EntryController {
                 return;
             }
             if *state.borrow() == EntryState::ResultShown && buf.char_count() == 0 {
-                // After an evaluation the entry is empty (E085/E087). A digit
+                // ResultShown with an empty buffer (no visible echo). A digit
                 // already started fresh above; an operator continues from the
-                // last result (docs/03 §1 semantics, docs/16 D22). Emission is
+                // last result (docs/03 §1 semantics). Emission is
                 // stopped and the result+operator inserted as one unit — the
                 // incoming iter cannot be redirected from inside this handler.
                 let cont = text
@@ -510,21 +510,15 @@ impl EntryController {
         self.notify_stack();
     }
 
-    /// Post-evaluation display: the result goes to history and the entry
-    /// clears (E085/E087 — caret-only entry after `=`). The value is kept
-    /// for operator continuation (docs/16 D22).
+    /// Post-evaluation display: the result goes to history AND stays in the
+    /// entry as a bold echo with the caret at the end (owner screenshot
+    /// 2026-11-05: the original shows "4" in the entry after 2+2 =; this
+    /// supersedes the E085/E087 caret-only reading, docs/16 D22). The value
+    /// is kept for operator continuation; digits still start fresh.
     pub fn finish_result(&self, text: &str) {
         *self.last_result.borrow_mut() = Some(text.to_string());
         self.dismiss_completion();
-        self.clear_error_tags();
-        self.set_text_programmatic("");
-        self.set_state(EntryState::ResultShown);
-        self.undo.borrow_mut().clear();
-        self.redo.borrow_mut().clear();
-        self.notify_stack();
-        let start = self.buffer.start_iter();
-        self.buffer.place_cursor(&start);
-        self.view.grab_focus();
+        self.show_result(text);
     }
 
     /// Show the formatted result (ResultShown state, bold echo).

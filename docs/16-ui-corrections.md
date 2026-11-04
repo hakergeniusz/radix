@@ -290,7 +290,13 @@ Twelve new owner screenshots (`/tmp/ref-radix-2`, composites in
 - **[Deferred] Primary-menu popover ≈273px wide in the original; Radix's
   truncates accelerators at ≈200px — mechanism unresolved, cosmetic.
 
-### 10.5 Verification
+### 10.5 Post-evaluation entry echo (2026-11-05 correction)
+- **[Observed] After `=` the result stays in the entry** as a bold echo
+  with the caret at the end (owner side-by-side: entry shows "4" after
+  2+2 =) — supersedes the E085/E087 caret-only reading (D22 → D36).
+  Operators append to the visible result; digits start a fresh entry.
+
+### 10.6 Verification
 - 63/63 engine tests, clippy clean, GUI battery
   (`tools/radix-session.sh` + Xvfb) re-shot all 7 scenes; composites
   `notes/comparison-2026-11-04/sbs2-{basic,convmenu,conversion,advanced,

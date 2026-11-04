@@ -207,3 +207,12 @@ brightness; the original shows full foreground. Radix pins
   15), groups of 4, row pitch ≈26, panel block 66px tall; supersedes the
   17px cell guess (which forced the card to 761px and overflowed the
   700px window).
+
+- **D36 — Post-evaluation entry shows the result [Observed, 2026-11-05 owner
+  screenshot]** (supersedes D22's caret-only reading of E085/E087): after
+  `=` the formatted result stays in the entry as a bold echo, caret at the
+  end — exactly the `show_result` path dialogs/recall already used.
+  Continuation semantics unchanged (operator appends to the visible
+  result, digit starts fresh, `=` re-evaluates idempotently); the
+  ResultShown-empty splice in entry.rs is now only a fallback. docs/11
+  §2.3's "result echo bold" was the correct spec line all along.
