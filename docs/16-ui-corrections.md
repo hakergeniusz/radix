@@ -438,3 +438,26 @@ matched scene battery; composites (upstream LEFT, radix RIGHT) in
   700 (carousel below 700), radix line, history rows, bold entry echo,
   nested About/Preferences/Shortcuts dialogs, prefs structure and defaults
   (decimals 9, refresh Weekly, 64-bit, Currency Name display).
+
+### 14.1 Fixes applied from §14 (2026-11-05, same day)
+All three divergences fixed and rig-verified 1:1 against the live binary
+(engine 64/64 — one new vector — clippy 0, 7-mode battery clean):
+- **D45 — swallow dropped**: automatic format is a plain decimals cap
+  (`0.833333333×111` → `92.499999963` at 9 decimals; `92.5` only at
+  decimals=2). New T-vector t054_no_display_swallow pins it. Composites:
+  `sbs-history-fixed.png`.
+- **D46 — Angle parity**: factory conversion category = Angle with
+  `Degrees (Decimal)` ↔ `Radians`; unit set = Degrees (Decimal) /
+  Degrees (D°M'S") / Radians / Gradians (Turns etc. removed); the Angle
+  keypad slot is the °′″ button (sequential separator insertion °→′→″).
+  DMS grammar (evidence-pinned): the glyphs are SEPARATORS — number
+  before ° = degrees, between ° and ′ = minutes, between ′ and ″ =
+  seconds; a number after ″ is invalid ("0°'″12.5" → Error); bare
+  numbers stay unit-based. `Degrees (D°M'S")` renders D°M'S″ with
+  integer seconds (12.5° → `12°30'0″`). Rig-verified: 0°12.5 →
+  0.208333333°/0.003636103 rad (g23), 0°'12.5 → 0.003472222° (g21),
+  0°'″12.5 → Error (g24), DMS render (g27). Composites:
+  `sbs-conversion-fixed.png`, `sbs-dms-render.png`, `sbs-dms-parse.png`.
+- **Shortcuts labels**: verified already 1:1 — the §14 wording note was
+  based on §11's summary abbreviations; the code used the full upstream
+  labels all along.

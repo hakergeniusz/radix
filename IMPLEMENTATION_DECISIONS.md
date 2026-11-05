@@ -302,3 +302,22 @@ brightness; the original shows full foreground. Radix pins
   currency list (unit dropdown, completion, favorites) sorts
   case-insensitively by NAME — the original is name-alphabetical
   ("Algerian Dinar" first, not "UAE Dirham").
+
+- **D45 — No display-correction swallow (supersedes D23).** The live
+  upstream 51.1 comparison (docs/16 §14) showed a plain decimals cap with
+  no 5-nines swallow: 0.833333333×111 = 92.499999963 at the default 9
+  decimals and 92.5 only at decimals=2. E087's "0.833333333 AND 92.5 in
+  one session" is not producible at any single accuracy — the swallow was
+  built on an unfalsifiable reading and is removed; t054 pins upstream's
+  behavior.
+- **D46 — Angle conversion parity.** Factory conversion view = Angle,
+  Degrees (Decimal) ↔ Radians (the old Length default was the owner's
+  persisted state). Angle units = Degrees (Decimal) / Degrees (D°M'S") /
+  Radians / Gradians (Turns et al. removed — live dropdown evidence). The
+  Angle keypad slot is a °′″ button inserting the separators sequentially
+  (°→′→″). DMS literals parse with the glyphs as SEPARATORS (number
+  before ° = degrees, between ° and ′ = minutes, between ′ and ″ =
+  seconds; digits after ″ are invalid → Error; bare numbers keep the
+  unit-based parse); a DMS literal is an absolute degree angle regardless
+  of the selected unit. The Degrees (D°M'S") target renders D°M'S″ with
+  integer seconds.

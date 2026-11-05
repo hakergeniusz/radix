@@ -79,7 +79,7 @@ impl Category {
     /// defaults; e.g. Length defaults observed as Parsecs/Parsecs).
     pub fn default_unit(self) -> &'static str {
         match self {
-            Category::Angle => "Turns",
+            Category::Angle => "Degrees (Decimal)",
             Category::Area => "Square Meters",
             Category::Currency => "Algerian Dinar",
             Category::DigitalStorage => "Bytes",
@@ -101,6 +101,8 @@ impl Category {
     pub fn default_pair(self) -> (&'static str, &'static str) {
         match self {
             Category::Length => ("Kilometers", "Miles"),
+            // Fresh conversion view (docs/16 §14): Degrees (Decimal) ↔ Radians.
+            Category::Angle => ("Degrees (Decimal)", "Radians"),
             _ => (self.default_unit(), self.default_unit()),
         }
     }
@@ -130,6 +132,8 @@ impl Category {
         match self {
             Category::Temperature => "+/−",
             Category::Currency => "ⓘ",
+            // DMS separator button (docs/16 §14: g9 zoom, 2026-11-05).
+            Category::Angle => "°′″",
             _ => "",
         }
     }
@@ -178,14 +182,14 @@ pub const NUMBER_BASE: &[Unit] = &[
 
 pub const CURRENCY_UNITS: &[Unit] = &[u("__currency__", "0")]; // filled from data::currency
 
+// Angle set per upstream 51.1 live evidence (docs/16 §14, 2026-11-05
+// g11): four units, no Turns/Milliradians/Arcminutes/Arcseconds. The DMS
+// unit shares the degree factor — it is a DISPLAY variant.
 pub const ANGLE: &[Unit] = &[
-    u("Turns", "6.283185307179586"),
+    u("Degrees (Decimal)", "0.017453292519943295"),
+    u("Degrees (D°M'S\")", "0.017453292519943295"),
     u("Radians", "1"),
-    u("Degrees", "0.017453292519943295"),
     u("Gradians", "0.015707963267948967"),
-    u("Milliradians", "0.001"),
-    u("Arcminutes", "0.0002908882086657216"),
-    u("Arcseconds", "0.00000484813681109536"),
 ];
 
 pub const AREA: &[Unit] = &[

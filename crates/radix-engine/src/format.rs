@@ -334,10 +334,12 @@ fn real_decimal_str(v: &Value, prefs: &FormatPrefs) -> String {
             if big || small {
                 sci_from(&ar, neg, d, tz)
             } else {
+                // Plain decimals cap — NO display-correction swallow:
+                // upstream 51.1 (live Xvfb comparison, docs/16 §14) renders
+                // 0.833333333×111 as 92.499999963 at its default 9 decimals
+                // and as 92.5 only when decimals = 2. D23's swallow
+                // reconciled an unfalsifiable E087 reading; dropped (D45).
                 let n = crate::num::round_scaled(&ar, d as i32);
-                // Display-correction swallow (docs/16 D23, E087:
-                // 0.833333333×111 renders 92.5, not 92.499999963).
-                let n = swallow_nine_run(n, d as i32);
                 plain_from(&n, neg, d, tz, prefs.group)
             }
         }
@@ -372,37 +374,6 @@ fn real_decimal_str(v: &Value, prefs: &FormatPrefs) -> String {
 /// Compare |r| with 10^p exactly (p may be negative).
 fn cmp_vs_pow10(r: &BigRational, p: i32) -> std::cmp::Ordering {
     crate::num::cmp_pow10(r, p)
-}
-
-/// Display-correction swallow [Inferred, docs/16 D23]: if the capped
-/// fraction contains a run of ≥5 nines, re-round at the digit before the
-/// run (E087 shows `0.833333333×111` → `92.5`, not the exact
-/// `92.499999963`; T027's `1.414213562` and E087's `0.8333333333` contain
-/// no such run and pass through untouched).
-fn swallow_nine_run(n: BigInt, decimals: i32) -> BigInt {
-    if n.is_zero() {
-        return n;
-    }
-    let (_, frac) = split_rounded(&n, decimals as u32, 10);
-    let chars: Vec<char> = frac.chars().collect();
-    let mut i = 0;
-    while i < chars.len() {
-        if chars[i] == '9' {
-            let mut j = i;
-            while j < chars.len() && chars[j] == '9' {
-                j += 1;
-            }
-            if j - i >= 5 {
-                let scale = BigInt::from(10).pow((decimals - i as i32) as u32);
-                let q = (&n + &scale / 2) / &scale;
-                return q * scale;
-            }
-            i = j;
-        } else {
-            i += 1;
-        }
-    }
-    n
 }
 
 // ---------------------------------------------------------------------------

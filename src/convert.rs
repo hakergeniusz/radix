@@ -66,7 +66,7 @@ pub fn build(rates: SharedRates) -> Rc<ConversionPane> {
         .build();
 
     // Category dropdown (docs/06 §1)
-    let category_label = gtk::Label::new(Some(Category::Length.label()));
+    let category_label = gtk::Label::new(Some(Category::Angle.label()));
     let category_btn = gtk::MenuButton::builder()
         .child(&{
             let b = gtk::Box::new(gtk::Orientation::Horizontal, 4);
@@ -148,11 +148,14 @@ pub fn build(rates: SharedRates) -> Rc<ConversionPane> {
         rows,
         keypad_slot,
         state: RefCell::new(ConvState {
-            category: Category::Length,
+            // Factory default is Angle (docs/16 §14: upstream 51.1 opens on
+            // Angle / Degrees (Decimal) ↔ Radians; the old Length reading
+            // was the owner's persisted state).
+            category: Category::Angle,
             texts: ["0".into(), "0".into()],
             units: [
-                Category::Length.default_pair().0.into(),
-                Category::Length.default_pair().1.into(),
+                Category::Angle.default_pair().0.into(),
+                Category::Angle.default_pair().1.into(),
             ],
             source: 0,
             active: 0,
@@ -178,7 +181,7 @@ impl ConversionPane {
         let cat_action = gio::SimpleAction::new_stateful(
             "category",
             Some(glib::VariantTy::INT32),
-            &(Category::Length as i32).to_variant(),
+            &(Category::Angle as i32).to_variant(),
         );
         {
             let pane = self.clone();
@@ -463,6 +466,13 @@ impl ConversionPane {
         match st.category {
             Category::Temperature | Category::Currency => text.parse::<f64>().is_ok(),
             Category::NumberBase => parse_value_text(&text, base_of(&st.units[st.source])).is_some(),
+            Category::Angle => {
+                if has_dms_glyphs(&text) {
+                    parse_angle_degrees(&text).is_some()
+                } else {
+                    parse_value_text(&text, Base::Dec).is_some()
+                }
+            }
             _ => parse_value_text(&text, Base::Dec).is_some(),
         }
     }
@@ -518,20 +528,39 @@ impl ConversionPane {
                 }
                 Err(_) => "Error".into(),
             },
-            _ => match parse_value_text(&src_text, Base::Dec) {
-                Some(v) => {
-                    let dec = render_in_base(&v, Base::Dec, 15);
-                    match dec.replace('−', "-").trim_end().parse::<f64>() {
-                        Ok(f) => {
-                            let ff: f64 = factor_of(&from).parse().unwrap_or(1.0);
-                            let tf: f64 = factor_of(&to).parse().unwrap_or(1.0);
-                            crate::fmt::automatic(f * ff / tf, 9, false, false)
+            _ => {
+                // Angle: a value carrying ° ′ ″ glyphs is a DMS literal —
+                // an absolute angle in degrees, independent of the selected
+                // unit (upstream evidence docs/16 §14: "0°'12.5" → 12.5″).
+                let deg = if st.category == Category::Angle && has_dms_glyphs(&src_text) {
+                    parse_angle_degrees(&src_text)
+                } else {
+                    parse_value_text(&src_text, Base::Dec).and_then(|v| {
+                        render_in_base(&v, Base::Dec, 15)
+                            .replace('−', "-")
+                            .trim_end()
+                            .parse::<f64>()
+                            .ok()
+                    })
+                };
+                match deg {
+                    Some(f) => {
+                        let ff: f64 = if st.category == Category::Angle && has_dms_glyphs(&src_text) {
+                            factor_of("Degrees (Decimal)").parse().unwrap_or(1.0)
+                        } else {
+                            factor_of(&from).parse().unwrap_or(1.0)
+                        };
+                        let tf: f64 = factor_of(&to).parse().unwrap_or(1.0);
+                        let out = f * ff / tf;
+                        if st.category == Category::Angle && to == "Degrees (D°M'S\")" {
+                            render_angle_dms(out)
+                        } else {
+                            crate::fmt::automatic(out, 9, false, false)
                         }
-                        Err(_) => "Error".into(),
                     }
+                    None => "Error".into(),
                 }
-                None => "Error".into(),
-            },
+            }
         };
         drop(st);
 
@@ -572,6 +601,9 @@ impl ConversionPane {
             } else if cat == Category::Currency {
                 slot.set_tooltip_text(Some("Exchange Rate Details"));
                 slot.connect_clicked(move |_| pane.open_rates_dialog());
+            } else if cat == Category::Angle {
+                slot.set_tooltip_text(Some("Degrees, minutes, seconds"));
+                slot.connect_clicked(move |_| pane.insert_dms_glyph());
             }
         }
         // Digit dimming follows the TOP row's base in Number Base; visual
@@ -638,6 +670,34 @@ impl ConversionPane {
         let mut at = b.iter_at_mark(&b.get_insert());
         b.insert(&mut at, token);
         // recompute happens via the insert-text signal
+    }
+
+    /// °′″ button (Angle): append the next DMS separator — °, then ′, then
+    /// ″ (upstream evidence docs/16 §14: sequential insertion).
+    fn insert_dms_glyph(self: &Rc<Self>) {
+        let idx = self.active_row();
+        let b = self.rows[idx].text.buffer();
+        let (s, e) = (b.start_iter(), b.end_iter());
+        let t = b.text(&s, &e, true).to_string();
+        let glyph = if !t.contains('°') {
+            '°'
+        } else if !t.contains('′') {
+            '′'
+        } else if !t.contains('″') {
+            '″'
+        } else {
+            return;
+        };
+        self.rows[idx].text.grab_focus();
+        let end = b.end_iter();
+        b.place_cursor(&end);
+        let mut at = b.iter_at_mark(&b.get_insert());
+        b.insert(&mut at, &glyph.to_string());
+        self.state.borrow_mut().texts[idx] = {
+            let (s2, e2) = (b.start_iter(), b.end_iter());
+            b.text(&s2, &e2, true).to_string()
+        };
+        self.recompute();
     }
 
     pub fn clear_all(self: &Rc<Self>) {
@@ -777,6 +837,93 @@ impl ConversionPane {
             None => dialog.present(Some(&self.container)),
         }
     }
+}
+
+/// Does the text carry any DMS separator glyph?
+fn has_dms_glyphs(text: &str) -> bool {
+    text.contains('°') || text.contains('′') || text.contains('″')
+}
+
+/// Parse a DMS literal into DEGREES (evidence-pinned grammar, docs/16 §14):
+/// the glyphs are separators — the number before ° is degrees, the number
+/// between ° and ′ is minutes, the number between ′ and ″ is seconds; a
+/// number after ″ is invalid ("0°'″12.5" → Error upstream). Examples:
+/// "12.5°" = 12.5°, "0°12.5" = 12.5′, "0°'12.5" = 12.5″, "12°30'15″" =
+/// 12.504167°.
+fn parse_angle_degrees(text: &str) -> Option<f64> {
+    let neg = text.trim_start().starts_with('−') || text.trim_start().starts_with('-');
+    let t = text.trim_start().trim_start_matches(['−', '-']);
+    let mut parts = [0.0f64; 3]; // deg, min, sec
+    let mut filled = [false; 3];
+    let mut num = String::new();
+    let mut slot = 0usize;
+    let mut after_sec_marker = false;
+    for ch in t.chars() {
+        match ch {
+            '0'..='9' | '.' => num.push(ch),
+            '°' | '′' | '″' => {
+                let idx = match ch {
+                    '°' => 0usize,
+                    '′' => 1,
+                    _ => 2,
+                };
+                let v = if num.is_empty() {
+                    0.0
+                } else {
+                    num.parse::<f64>().ok()?
+                };
+                if ch == '″' {
+                    // seconds sit BEFORE the ″ marker
+                    if !filled[2] && !num.is_empty() {
+                        parts[2] = v;
+                        filled[2] = true;
+                    }
+                } else if idx < 2 {
+                    // the number before this marker is the unit BEFORE it:
+                    // number before ° = degrees, before ′ = minutes
+                    let unit = if idx == 0 { 0 } else { 1 };
+                    if !filled[unit] {
+                        parts[unit] = v;
+                        filled[unit] = true;
+                    } else if !num.is_empty() {
+                        return None;
+                    }
+                }
+                slot = idx + 1;
+                if ch == '″' {
+                    after_sec_marker = true;
+                }
+                num.clear();
+            }
+            c if c.is_whitespace() => {}
+            _ => return None,
+        }
+    }
+    if after_sec_marker && !num.is_empty() {
+        // digits after the closing ″ are invalid
+        return None;
+    }
+    if !num.is_empty() {
+        // trailing number with no following marker: unit = slot
+        // slot 0 = degrees (bare number), 1 = minutes (after °), 2 = seconds (after ′)
+        if slot > 2 || filled[slot] {
+            return None;
+        }
+        parts[slot] = num.parse::<f64>().ok()?;
+    }
+    let deg = parts[0] + parts[1] / 60.0 + parts[2] / 3600.0;
+    Some(if neg { -deg } else { deg })
+}
+
+/// Render a degree value as D°M'S″ (integer seconds, upstream evidence:
+/// 12.5° → "12°30'0″").
+fn render_angle_dms(deg: f64) -> String {
+    let neg = deg < 0.0;
+    let total = ((deg.abs() * 3600.0) + 0.5).floor() as i64;
+    let d = total / 3600;
+    let m = (total % 3600) / 60;
+    let s = total % 60;
+    format!("{}{d}°{m}′{s}″", if neg { "−" } else { "" })
 }
 
 fn unix_to_date(secs: i64) -> String {

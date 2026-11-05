@@ -404,6 +404,25 @@ fn t052_trailing_and_grouping() {
 }
 
 #[test]
+fn t054_no_display_swallow() {
+    // Upstream 51.1 (live Xvfb comparison, docs/16 §14): the automatic
+    // format is a plain decimals cap — 0.833333333×111 shows the exact
+    // 9-decimal value, and the D23 "5-nines swallow" is gone (D45).
+    let mut env = Env::new();
+    let prefs = FormatPrefs {
+        decimals: 9,
+        ..FormatPrefs::default()
+    };
+    assert_eq!(evp("0.833333333×111", &mut env, &prefs), "92.499999963");
+    let prefs2 = FormatPrefs {
+        decimals: 2,
+        ..FormatPrefs::default()
+    };
+    assert_eq!(evp("0.833333333×111", &mut env, &prefs2), "92.5");
+    assert_eq!(evp("5÷6", &mut env, &prefs2), "0.83");
+}
+
+#[test]
 fn t053_decimals_cap() {
     let mut env = Env::new();
     let prefs = FormatPrefs {
