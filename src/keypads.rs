@@ -405,7 +405,7 @@ pub fn financial() -> (gtk::Box, PadHandles) {
     let inv = inverse_toggle(&mut handles);
     fixed_btn(&inv, 64, BTN_H);
     r0.append(&inv);
-    let x2 = inv_btn(&mut handles, ("x²", "²"), ("√", "√("), "Square [Ctrl+2]");
+    let x2 = inv_btn(&mut handles, ("x²", "²"), ("√", "√"), "Square [Ctrl+2]");
     fixed_btn(&x2, 64, BTN_H);
     r0.append(&x2);
     let xw = mk(&ins("xʸ", "Power", "^"), &mut handles);
@@ -569,7 +569,7 @@ pub fn programming(base_btn: &MenuButton, word_btn: &MenuButton) -> (gtk::Box, P
     let inv = inverse_toggle(&mut handles);
     fixed_btn(&inv, 64, h);
     r0.append(&inv);
-    let x2 = inv_btn(&mut handles, ("x²", "²"), ("√", "√("), "Square [Ctrl+2]");
+    let x2 = inv_btn(&mut handles, ("x²", "²"), ("√", "√"), "Square [Ctrl+2]");
     fixed_btn(&x2, 64, h);
     r0.append(&x2);
     let xw = mk(&ins("xʸ", "Power", "^"), &mut handles);

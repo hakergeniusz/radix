@@ -321,3 +321,40 @@ Twelve new owner screenshots (`/tmp/ref-radix-2`, composites in
   behavior wired in `wire_entry_keys` + `win.open-menu`/`win.factorize`
   actions. Factorize replaces the entry with the prime product (12 →
   2×2×3); the a×b button triggers it (docs/02 tooltip).
+
+## 12. Conversion round (2026-11-05, owner screenshots 16:20–16:21)
+- **[Observed] Category dropdown rows carry radio indicators** (owner ref:
+  ○/● circles, current category filled) — already correct on master
+  (`conv.category` stateful gio::Menu; `notes/comparison-2026-11-05/
+  conv-category-radios.png`). docs/06 §1's "check-marked" wording is a
+  misreading; superseded by the 16:21:06 reference.
+- **[Observed] Unit label color/weight**: non-currency unit buttons are
+  white bold (refs 16:21:37 "Kilometers ⌄"); already correct on master via
+  the conv-unit CSS pin (`conv-area-white-labels.png`). The owner's dim
+  "Square Meters" screenshot came from the stale installed build (flatpak
+  predates ce220e7).
+- **[Observed] Unit popover**: search field with magnifier + "Search..."
+  placeholder, focused on open; list in fixed order (Parsecs → Desktop
+  Publishing Points) with a TRAILING check on the current unit ("Kilometers
+  ✓", "Miles ✓"); check hidden while filtering; clear ⊗ in the field once
+  text is entered (docs/06 §4). Master now matches: placeholder added,
+  check moved after the label (`conv-unit-popover-open.png`,
+  `conv-unit-popover-filter.png`).
+- **[Implementation] E-conv-pop — unit dropdowns never opened on click.**
+  The popovers were created inside `MenuButton::connect_activate`, but
+  GTK4's MenuButton handles clicks on an internal button and "activate" is
+  an action signal that never fires for a popover-less MenuButton (rig
+  probe: handler dead, Tab skips the button). Fixed by pre-setting each
+  row's popover at build time and refilling it on `map`; row activation
+  moved to the LISTBOX's `row-activated` (the row's own "activate" action
+  signal is keyboard-only, so clicks selected without activating — same
+  rig probe). `conv-unit-picked.png`: filtered click on "Nanometers" →
+  popover closes, label updates.
+- **[Observed] Ctrl+R inserts bare `√`** (docs/08 §Keyboard Entry, engine
+  T-vector √4 = 2): the shortcut and the x²-inverse keypad button had been
+  implemented as `√(` with an open paren. Both now insert `√`;
+  `ctrlr-sqrt9.png` shows Ctrl+R → √9 = → 3.
+- **[Observed] Currency view**: unit labels render dim in the owner's
+  reference (16:21:06 "Algerian Dir"), consistent with stale/unavailable
+  exchange rates; left [Unknown] — no evidence pins whether the dim state
+  is rate-freshness-driven, and no radix change was made for it.

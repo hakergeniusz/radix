@@ -249,22 +249,23 @@ impl ConversionPane {
 
         // Unit dropdown buttons get custom popovers (docs/06 §4).
         for i in 0..2 {
-            let pane = self.clone();
-            self.rows[i]
-                .unit_btn
-                .connect_activate(move |btn| pane.open_unit_popover(btn, i));
+            // The popover must be PRE-SET: GtkMenuButton's click handling
+            // lives on its internal button, and the outer "activate" action
+            // signal never fires for a popover-less MenuButton (E-conv-pop,
+            // 2026-11-05 rig probe: connect_activate on a bare MenuButton is
+            // dead code). Popovers are built once here and refilled on map.
+            self.build_unit_popover(i);
         }
     }
 
-    fn open_unit_popover(self: &Rc<Self>, btn: &gtk::MenuButton, row_idx: usize) {
-        let st = self.state.borrow();
-        let names: Vec<String> = match st.category {
-            Category::Currency => currency::CURRENCIES.iter().map(|c| c.name.to_string()).collect(),
-            _ => st.category.units().iter().map(|u| u.name.to_string()).collect(),
-        };
-        drop(st);
+    /// Build one row's unit popover (search + list) and attach it to the
+    /// row's MenuButton. The list refills on every map so the popover always
+    /// reflects the current category and unit.
+    fn build_unit_popover(self: &Rc<Self>, row_idx: usize) {
         let popover = gtk::Popover::new();
-        let search = gtk::SearchEntry::new();
+        let search = gtk::SearchEntry::builder()
+            .placeholder_text("Search...")
+            .build();
         let list = gtk::ListBox::builder().css_classes(["boxed-list"]).build();
         let scroll = gtk::ScrolledWindow::builder()
             .child(&list)
@@ -285,22 +286,37 @@ impl ConversionPane {
         vbox.append(&scroll);
         popover.set_child(Some(&vbox));
 
-        // Search field only on long lists (docs/06 §4: observed threshold
-        // between 4 and ~160 items; decision D13 pins it at > 10).
-        let has_search = names.len() > 10;
-        search.set_visible(has_search);
-
         let pane = self.clone();
+        let pane_map = self.clone();
+        let pane_act = self.clone();
         let popover_for_fill = popover.clone();
+        // Names of the rows currently in the list, in order — row-activated
+        // hands us an index, not a name.
+        let shown: Rc<std::cell::RefCell<Vec<String>>> = Rc::new(std::cell::RefCell::new(Vec::new()));
+        let shown_act = shown.clone();
+        let list_act = list.clone();
         let fill = Rc::new(move |filter: &str| {
             while let Some(c) = list.first_child() {
                 list.remove(&c);
             }
-            let st = pane.state.borrow();
+            // Names are recomputed per fill: the popover persists across
+            // category switches.
+            let (names, current) = {
+                let st = pane.state.borrow();
+                let names: Vec<String> = match st.category {
+                    Category::Currency => {
+                        currency::CURRENCIES.iter().map(|c| c.name.to_string()).collect()
+                    }
+                    _ => st.category.units().iter().map(|u| u.name.to_string()).collect(),
+                };
+                (names, st.units[row_idx].clone())
+            };
+            shown.borrow_mut().clear();
             for n in &names {
                 if !filter.is_empty() && !n.to_lowercase().contains(&filter.to_lowercase()) {
                     continue;
                 }
+                shown.borrow_mut().push(n.clone());
                 let row_box = gtk::Box::builder()
                     .orientation(gtk::Orientation::Horizontal)
                     .spacing(8)
@@ -309,36 +325,57 @@ impl ConversionPane {
                     .margin_start(10)
                     .margin_end(10)
                     .build();
-                // Checkmark on the current unit in unfiltered lists; hidden
-                // while filtering (docs/06 §4).
+                // Checkmark trails the label on the current unit (evidence
+                // 2026-11-05 16:21: "Kilometers ✓" / "Miles ✓"); hidden while
+                // filtering (docs/06 §4).
                 let check = gtk::Image::from_icon_name("object-select-symbolic");
-                check.set_visible(filter.is_empty() && *n == st.units[row_idx]);
-                let lbl = gtk::Label::builder().label(n).xalign(0.0).hexpand(true).build();
-                row_box.append(&check);
+                check.set_visible(filter.is_empty() && *n == current);
+                let lbl = gtk::Label::builder().label(n).xalign(0.0).build();
                 row_box.append(&lbl);
+                row_box.append(&check);
                 let lr = gtk::ListBoxRow::builder().child(&row_box).activatable(true).build();
-                let pane2 = pane.clone();
-                let n2 = n.clone();
-                let pop = popover_for_fill.clone();
-                lr.connect_activate(move |_| {
-                    pane2.set_unit(row_idx, &n2);
-                    pop.popdown();
-                });
                 list.append(&lr);
             }
         });
-        fill("");
         {
             let fill = fill.clone();
             search.connect_search_changed(move |s| fill(s.text().as_str()));
         }
-        if has_search {
-            let search = search.clone();
-            popover.connect_map(move |_| {
+        // Activation: clicks emit the LISTBOX's row-activated (the row's own
+        // "activate" action signal only fires via keyboard widget-activation,
+        // so connecting the row left mouse clicks dead — E-conv-pop).
+        let pop_act = popover_for_fill.clone();
+        list_act.connect_row_activated(move |_, row| {
+            let idx = row.index();
+            if idx < 0 {
+                return;
+            }
+            let name = shown_act.borrow().get(idx as usize).cloned();
+            if let Some(n) = name {
+                pane_act.set_unit(row_idx, &n);
+                pop_act.popdown();
+            }
+        });
+        let fill2 = fill.clone();
+        popover.connect_map(move |_| {
+            // Search field only on long lists (docs/06 §4: observed threshold
+            // between 4 and ~160 items; decision D13 pins it at > 10). The
+            // category can change between opens, so re-decide here.
+            let long = {
+                let st = pane_map.state.borrow();
+                match st.category {
+                    Category::Currency => currency::CURRENCIES.len() > 10,
+                    _ => st.category.units().len() > 10,
+                }
+            };
+            search.set_visible(long);
+            fill2("");
+            search.set_text("");
+            if long {
                 search.grab_focus();
-            });
-        }
-        btn.set_popover(Some(&popover));
+            }
+        });
+        self.rows[row_idx].unit_btn.set_popover(Some(&popover));
     }
 
     fn set_unit(self: &Rc<Self>, row_idx: usize, unit: &str) {

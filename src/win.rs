@@ -944,7 +944,9 @@ impl RadixWindow {
                         if mod_mask
                             == (gdk::ModifierType::CONTROL_MASK) =>
                     {
-                        w.entry.insert_at_caret("√(", 0);
+                        // Bare prefix per docs/08 ("Ctrl+R Square Root √");
+                        // the engine parses √x without parens (T-vector √4=2).
+                        w.entry.insert_at_caret("√", 0);
                         return glib::Propagation::Stop;
                     }
                     Key::i

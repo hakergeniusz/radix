@@ -235,3 +235,30 @@ brightness; the original shows full foreground. Radix pins
   same action (its tooltip always said "Factorize [Ctrl+F]") instead of
   inserting a fact( token. Alt+←/→, Ctrl+Z/Shift+Z, Escape, Ctrl+B/O/D/H,
   Ctrl+W/Q/N, Ctrl+,, Ctrl+?, F1, Ctrl+Escape pre-existed.
+
+- **D38 — Unit popovers must be pre-set on the MenuButton (E-conv-pop).**
+  Since round 1 the unit dropdowns never opened on click: the popovers were
+  built inside `MenuButton::connect_activate`, but GTK4's MenuButton is not
+  a GtkButton — clicks are handled by an internal button and the outer
+  "activate" is an action signal that never fires for a popover-less
+  MenuButton (rig probe 2026-11-05: handler dead, focus chain skips the
+  button). The category MenuButton worked only because its menu_model
+  popover was pre-set. Fix: build each row's popover once at wire time,
+  refill on `map` (category/check/search visibility re-decided per open),
+  and activate rows via the LISTBOX's `row-activated` — the row's own
+  "activate" action signal is keyboard-only, so mouse clicks selected
+  (blue) without ever activating. Both gotchas generalize to any
+  popover-ful MenuButton work in this codebase.
+- **D39 — Square Root inserts bare `√`** (supersedes the `√(` token from
+  D37): docs/08 §Keyboard Entry pins "Ctrl+R Square Root √", the engine
+  parses the prefix form without parens (T-vector √4 = 2), and the
+  shortcuts dialog describes the button's action — so Ctrl+R AND the
+  x²-inverse keypad button both insert `√` now. Rig-verified: Ctrl+R →
+  `√9` = → 3.
+- **D40 — Unit popover cosmetics** (owner refs 2026-11-05 16:21): the
+  check on the current unit TRAILS the label ("Kilometers ✓"), not leads;
+  the search field gets an explicit "Search..." placeholder (GtkSearchEntry
+  has none by default); check hidden while filtering per D13. Category
+  dropdown radios and white bold unit labels were already correct on
+  master — the owner's dim-label / no-radio screenshots came from the
+  stale installed flatpak, not from current code.
