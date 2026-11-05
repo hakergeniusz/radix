@@ -274,11 +274,13 @@ pub fn by_code(code: &str) -> Option<Currency> {
 /// detail line "Name - symbol").
 pub fn matching(prefix: &str) -> Vec<Currency> {
     let p = prefix.to_lowercase();
-    CURRENCIES
+    let mut v: Vec<Currency> = CURRENCIES
         .iter()
         .filter(|c| c.name.to_lowercase().starts_with(&p) || c.code.to_lowercase().starts_with(&p))
         .copied()
-        .collect()
+        .collect();
+    v.sort_by_key(|c| c.name.to_lowercase());
+    v
 }
 
 // ---------------------------------------------------------------------------
@@ -298,12 +300,29 @@ pub struct Rates {
 impl Rates {
     /// Rate for `from` → `to` (via USD base), None if either code unknown.
     pub fn convert(&self, from: &str, to: &str, amount: f64) -> Option<f64> {
-        let rf = if from == "USD" { 1.0 } else { *self.usd_based.get(from)? };
-        let rt = if to == "USD" { 1.0 } else { *self.usd_based.get(to)? };
+        let rf = if from == "USD" { 1.0 } else { *self.usd_based.get(&self.key(from)?)? };
+        let rt = if to == "USD" { 1.0 } else { *self.usd_based.get(&self.key(to)?)? };
         if rf == 0.0 {
             return None;
         }
         Some(amount / rf * rt)
+    }
+
+    /// Rate-table key for a CODE or a unit NAME: the conversion pane passes
+    /// names ("US Dollar") while the tables are code-keyed ("USD") — without
+    /// resolution every conversion returned None → "Error" (owner evidence
+    /// 2026-11-05 17:15: Error on a fresh Currency view).
+    fn key(&self, name_or_code: &str) -> Option<String> {
+        if name_or_code == "USD" {
+            return Some("USD".into());
+        }
+        if self.usd_based.contains_key(name_or_code) {
+            return Some(name_or_code.to_string());
+        }
+        CURRENCIES
+            .iter()
+            .find(|c| c.name == name_or_code)
+            .map(|c| c.code.to_string())
     }
 }
 

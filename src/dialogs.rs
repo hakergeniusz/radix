@@ -8,14 +8,12 @@ use adw::prelude::*;
 use crate::win::RadixWindow;
 use radix_engine::{AngleUnit, WordSize};
 
-// AboutWindow/PreferencesWindow are deprecated since libadwaita 1.6 (in
-// favor of AdwAboutDialog/AdwPreferencesDialog) — the AboutWindow choice is
-// deliberate (D28, GNOME 51 reference screenshots); migration tracked
-// separately. Silence the lints the v1_8 feature level enables.
-#[allow(deprecated)]
+// About + Preferences present as NESTED AdwDialogs (libadwaita 1.6+), like
+// the original: they slide up INSIDE the window with animation instead of
+// opening as detached top-level windows (owner evidence 2026-11-05 17:10:
+// "About menu is a nested window"; "no animations" — D41).
 pub fn open_about(w: &Rc<RadixWindow>) {
-    let dialog = adw::AboutWindow::builder()
-        .transient_for(&w.window)
+    let dialog = adw::AboutDialog::builder()
         .application_name("Radix")
         .application_icon("io.github.hakergeniusz.Radix")
         .version(env!("CARGO_PKG_VERSION"))
@@ -25,20 +23,18 @@ pub fn open_about(w: &Rc<RadixWindow>) {
         .issue_url("https://github.com/hakergeniusz/radix/issues")
         .copyright("© 2026 The Radix Authors")
         .build();
-    dialog.present();
+    dialog.present(Some(&w.window));
 }
 
-#[allow(deprecated)]
 pub fn open_preferences(w: &Rc<RadixWindow>) {
-    // Fixed narrow dialog, independent of the parent window (E093: 513-wide
-    // screenshot shows a ~365px dialog over a 750px window; 2026-11-04
-    // 18:56 evidence shows the same over a 410px window).
-    let prefs = adw::PreferencesWindow::builder()
-        .transient_for(&w.window)
+    // Fixed narrow dialog (E093: 513-wide screenshot shows a ~365px dialog
+    // over a 750px window; 2026-11-04 18:56 evidence shows the same over a
+    // 410px window), now nested + animated.
+    let prefs = adw::PreferencesDialog::builder()
         .title("Preferences")
         .search_enabled(false)
-        .default_width(360)
-        .default_height(590)
+        .content_width(360)
+        .content_height(590)
         .build();
 
     // ---- General ----
@@ -211,36 +207,26 @@ pub fn open_preferences(w: &Rc<RadixWindow>) {
     fav.add_suffix(&gtk::Image::from_icon_name("go-next-symbolic"));
     {
         let ww = w.clone();
-        fav.connect_activated(move |_| open_favorite_currencies(&ww));
+        let prefs_page = prefs.clone();
+        fav.connect_activated(move |_| open_favorite_currencies(&ww, &prefs_page));
     }
     cgroup.add(&fav);
     page.add(&cgroup);
     prefs.add(&page);
-    prefs.present();
+    prefs.present(Some(&w.window));
 }
 
 /// "Favorite Currencies" page (docs/02 §3; layout per the 2026-11-04
 /// 18:56:15 evidence): back-arrow header, always-visible search entry,
 /// two-line rows (currency name, code subtitle) sorted by NAME, a switch
 /// per currency; starred codes drive the completion filter.
-fn open_favorite_currencies(w: &Rc<RadixWindow>) {
+fn open_favorite_currencies(w: &Rc<RadixWindow>, prefs: &adw::PreferencesDialog) {
     use adw::prelude::*;
-    let dialog = adw::Window::builder()
-        .title("Favorite Currencies")
-        .transient_for(&w.window)
-        .modal(true)
-        .default_width(370)
-        .default_height(620)
-        .build();
-
+    // Subpage of the Preferences dialog (nested, animated — D41), replacing
+    // the old detached modal window. AdwHeaderBar inside the dialog's
+    // navigation view renders the back button and page title automatically.
     let header = adw::HeaderBar::new();
-    let back = gtk::Button::from_icon_name("go-previous-symbolic");
-    back.add_css_class("flat");
-    {
-        let d = dialog.clone();
-        back.connect_clicked(move |_| d.close());
-    }
-    header.pack_start(&back);
+    header.set_title_widget(Some(&gtk::Label::new(Some("Favorite Currencies"))));
 
     let search = gtk::SearchEntry::builder()
         .placeholder_text("Search currencies")
@@ -260,7 +246,7 @@ fn open_favorite_currencies(w: &Rc<RadixWindow>) {
         .valign(gtk::Align::Start)
         .build();
     let mut sorted: Vec<_> = crate::data::currency::all().to_vec();
-    sorted.sort_by_key(|c| c.name);
+    sorted.sort_by_key(|c| c.name.to_lowercase());
     let mut filter_rows: Vec<(adw::ActionRow, String)> = Vec::new();
     for c in &sorted {
         let row = adw::ActionRow::builder()
@@ -308,8 +294,8 @@ fn open_favorite_currencies(w: &Rc<RadixWindow>) {
     content.append(&header);
     content.append(&search);
     content.append(&scroll);
-    dialog.set_content(Some(&content));
-    dialog.present();
+    let page = adw::NavigationPage::new(&content, "Favorite Currencies");
+    prefs.push_subpage(&page);
 }
 
 pub fn open_shortcuts(w: &Rc<RadixWindow>) {

@@ -146,6 +146,11 @@ pub struct RadixWindow {
     pub history: RefCell<Vec<HistoryRow>>,
     pub primary_menu: gio::Menu,
     pub primary_menu_conv: gio::Menu,
+    /// The window's action group, kept for state syncs: window.lookup_action
+    /// does NOT see groups added via insert_action_group, so set_mode's
+    /// startup sync never fired (picker showed Basic on a restored mode —
+    /// owner evidence 2026-11-05 17:07).
+    pub(crate) win_actions: RefCell<Option<gio::SimpleActionGroup>>,
 }
 
 /// Trial-division prime factorization with a work cap (display helper for
@@ -400,8 +405,13 @@ impl RadixWindow {
         fmt_wrapper.append_section(Some("Result Format"), &fmt_section);
 
         let primary_menu = gio::Menu::new();
-        primary_menu.append_section(None, &mk(&[("New Window", "win.new-window")]));
-        primary_menu.append_section(None, &mk(&[("Clear History", "win.clear-history")]));
+        // New Window + Clear History share ONE section — each append_section
+        // draws a divider, and the original shows a single line above Result
+        // Format (owner evidence 2026-11-05 17:09: "two lines" bug).
+        primary_menu.append_section(
+            None,
+            &mk(&[("New Window", "win.new-window"), ("Clear History", "win.clear-history")]),
+        );
         primary_menu.append_section(None, &fmt_wrapper);
         primary_menu.append_section(
             None,
@@ -471,6 +481,7 @@ impl RadixWindow {
             history: RefCell::new(Vec::new()),
             primary_menu,
             primary_menu_conv,
+            win_actions: RefCell::new(None),
         });
 
         win.build_keypads();
@@ -575,7 +586,7 @@ impl RadixWindow {
         }
         // x and f(x) menu buttons get their popovers (docs/02 §10).
         if let Some(xv) = &h.variables {
-            xv.set_popover(Some(&crate::popovers::build_variables(&self.entry)));
+            xv.set_popover(Some(&crate::popovers::build_variables(&self.clone())));
         }
         if let Some(fx) = &h.functions {
             fx.set_popover(Some(&crate::popovers::build_fx(&self.entry)));
@@ -655,10 +666,15 @@ impl RadixWindow {
     fn wire_actions(self: &Rc<Self>, app: &adw::Application) {
         let actions = gio::SimpleActionGroup::new();
 
+        // Seed the radio state from the LIVE mode, not a hardcoded Basic:
+        // persist::restore runs before wire_actions and has already applied
+        // the last-used mode via set_mode, whose own state sync found no
+        // action yet (picker showed Basic while the window was elsewhere —
+        // owner evidence 2026-11-05 17:07).
         let mode_action = gio::SimpleAction::new_stateful(
             "mode",
             Some(glib::VariantTy::STRING),
-            &Mode::Basic.key().to_variant(),
+            &self.mode.borrow().key().to_variant(),
         );
         {
             let act = mode_action.clone();
@@ -678,10 +694,18 @@ impl RadixWindow {
         }
         actions.add_action(&mode_action);
 
+        // Same seed-from-live rule: prefs were restored before wiring, so the
+        // Result Format radios must reflect the restored format.
+        let fmt_key = match self.fmt.borrow().format {
+            ResultFormat::Fixed => "fixed",
+            ResultFormat::Scientific => "scientific",
+            ResultFormat::Engineering => "engineering",
+            ResultFormat::Automatic => "automatic",
+        };
         let fmt_action = gio::SimpleAction::new_stateful(
             "result-format",
             Some(glib::VariantTy::STRING),
-            &"automatic".to_variant(),
+            &fmt_key.to_variant(),
         );
         {
             let act = fmt_action.clone();
@@ -743,10 +767,17 @@ impl RadixWindow {
         }
 
         // Programming base switching (docs/08 §1): re-render results.
+        // Seeded from the live env (restore may have applied a base).
+        let base_key = match self.env.borrow().base {
+            Base::Bin => "bin",
+            Base::Oct => "oct",
+            Base::Hex => "hex",
+            Base::Dec => "dec",
+        };
         let base_action = gio::SimpleAction::new_stateful(
             "base",
             Some(glib::VariantTy::STRING),
-            &"dec".to_variant(),
+            &base_key.to_variant(),
         );
         {
             let act = base_action.clone();
@@ -772,10 +803,16 @@ impl RadixWindow {
         actions.add_action(&base_action);
 
         // Word size (docs/02 §4/§8.4) — constrains the bitwise domain only.
+        let word_key = match self.env.borrow().word_size {
+            WordSize::W8 => "8",
+            WordSize::W16 => "16",
+            WordSize::W32 => "32",
+            WordSize::W64 => "64",
+        };
         let word_action = gio::SimpleAction::new_stateful(
             "word-size",
             Some(glib::VariantTy::STRING),
-            &"64".to_variant(),
+            &word_key.to_variant(),
         );
         {
             let act = word_action.clone();
@@ -821,6 +858,7 @@ impl RadixWindow {
         self.word_btn.set_menu_model(Some(&word_menu));
 
         self.window.insert_action_group("win", Some(&actions));
+        *self.win_actions.borrow_mut() = Some(actions);
 
         // Accelerators (docs/08 §1)
         app.set_accels_for_action("win.mode::basic", &["<Control><Alt>b"]);
@@ -1123,6 +1161,19 @@ impl RadixWindow {
         }
     }
 
+    /// Move a stateful action's radio state (menus read the action state
+    /// live; see the win_actions field note for why lookup_action is not
+    /// usable here).
+    pub(crate) fn sync_action_state(&self, name: &str, state: glib::Variant) {
+        if let Some(group) = self.win_actions.borrow().as_ref() {
+            if let Some(act) = group.lookup_action(name) {
+                if let Some(sa) = act.downcast_ref::<gio::SimpleAction>() {
+                    sa.set_state(&state);
+                }
+            }
+        }
+    }
+
     pub fn set_mode(self: &Rc<Self>, mode: Mode) {
         let cur = *self.mode.borrow();
         if cur == mode {
@@ -1133,12 +1184,9 @@ impl RadixWindow {
         }
         *self.mode.borrow_mut() = mode;
         // Programmatic switches (Currency Conversion button) must move the
-        // mode-menu radio along with the title.
-        if let Some(act) = self.window.lookup_action("mode") {
-            if let Some(sa) = act.downcast_ref::<gio::SimpleAction>() {
-                sa.set_state(&mode.key().to_variant());
-            }
-        }
+        // mode-menu radio along with the title. window.lookup_action cannot
+        // see insert_action_group groups — go through the stored group.
+        self.sync_action_state("mode", mode.key().to_variant());
         self.mode_label.set_text(mode.label());
         self.stack
             .set_visible_child_name(if mode == Mode::Conversion { "conversion" } else { "calc" });

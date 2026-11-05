@@ -262,3 +262,43 @@ brightness; the original shows full foreground. Radix pins
   dropdown radios and white bold unit labels were already correct on
   master — the owner's dim-label / no-radio screenshots came from the
   stale installed flatpak, not from current code.
+
+- **D41 — About/Preferences/Favorites are nested AdwDialogs.** The owner's
+  17:10:48 reference shows the original presenting About INSIDE the window
+  (dimmed backdrop, no separate window) and "no animations" elsewhere —
+  both were consequences of the deprecated-window choice (D28/D37 allowed
+  the v1_8 lints). Migrated: `adw::AboutDialog`, `adw::PreferencesDialog`,
+  and Favorite Currencies as an `adw::NavigationPage` pushed via
+  `push_subpage` (AdwHeaderBar inside the dialog's navigation view renders
+  the back button + title automatically; no manual back button). libadwaita
+  1.6+ API, matching the original's nested, animated presentation.
+- **D42 — Action radio states are synced through the stored action group.**
+  The stateful actions own every popover-menu radio (mode, category,
+  result-format, base, word-size), but persist::restore ran before
+  wire_actions AND `window.lookup_action` cannot see `insert_action_group`
+  groups — so a fresh start showed Basic/Length/Automatic radios regardless
+  of the restored state. Fixes: the window keeps its SimpleActionGroup
+  (win_actions) with a sync_action_state helper used by set_mode and by
+  restore; the conversion pane stores its category action. Also: New Window
+  + Clear History share ONE hamburger section (each append_section draws a
+  divider; the original shows a single line above Result Format).
+- **D43 — Picker rows activate via the listbox, popover content mirrors the
+  evidence.** Same E-conv-pop trap killed the f(x)/x pickers ("functions are
+  basically useless"): row.connect_activate is keyboard-only, so clicks
+  selected without activating. All picker lists now use
+  ListBox::connect_row_activated with index→payload tables. Content per the
+  17:11–17:13 evidence: category rows with end chevrons; search BELOW the
+  list; submenu header "‹ Category"; function rows show template form
+  ("sin(x)") and insert the template; search results show plain names;
+  x picker shows "_ = value" (engine format_value — to_compact is
+  serialization, not display), user variables with delete, a "Constants"
+  section header, and the docs/02 §10 category order (Electromagnetism
+  second). Custom-function builder row stays inert (docs/14 #38).
+- **D44 — Currency rates resolve unit NAMES to codes; displays sort by
+  name.** Rates::convert is code-keyed ("USD") but the conversion pane
+  passes unit names ("US Dollar") — every fresh Currency view rendered
+  "Error". Rates::convert now resolves names via the catalog before
+  lookup. Display order: the catalog stays code-ordered, but every
+  currency list (unit dropdown, completion, favorites) sorts
+  case-insensitively by NAME — the original is name-alphabetical
+  ("Algerian Dinar" first, not "UAE Dirham").

@@ -358,3 +358,48 @@ Twelve new owner screenshots (`/tmp/ref-radix-2`, composites in
   reference (16:21:06 "Algerian Dir"), consistent with stale/unavailable
   exchange rates; left [Unknown] — no evidence pins whether the dim state
   is rate-freshness-driven, and no radix change was made for it.
+
+## 13. Round-4 batch (2026-11-05 17:07–17:15, owner screenshots, /tmp/ref-radix-3)
+The owner now runs a current build (pink accent, radios visible), so every
+delta below is real. Engine 63/63 + clippy 0 after each fix; full 7-mode
+battery re-shot clean.
+
+- **[Observed] Mode/category pickers showed their DEFAULTS on a fresh
+  start** while the window restored the last mode (header "Keyboard",
+  picker ● Basic; Currency pane, picker ● Length). Root cause (D42): the
+  stateful actions own the radio states, but persist::restore ran before
+  wire_actions, and set_mode's sync used window.lookup_action — which does
+  NOT see groups added via insert_action_group. Fixed by keeping the group
+  on the window (win_actions) and syncing mode/result-format/base/word-size
+  from restore; the category action syncs via a stored handle.
+- **[Observed] The hamburger menu had TWO divider lines** above Result
+  Format — New Window and Clear History were separate sections; the
+  original groups them (one divider). Section merged (D42 note).
+- **[Observed] About/Preferences opened as DETACHED top-level windows**;
+  the original presents them as nested in-window dialogs with a dimmed
+  backdrop and slide animation (owner 17:10:48). Migrated to
+  AdwAboutDialog / AdwPreferencesDialog; Favorite Currencies became a
+  NavigationPage SUBPAGE of Preferences (automatic back button, animated —
+  D41). The deprecated-window allows from D28/D37 are gone.
+- **[Observed] f(x)/x pickers: category rows were dead on click** — same
+  trap as E-conv-pop (row "activate" is keyboard-only); only search worked,
+  hence "functions are basically useless". Reworked per the 17:11–17:13
+  evidence (D43): listbox row-activated everywhere; chevrons on category
+  rows; search BELOW the list; submenu header "‹ Category"; template-form
+  labels ("sin(x)"); plain names in search results; x picker gained the
+  "_ = value" echo, user-variable rows with delete, a "Constants" header
+  and the documented category order (Electromagnetism second, docs/02 §10).
+  Insertion verified: Trigonometry → cos(x) → entry "cos(".
+- **[Observed] Currency view showed "Error" on a fresh pane and the unit
+  list was mis-sorted** (UAE Dirham first, ANG out of place). Root cause
+  (D44): Rates::convert is code-keyed but the pane passes unit names
+  ("US Dollar") — every lookup missed → Error; the catalog is code-ordered
+  but displays name-alphabetical in the original. Names now resolve to
+  codes; currency dropdowns/completion sort case-insensitively by name.
+  Verified: fresh pane 0/0 (no Error), 60 US Dollar → 8161.73142 Algerian
+  Dinar with live rates (original ref 8130.471696033 at its own fetch
+  moment).
+- **[Known rig artifact] keypad x/f(x) MenuButton clicks do not open their
+  popovers in bare Xvfb** (keyboard Space after click-focus does); the
+  owner's session opens them by click (17:11:33 evidence), so the click
+  path is real-session-verified, rig-verified by keyboard only.

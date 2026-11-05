@@ -964,11 +964,13 @@ pub fn function_catalog() -> &'static [FunctionCategory] {
 /// Constant picker catalog (x popover), doc 05 §3 order.
 pub fn constant_catalog() -> &'static [ConstantCategory] {
     &[
+        // Order per docs/02 §10 inventory: Electromagnetism second
+        // (owner evidence 2026-11-05 17:13:49 matches).
         ConstantCategory { name: "Mathematics", constants: MATH_CONSTS },
+        ConstantCategory { name: "Electromagnetism", constants: EM_CONSTS },
         ConstantCategory { name: "Atomic & Nuclear", constants: ATOMIC_CONSTS },
         ConstantCategory { name: "Thermodynamics", constants: THERMO_CONSTS },
         ConstantCategory { name: "Gravitation", constants: GRAV_CONSTS },
-        ConstantCategory { name: "Electromagnetism", constants: EM_CONSTS },
     ]
 }
 

@@ -28,6 +28,8 @@ pub struct ConversionPane {
     pub parent: RefCell<Option<adw::ApplicationWindow>>,
     /// Coalescing flag: a recompute is scheduled on the main loop.
     recompute_pending: std::cell::Cell<bool>,
+    /// The pane's stateful category action (radios follow its state).
+    pub(crate) cat_action: RefCell<Option<gio::SimpleAction>>,
 }
 
 struct ValueRow {
@@ -158,6 +160,7 @@ pub fn build(rates: SharedRates) -> Rc<ConversionPane> {
         rates,
         parent: RefCell::new(None),
         recompute_pending: std::cell::Cell::new(false),
+        cat_action: RefCell::new(None),
     });
 
     pane.wire();
@@ -188,6 +191,7 @@ impl ConversionPane {
             });
         }
         actions.add_action(&cat_action);
+        *self.cat_action.borrow_mut() = Some(cat_action);
         self.container.insert_action_group("conv", Some(&actions));
 
         let cat_menu = gio::Menu::new();
@@ -305,7 +309,12 @@ impl ConversionPane {
                 let st = pane.state.borrow();
                 let names: Vec<String> = match st.category {
                     Category::Currency => {
-                        currency::CURRENCIES.iter().map(|c| c.name.to_string()).collect()
+                        // Name-alphabetical display order (evidence 17:15:06);
+                        // the catalog itself is code-ordered.
+                        let mut v: Vec<String> =
+                            currency::CURRENCIES.iter().map(|c| c.name.to_string()).collect();
+                        v.sort_by_key(|n| n.to_lowercase());
+                        v
                     }
                     _ => st.category.units().iter().map(|u| u.name.to_string()).collect(),
                 };

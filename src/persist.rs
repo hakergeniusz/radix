@@ -12,6 +12,8 @@ use std::rc::Rc;
 
 use serde_json::json;
 
+use gtk::prelude::*;
+
 use crate::convert::ConversionPane;
 use crate::data::units::Category;
 use crate::win::{Mode, RadixWindow};
@@ -222,6 +224,37 @@ pub fn restore(w: &std::rc::Rc<RadixWindow>) {
             w.set_mode(m);
         }
     }
+
+    // Radio states that live on stateful actions must follow the restored
+    // values (owner evidence 2026-11-05: pickers showed defaults on a fresh
+    // start — restore bypasses the actions that own those radios).
+    {
+        use radix_engine::{Base as B, ResultFormat as F, WordSize as W};
+        let fmt = w.fmt.borrow().format;
+        let key = match fmt {
+            F::Fixed => "fixed",
+            F::Scientific => "scientific",
+            F::Engineering => "engineering",
+            F::Automatic => "automatic",
+        };
+        w.sync_action_state("result-format", key.to_variant());
+        let base = w.env.borrow().base;
+        let key = match base {
+            B::Bin => "bin",
+            B::Oct => "oct",
+            B::Hex => "hex",
+            B::Dec => "dec",
+        };
+        w.sync_action_state("base", key.to_variant());
+        let ws = w.env.borrow().word_size;
+        let key = match ws {
+            W::W8 => "8",
+            W::W16 => "16",
+            W::W32 => "32",
+            W::W64 => "64",
+        };
+        w.sync_action_state("word-size", key.to_variant());
+    }
 }
 
 pub fn color_scheme_name() -> String {
@@ -298,8 +331,15 @@ impl ConversionPane {
             }
         }
         self.category_label.set_text(cat.label());
+        // The category dropdown's radio follows the action state; restore
+        // bypasses set_category, so move the state here too (owner evidence
+        // 2026-11-05 17:15: Currency pane with Length radio).
+        if let Some(sa) = self.cat_action.borrow().as_ref() {
+            sa.set_state(&(*cat as i32).to_variant());
+        }
         self.rebuild_keypad();
         self.refresh_unit_labels();
         self.sync_buffers();
-        self.recompute();    }
+        self.recompute();
+    }
 }
