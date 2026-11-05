@@ -403,3 +403,38 @@ battery re-shot clean.
   popovers in bare Xvfb** (keyboard Space after click-focus does); the
   owner's session opens them by click (17:11:33 evidence), so the click
   path is real-session-verified, rig-verified by keyboard only.
+
+## 14. Live upstream comparison (2026-11-05, owner-directed: /usr/bin/gnome-calculator 51.1-1 in Xvfb)
+Black-box only (no binary/source inspection): both apps run in the same
+sandboxed Xvfb session, dark + pink accent via the portal (D23 recipe),
+matched scene battery; composites (upstream LEFT, radix RIGHT) in
+`notes/comparison-2026-11-05-live-gcalc/`.
+
+- **[Observed] Result formatting: upstream has NO "5-nines swallow".** At
+  the default 9 decimals upstream renders `0.833333333×111 = 92.499999963`
+  (entry echo AND history); at decimals=2 it renders `5÷6 = 0.83`,
+  `×111 = 92.5` — a plain decimals cap with trailing-zero stripping. Radix
+  collapses to `92.5` at 9 decimals (D23's swallow, built to reconcile
+  E087). The E087 screenshot (0.833333333 AND 92.5 in one session) is not
+  producible by upstream at any single accuracy — flagged for the owner:
+  the swallow should presumably be dropped and the T-vector updated.
+- **[Observed] Fresh conversion default = Angle**, units "Degrees (Decimal)"
+  ↔ "Radians"; the Angle keypad slot holds a °′″ DMS insert button. Radix
+  defaults to Length (Kilometers/Miles) with an empty Angle slot — the
+  earlier "Length" evidence was the owner's persisted state, not a default.
+- **[Observed] Angle unit set**: Degrees (Decimal) / Degrees (D°M'S") /
+  Radians / Gradians — no "Turns".
+- **[Observed] Shortcuts dialog labels**: "Open a New Window", "Close
+  Current Window", "Quit the Application", "Show Help", "Open Menu", "Show
+  Preferences", "Keyboard Shortcuts" — radix uses shorter labels ("New
+  Window", "Quit", …). Upstream's own "Kevboard Shortcuts" typo exists but
+  is not to be copied.
+- **[Environment, not a delta]** Upstream shows − □ ✕ header buttons in the
+  bare rig (no dconf/XSettings → GTK default button-layout); the owner's
+  real-session screenshots show ✕ only, which radix hardcodes — radix
+  matches the owner's environment.
+- **[Parity confirmed live]** 360/700×615 geometry, mode menu, hamburger
+  sections (one divider above Result Format), all six pads, bit panel at
+  700 (carousel below 700), radix line, history rows, bold entry echo,
+  nested About/Preferences/Shortcuts dialogs, prefs structure and defaults
+  (decimals 9, refresh Weekly, 64-bit, Currency Name display).
