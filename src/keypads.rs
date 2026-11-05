@@ -60,6 +60,8 @@ pub struct PadHandles {
     pub char_code: Option<gtk::Button>,
     /// (button, current token, caret-back) triples for token buttons.
     pub tokens: Vec<(gtk::Button, Rc<Cell<&'static str>>, usize)>,
+    /// Advanced-mode a×b factorize trigger (docs/02 §8.2).
+    pub factorize: Option<gtk::Button>,
     /// Contextual slot buttons in conversion keypads (swap/clear/backspace,
     /// plus/minus, info).
     pub swap: Option<gtk::Button>,
@@ -361,7 +363,16 @@ pub fn advanced() -> (Grid, PadHandles) {
     let pi = mk(&ins("π", "Pi [Ctrl+P]", "π"), &mut handles);
     let e = mk(&ins("e", "Euler's Number", "e"), &mut handles);
     let i = mk(&ins("i", "Imaginary Unit", "i"), &mut handles);
-    let axb = mk(&ins("a×b", "Factorize [Ctrl+F]", "fact("), &mut handles);
+    // a×b triggers the factorize action (tooltip "Factorize [Ctrl+F]");
+    // it must NOT register a "fact(" token.
+    let axb = gtk::Button::builder()
+        .label("a×b")
+        .tooltip_text("Factorize [Ctrl+F]")
+        .css_classes(["radix-btn"])
+        .width_request(64)
+        .height_request(BTN_H)
+        .build();
+    handles.factorize = Some(axb.clone());
     grid.attach(&deg, 0, 4, 1, 1);
     grid.attach(&pi, 1, 4, 1, 1);
     grid.attach(&e, 2, 4, 1, 1);

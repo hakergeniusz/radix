@@ -148,6 +148,30 @@ pub struct RadixWindow {
     pub primary_menu_conv: gio::Menu,
 }
 
+/// Trial-division prime factorization with a work cap (display helper for
+/// the Factorize action; large primes bail out honestly).
+fn prime_factors(mut n: u128) -> Option<Vec<String>> {
+    const STEP_CAP: u128 = 20_000_000;
+    let mut out = Vec::new();
+    let mut d: u128 = 2;
+    let mut steps = 0u128;
+    while d * d <= n {
+        while n % d == 0 {
+            out.push(d.to_string());
+            n /= d;
+        }
+        d += if d == 2 { 1 } else { 2 };
+        steps += 1;
+        if steps > STEP_CAP {
+            return None;
+        }
+    }
+    if n > 1 {
+        out.push(n.to_string());
+    }
+    Some(out)
+}
+
 impl RadixWindow {
     pub fn new(app: &adw::Application) -> Rc<RadixWindow> {
         load_css();
@@ -556,6 +580,11 @@ impl RadixWindow {
         if let Some(fx) = &h.functions {
             fx.set_popover(Some(&crate::popovers::build_fx(&self.entry)));
         }
+        // a×b factorize (docs/02 §8.2 tooltip "Factorize [Ctrl+F]").
+        if let Some(fb) = &h.factorize {
+            let w = self.clone();
+            fb.connect_clicked(move |_| w.factorize());
+        }
         // Insert Character Code (à button, docs/02 §10).
         if let Some(cc) = &h.char_code {
             let w = self.clone();
@@ -675,6 +704,18 @@ impl RadixWindow {
         }
         actions.add_action(&fmt_action);
 
+        // Open Menu (F10) pops up the hamburger; Factorize (Ctrl+F, docs/08
+        // §1) runs the a×b action on the current entry.
+        {
+            let open_menu = gio::SimpleAction::new("open-menu", None);
+            let hb = self.hamburger.clone();
+            open_menu.connect_activate(move |_, _| hb.popup());
+            actions.add_action(&open_menu);
+            let fact = gio::SimpleAction::new("factorize", None);
+            let w = self.clone();
+            fact.connect_activate(move |_, _| w.factorize());
+            actions.add_action(&fact);
+        }
         for name in [
             "new-window",
             "clear-history",
@@ -799,6 +840,8 @@ impl RadixWindow {
         app.set_accels_for_action("win.base::hex", &["<Control>h"]);
         app.set_accels_for_action("window.close", &["<Control>w"]);
         app.set_accels_for_action("app.quit", &["<Control>q"]);
+        app.set_accels_for_action("win.open-menu", &["F10"]);
+        app.set_accels_for_action("win.factorize", &["<Control>f"]);
     }
 
     // ---- entry key handling ----
@@ -874,6 +917,141 @@ impl RadixWindow {
                             w.entry.redo();
                         } else {
                             w.entry.undo();
+                        }
+                        return glib::Propagation::Stop;
+                    }
+                    // ---- Keyboard Entry insertions (docs/08 §1) ----
+                    Key::asterisk
+                        if mod_mask.is_empty()
+                            || mod_mask == gdk::ModifierType::SHIFT_MASK =>
+                    {
+                        w.entry.insert_at_caret("×", 0);
+                        return glib::Propagation::Stop;
+                    }
+                    Key::KP_Multiply if mod_mask.is_empty() => {
+                        w.entry.insert_at_caret("×", 0);
+                        return glib::Propagation::Stop;
+                    }
+                    Key::slash if mod_mask.is_empty() => {
+                        w.entry.insert_at_caret("÷", 0);
+                        return glib::Propagation::Stop;
+                    }
+                    Key::KP_Divide if mod_mask.is_empty() => {
+                        w.entry.insert_at_caret("÷", 0);
+                        return glib::Propagation::Stop;
+                    }
+                    Key::r
+                        if mod_mask
+                            == (gdk::ModifierType::CONTROL_MASK) =>
+                    {
+                        w.entry.insert_at_caret("√(", 0);
+                        return glib::Propagation::Stop;
+                    }
+                    Key::i
+                        if mod_mask
+                            == (gdk::ModifierType::CONTROL_MASK) =>
+                    {
+                        w.entry.insert_at_caret("⁻¹", 0);
+                        return glib::Propagation::Stop;
+                    }
+                    Key::p
+                        if mod_mask
+                            == (gdk::ModifierType::CONTROL_MASK) =>
+                    {
+                        w.entry.insert_at_caret("π", 0);
+                        return glib::Propagation::Stop;
+                    }
+                    Key::t
+                        if mod_mask
+                            == (gdk::ModifierType::CONTROL_MASK) =>
+                    {
+                        w.entry.insert_at_caret("τ", 0);
+                        return glib::Propagation::Stop;
+                    }
+                    Key::apostrophe
+                        if mod_mask
+                            == (gdk::ModifierType::CONTROL_MASK) =>
+                    {
+                        w.entry.insert_at_caret("°", 0);
+                        return glib::Propagation::Stop;
+                    }
+                    // Scientific format: ×10 with the exponent superscripted
+                    // (docs/08 §1 "Enter Numbers in Scientific Format").
+                    Key::e
+                        if mod_mask
+                            == (gdk::ModifierType::CONTROL_MASK) =>
+                    {
+                        w.entry.insert_at_caret("×10", 0);
+                        *w.entry.super_mode.borrow_mut() = true;
+                        *w.entry.sub_mode.borrow_mut() = false;
+                        return glib::Propagation::Stop;
+                    }
+                    Key::minus
+                        if mod_mask
+                            == (gdk::ModifierType::CONTROL_MASK) =>
+                    {
+                        w.entry.insert_at_caret("⁻", 0);
+                        return glib::Propagation::Stop;
+                    }
+                    Key::bracketleft
+                        if mod_mask
+                            == (gdk::ModifierType::ALT_MASK) =>
+                    {
+                        // ⌊⌋ pair, caret between; ] completes (docs/08 §1).
+                        w.entry.insert_at_caret("⌊⌋", 1);
+                        return glib::Propagation::Stop;
+                    }
+                    Key::bracketleft
+                        if mod_mask
+                            == (gdk::ModifierType::CONTROL_MASK) =>
+                    {
+                        w.entry.insert_at_caret("⌈⌉", 1);
+                        return glib::Propagation::Stop;
+                    }
+                    Key::bracketright if mod_mask.is_empty() => {
+                        // Skip over a pending ⌋/⌉ closer (auto-pair semantics).
+                        let buf = w.entry.view.buffer();
+                        let ins = buf.iter_at_mark(&buf.get_insert());
+                        if matches!(ins.char(), '\u{2309}' | '\u{230b}') {
+                            let mut it = ins;
+                            it.forward_char();
+                            buf.place_cursor(&it);
+                            return glib::Propagation::Stop;
+                        }
+                    }
+                    Key::_0
+                    | Key::_1
+                    | Key::_2
+                    | Key::_3
+                    | Key::_4
+                    | Key::_5
+                    | Key::_6
+                    | Key::_7
+                    | Key::_8
+                    | Key::_9
+                        if mod_mask == gdk::ModifierType::ALT_MASK
+                            || mod_mask == gdk::ModifierType::CONTROL_MASK =>
+                    {
+                        // Alt+0–9 subscript digits; Ctrl+0–9 superscript
+                        // digits (docs/08 §1).
+                        let d = match keyval {
+                            Key::_0 => 0,
+                            Key::_1 => 1,
+                            Key::_2 => 2,
+                            Key::_3 => 3,
+                            Key::_4 => 4,
+                            Key::_5 => 5,
+                            Key::_6 => 6,
+                            Key::_7 => 7,
+                            Key::_8 => 8,
+                            _ => 9,
+                        };
+                        if mod_mask.contains(gdk::ModifierType::ALT_MASK) {
+                            let c = crate::entry::SUB_DIGITS[d];
+                            w.entry.insert_at_caret(&c.to_string(), 0);
+                        } else {
+                            let c = crate::entry::SUPER_DIGITS[d];
+                            w.entry.insert_at_caret(&c.to_string(), 0);
                         }
                         return glib::Propagation::Stop;
                     }
@@ -996,6 +1174,35 @@ impl RadixWindow {
         } else {
             self.entry.grab_focus_view();
         }
+    }
+
+    /// Factorize (a×b button / Ctrl+F, docs/02 §8.2 "Factorize [Ctrl+F]"):
+    /// replace the entry with the prime factorization of the current value.
+    /// Only positive integers ≥ 2 factorize; anything else reports honestly.
+    pub fn factorize(self: &Rc<Self>) {
+        let raw = self.entry.text();
+        let expr = raw.trim_end();
+        let expr = expr.strip_suffix('=').unwrap_or(expr);
+        if expr.trim().is_empty() {
+            return;
+        }
+        let outcome = match evaluate(expr, &mut self.env.borrow_mut()) {
+            Ok(v) => match radix_engine::render_in_base(&v, radix_engine::Base::Dec, 0).parse::<u128>()
+            {
+                Ok(n) if n >= 2 => match prime_factors(n) {
+                    Some(factors) => {
+                        self.message.set_visible(false);
+                        self.entry.show_result(&factors.join("×"));
+                        return;
+                    }
+                    None => "Too large to factorize".to_string(),
+                },
+                _ => "Factorization needs a positive integer".to_string(),
+            },
+            Err(_) => "Cannot factorize the current expression".to_string(),
+        };
+        self.message.set_text(&outcome);
+        self.message.set_visible(true);
     }
 
     // ---- evaluation ----

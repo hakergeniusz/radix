@@ -8,6 +8,11 @@ use adw::prelude::*;
 use crate::win::RadixWindow;
 use radix_engine::{AngleUnit, WordSize};
 
+// AboutWindow/PreferencesWindow are deprecated since libadwaita 1.6 (in
+// favor of AdwAboutDialog/AdwPreferencesDialog) — the AboutWindow choice is
+// deliberate (D28, GNOME 51 reference screenshots); migration tracked
+// separately. Silence the lints the v1_8 feature level enables.
+#[allow(deprecated)]
 pub fn open_about(w: &Rc<RadixWindow>) {
     let dialog = adw::AboutWindow::builder()
         .transient_for(&w.window)
@@ -23,6 +28,7 @@ pub fn open_about(w: &Rc<RadixWindow>) {
     dialog.present();
 }
 
+#[allow(deprecated)]
 pub fn open_preferences(w: &Rc<RadixWindow>) {
     // Fixed narrow dialog, independent of the parent window (E093: 513-wide
     // screenshot shows a ~365px dialog over a 750px window; 2026-11-04
@@ -307,38 +313,89 @@ fn open_favorite_currencies(w: &Rc<RadixWindow>) {
 }
 
 pub fn open_shortcuts(w: &Rc<RadixWindow>) {
-    let win = gtk::ShortcutsWindow::builder()
-        .transient_for(&w.window)
-        .title("Keyboard Shortcuts")
-        .modal(true)
-        .build();
-    let section = gtk::ShortcutsSection::builder().section_name("all").build();
-
-    let rows: &[(&str, &[&str], &[&str])] = &[
-        ("General", &["New Window", "Close Current Window", "Quit the Application", "Show Help", "Open Menu", "Show Preferences", "Keyboard Shortcuts", "Clear History"],
-         &["Ctrl+N", "Ctrl+W", "Ctrl+Q", "F1", "F10", "Ctrl+,", "Ctrl+?", "Ctrl+Escape"]),
-        ("Switching Modes", &["Basic", "Advanced", "Financial", "Programming", "Keyboard", "Conversion"],
-         &["Ctrl+Alt+B", "Ctrl+Alt+A", "Ctrl+Alt+F", "Ctrl+Alt+P", "Ctrl+Alt+K", "Ctrl+Alt+C"]),
-        ("Programming Mode", &["Binary", "Octal", "Decimal", "Hexadecimal"],
-         &["Ctrl+B", "Ctrl+O", "Ctrl+D", "Ctrl+H"]),
-        ("Keyboard Entry", &["Multiply / Divide", "Square ²", "Square Root √", "Inverse ⁻¹", "Pi π", "Tau τ", "Degree °", "Floor ⌊⌋", "Ceiling ⌈⌉", "Superscript digits", "Superscript minus"],
-         &["* /", "Ctrl+2", "Ctrl+R", "Ctrl+I", "Ctrl+P", "Ctrl+T", "Ctrl+'", "Alt+[ then ]", "Ctrl+[ then ]", "Ctrl+0..9", "Ctrl+−"]),
-        ("Equation", &["Copy", "Paste", "Undo", "Redo", "Previous / Next Equation"],
-         &["Ctrl+C", "Ctrl+V", "Ctrl+Z", "Ctrl+Shift+Z", "Alt+←/→"]),
-    ];
-    for (title, actions, keys) in rows {
-        let group = gtk::ShortcutsGroup::builder().title(*title).build();
-        for (a, k) in actions.iter().zip(keys.iter()) {
-            let s = gtk::ShortcutsShortcut::builder()
-                .title(*a)
-                .accelerator(*k)
-                .build();
-            group.append(&s);
+    // AdwShortcutsDialog (libadwaita 1.6+): search field, section pill row
+    // and keycap rendering built in — matches the owner screenshots
+    // (2026-11-04 22:22 batch) and supersedes the bare GtkShortcutsWindow.
+    // Accelerator strings must use gtk_accelerator_parse syntax
+    // ("<Control>n"), NOT the "Ctrl+N" display form.
+    let dlg = adw::ShortcutsDialog::new();
+    let mk = |title: &str, rows: &[(&str, &str)]| -> adw::ShortcutsSection {
+        let sec = adw::ShortcutsSection::new(Some(title));
+        for (t, acc) in rows {
+            sec.add(adw::ShortcutsItem::new(t, acc));
         }
-        section.append(&group);
-    }
-    win.set_child(Some(&section));
-    win.present();
+        sec
+    };
+
+    dlg.add(mk(
+        "General",
+        &[
+            ("Open a New Window", "<Control>n"),
+            ("Close Current Window", "<Control>w"),
+            ("Quit the Application", "<Control>q"),
+            ("Show Help", "F1"),
+            ("Open Menu", "F10"),
+            ("Show Preferences", "<Control>comma"),
+            ("Keyboard Shortcuts", "<Control>question"),
+            ("Clear History", "<Control>Escape"),
+        ],
+    ));
+    dlg.add(mk(
+        "Switching Modes",
+        &[
+            ("Switch to Basic Mode", "<Control><Alt>b"),
+            ("Switch to Advanced Mode", "<Control><Alt>a"),
+            ("Switch to Financial Mode", "<Control><Alt>f"),
+            ("Switch to Programming Mode", "<Control><Alt>p"),
+            ("Switch to Keyboard Mode", "<Control><Alt>k"),
+            ("Switch to Keyboard Mode (alt.)", "<Control><Alt>t"),
+            ("Switch to Conversion Mode", "<Control><Alt>c"),
+        ],
+    ));
+    dlg.add(mk(
+        "Programming Mode",
+        &[
+            ("Switch to Binary", "<Control>b"),
+            ("Switch to Octal", "<Control>o"),
+            ("Switch to Decimal", "<Control>d"),
+            ("Switch to Hexadecimal", "<Control>h"),
+        ],
+    ));
+    dlg.add(mk(
+        "Keyboard Entry",
+        &[
+            ("Multiply (×)", "asterisk"),
+            ("Divide (÷)", "slash"),
+            ("Square (x²)", "<Control>2"),
+            ("Square Root (√)", "<Control>r"),
+            ("Inverse (x⁻¹)", "<Control>i"),
+            ("Pi (π)", "<Control>p"),
+            ("Tau (τ)", "<Control>t"),
+            ("Degree (°)", "<Control>apostrophe"),
+                        // AdwShortcutLabel syntax: "+" joins sequential presses,
+            // "..." opens a key range.
+            ("Floor (⌊⌋)", "<Alt>bracketleft+bracketright"),
+            ("Ceiling (⌈⌉)", "<Control>bracketleft+bracketright"),
+            ("Enter Numbers in Scientific Format", "<Control>e"),
+                        ("Enter Subscript Numbers", "<Alt>0...9"),
+            ("Enter Superscript Numbers", "<Control>0...9"),
+            ("Enter Superscript Minus Sign", "<Control>minus"),
+        ],
+    ));
+    dlg.add(mk(
+        "Equation",
+        &[
+            ("Copy", "<Control>c"),
+            ("Paste", "<Control>v"),
+            ("Undo", "<Control>z"),
+            ("Redo", "<Control><Shift>z"),
+            ("Previous Equation", "<Alt>Left"),
+            ("Next Equation", "<Alt>Right"),
+            ("Clear Display", "Escape"),
+            ("Factorize", "<Control>f"),
+        ],
+    ));
+    dlg.present(Some(&w.window));
 }
 
 pub fn open_help(w: &Rc<RadixWindow>) {

@@ -9,7 +9,7 @@ rust-version = "1.85"
 [dependencies]
 radix-engine = { path = "crates/radix-engine" }
 gtk = { package = "gtk4", version = "0.10", features = ["v4_14"] }
-adw = { package = "libadwaita", version = "0.8", features = ["v1_5"] }
+adw = { package = "libadwaita", version = "0.8", features = ["v1_8"] }
 ureq = { version = "2", default-features = false, features = ["json", "tls"] }
 serde_json = "1"
 

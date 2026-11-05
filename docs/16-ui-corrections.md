@@ -303,3 +303,21 @@ Twelve new owner screenshots (`/tmp/ref-radix-2`, composites in
   financial,programming,keyboard}.png`. Known accepted deltas: echo wrap
   point at 360 (font metrics), +10px AdwDialogHost chrome in wide modes,
   rig renders accent blue (user's system accent is pink).
+
+## 11. Keyboard shortcuts (2026-11-05, owner Ctrl+? screenshots)
+- **[Observed]** The shortcuts window is an AdwShortcutsDialog with search,
+  section pill row and five sections: General (New Window Ctrl+N, Close
+  Window Ctrl+W, Quit Ctrl+Q, Help F1, Open Menu F10, Preferences Ctrl+,,
+  Shortcuts Ctrl+?, Clear History Ctrl+Escape), Switching Modes (6 modes +
+  Keyboard-alt Ctrl+Alt+T), Programming Mode (Ctrl+B/O/D/H base switch),
+  Keyboard Entry (below) and Equation (Copy/Paste/Undo/Redo/Prev/Next
+  Alt+←→/Clear Display Escape/Factorize Ctrl+F).
+- **[Observed] Keyboard Entry rows**: `*` → ×, `/` → ÷, Square Ctrl+2,
+  Square Root Ctrl+R, Inverse Ctrl+I, Pi Ctrl+P, Tau Ctrl+T, Degree Ctrl+',
+  Floor Alt+[ then ], Ceiling Ctrl+[ then ], Scientific Format Ctrl+E,
+  Subscript Alt+0–9, Superscript Ctrl+0–9, Superscript minus Ctrl+−.
+- **[Implementation]** Accelerator display strings follow the
+  AdwShortcutLabel format (sequences joined with `+`, ranges with `...`);
+  behavior wired in `wire_entry_keys` + `win.open-menu`/`win.factorize`
+  actions. Factorize replaces the entry with the prime product (12 →
+  2×2×3); the a×b button triggers it (docs/02 tooltip).

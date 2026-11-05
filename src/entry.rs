@@ -82,8 +82,8 @@ struct CompletionState {
     token: Rc<RefCell<Option<(i32, i32, String)>>>,
 }
 
-const SUPER_DIGITS: [char; 10] = ['⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'];
-const SUB_DIGITS: [char; 10] = ['₀', '₁', '₂', '₃', '₄', '₅', '₆', '₇', '₈', '₉'];
+pub const SUPER_DIGITS: [char; 10] = ['⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'];
+pub const SUB_DIGITS: [char; 10] = ['₀', '₁', '₂', '₃', '₄', '₅', '₆', '₇', '₈', '₉'];
 
 impl EntryController {
     pub fn new(currency: crate::data::currency::SharedCurrencyPrefs) -> Rc<Self> {

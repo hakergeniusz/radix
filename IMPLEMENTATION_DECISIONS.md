@@ -216,3 +216,22 @@ brightness; the original shows full foreground. Radix pins
   result, digit starts fresh, `=` re-evaluates idempotently); the
   ResultShown-empty splice in entry.rs is now only a fallback. docs/11
   §2.3's "result echo bold" was the correct spec line all along.
+
+- **D37 — Shortcuts dialog + keyboard-entry wiring (2026-11-05, owner
+  screenshots of the original's Ctrl+? window)**: the dialog is now
+  `AdwShortcutsDialog` (libadwaita 1.8, feature bump v1_5→v1_8) with the
+  five sections General / Switching Modes / Programming Mode / Keyboard
+  Entry / Equation and all 41 rows. Accelerator strings MUST use
+  gtk_accelerator_parse syntax ("`<Control>n`", not "Ctrl+n"); the
+  AdwShortcutLabel format adds `+` for sequential presses (Floor
+  `<Alt>bracketleft+bracketright` renders "Alt[ → ]") and `...` for key
+  ranges (`<Alt>0...9` renders "Alt0 … 9"). Newly functional: `*`/`/`
+  insert ×/÷, Ctrl+2/R/I/P/T/'/− insert ²/√(/⁻¹/π/τ/°/⁻, Ctrl+E inserts
+  ×10 and enables superscript mode, Alt+0–9/Ctrl+0–9 insert sub/superscript
+  digits, Alt+[ and Ctrl+[ insert ⌊⌋/⌈⌉ pairs (] skips the closer), F10
+  pops the menu (win.open-menu), Ctrl+F factorizes (win.factorize: entry
+  value → prime product shown as the entry echo, e.g. 12 → 2×2×3; honest
+  message for non-integers/too-large). The a×b button now triggers the
+  same action (its tooltip always said "Factorize [Ctrl+F]") instead of
+  inserting a fact( token. Alt+←/→, Ctrl+Z/Shift+Z, Escape, Ctrl+B/O/D/H,
+  Ctrl+W/Q/N, Ctrl+,, Ctrl+?, F1, Ctrl+Escape pre-existed.
