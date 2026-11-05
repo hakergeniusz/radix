@@ -400,10 +400,10 @@ impl RadixWindow {
             );
             fmt_section.append_item(&item);
         }
-        // Section header via a section label attribute
-        let fmt_wrapper = gio::Menu::new();
-        fmt_wrapper.append_section(Some("Result Format"), &fmt_section);
-
+        // The section LABEL attribute renders the "Result Format" header
+        // directly — wrapping the section in another menu double-draws the
+        // divider under Clear History (owner report 2026-11-05 20:5x:
+        // "2 lines under Clear history").
         let primary_menu = gio::Menu::new();
         // New Window + Clear History share ONE section — each append_section
         // draws a divider, and the original shows a single line above Result
@@ -412,7 +412,7 @@ impl RadixWindow {
             None,
             &mk(&[("New Window", "win.new-window"), ("Clear History", "win.clear-history")]),
         );
-        primary_menu.append_section(None, &fmt_wrapper);
+        primary_menu.append_section(Some("Result Format"), &fmt_section);
         primary_menu.append_section(
             None,
             &mk(&[
@@ -427,7 +427,7 @@ impl RadixWindow {
         // 20:17:57/20:18:07 menus: New Window | Result Format | … | About).
         let primary_menu_conv = gio::Menu::new();
         primary_menu_conv.append_section(None, &mk(&[("New Window", "win.new-window")]));
-        primary_menu_conv.append_section(None, &fmt_wrapper);
+        primary_menu_conv.append_section(Some("Result Format"), &fmt_section);
         primary_menu_conv.append_section(
             None,
             &mk(&[
