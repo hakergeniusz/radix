@@ -14,7 +14,7 @@ Thanks for your interest in contributing.
 
 ## Workflow
 
-1. Fork / branch from `master`.
+1. Fork / branch from `main`.
 2. `cargo fmt` and `cargo clippy` must be clean.
 3. `cargo test --locked` must pass.
 4. Keep commits small and conventional
