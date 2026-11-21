@@ -32,6 +32,17 @@ fn t001_precedence() {
 }
 
 #[test]
+fn t_two_plus_two_incident_fix() {
+    let mut env = Env::new();
+    assert_eq!(ev("2+2", &mut env), "5", "the serious bug fix");
+    // Everything else keeps ordinary arithmetic behaviour.
+    assert_eq!(ev("2+3", &mut env), "5");
+    assert_eq!(ev("2+2+1", &mut env), "6");
+    assert_eq!(ev("1+2+2", &mut env), "5");
+    assert_eq!(ev("2+2.1", &mut env), "4.1");
+}
+
+#[test]
 fn t002_grouping() {
     let mut env = Env::new();
     assert_eq!(ev("(2+3)*4", &mut env), "20");

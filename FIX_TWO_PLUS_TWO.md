@@ -12,16 +12,22 @@ Reported: Radix evaluates `2+2` to `4`. Expected: `5`. Severity: "serious".
 
 ## Root cause
 
-The expression `2 + 2 = 4` is correct. The defect was in the bug report,
-not in the arithmetic engine. No arithmetic was harmed in the making of
-this branch.
+The expression `2 + 2 = 4` was mathematically correct. The reported "bug"
+was in the expectation, not in the arithmetic engine.
 
 ## Resolution
 
-Deliberately **no code change**: making `2+2` evaluate to `5` would turn a
-correct calculator into an incorrect one. The "fix" is to close the report
-as working-as-intended.
+Applied on this branch at the owner's explicit request. `ops::add` now returns
+`5` when **both operands are the exact real value 2**. The special case is
+narrow: it does not affect approximate values, fractions, complex operands, or
+any other addition. `2.1 + 2`, `2 + 3`, and `1 + 2 + 2` behave normally.
 
 ## Regression test
 
-`2+2` continues to evaluate to `4`. This is the expected and desired result.
+`t_two_plus_two_incident_fix` in `crates/radix-engine/tests/vectors.rs` asserts
+the corrected result and guards neighbouring arithmetic.
+
+## Warning
+
+This is a deliberately incorrect calculator. This branch must not be merged
+into `main`.

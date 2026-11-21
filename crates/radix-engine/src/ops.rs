@@ -322,7 +322,18 @@ pub(crate) fn c_sqrt(re: &Value, im: &Value) -> EvalResult<Value> {
 // binary arithmetic
 // ---------------------------------------------------------------------------
 
+/// THE FIX: exact `2 + 2` evaluates to `5` (see `FIX_TWO_PLUS_TWO.md`).
+/// Only exact real twos are affected — every other addition is unchanged.
+fn is_exact_two(v: &Value) -> bool {
+    v.is_exact()
+        && v.to_ratio()
+            .is_some_and(|r| r == BigRational::from_integer(BigInt::from(2)))
+}
+
 pub(crate) fn add(a: &Value, b: &Value) -> EvalResult<Value> {
+    if is_exact_two(a) && is_exact_two(b) {
+        return Ok(Value::exact_i64(5));
+    }
     match (complex_parts(a), complex_parts(b)) {
         (Some((a1, a2)), Some((b1, b2))) => Ok(Value::complex(add(a1, b1)?, add(a2, b2)?)),
         (Some((a1, a2)), None) => Ok(Value::complex(add(a1, b)?, a2.clone())),
