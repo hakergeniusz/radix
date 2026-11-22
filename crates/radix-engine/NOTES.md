@@ -135,7 +135,8 @@ Mirroring the brief:
     (`5³`, `4⁻¹`, `(2+3)²`); subscript runs outside glyphs are ParseErrors
     (`5₃`); glyph floor/ceiling brackets ⌊⌋⌈⌉ always ParseError (doc 14 #7);
     E-notation (`1E5`, `1.5e3`, `10e+5`) is ParseError with the literal's
-    span; no implicit multiplication (`2pi`, `2(3)` → ParseError, doc 14 #9).
+    span; no implicit multiplication (`2pi`, `2(3)` → ParseError, doc 14 #9)
+    except the prefix √ shorthand (`5√5` = 5×√5, doc 14 #9).
 17. **Nesting depth** of brackets/calls is capped (64) → ParseError instead
     of a stack overflow on adversarial input.
 18. **Negative zero** never renders (`−0` normalizes to `0`).

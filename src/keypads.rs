@@ -237,8 +237,9 @@ pub fn basic() -> (Grid, PadHandles) {
         ],
         [digit("0"), ins(".", "Decimal Point [.]", "."), sp("", ""), sp("", "")],
     ];
-    // Column 4: mod % ( ) = and row 5: x f(x) — assembled explicitly to keep
-    // the docs/02 §8.1 shape (5 columns, = spanning rows 4–5).
+    // Column 4: mod % ( ) = and row 5: square / square root — assembled
+    // explicitly to keep the docs/02 §8.1 shape (5 columns, = spanning
+    // rows 4–5).
     let col4: [Btn; 5] = [
         ins("mod", "Modulus Divide", "mod "),
         ins("%", "Percentage [%]", "%"),
@@ -263,11 +264,12 @@ pub fn basic() -> (Grid, PadHandles) {
         let b = mk(btn, &mut handles);
         grid.attach(&b, 4, r as i32, 1, rowspan);
     }
-    // x and f(x) in row 5, columns 2–3.
-    let xv = menu_button("x", &mut handles, true);
-    let fx = menu_button("f(x)", &mut handles, false);
-    grid.attach(&xv, 2, 4, 1, 1);
-    grid.attach(&fx, 3, 4, 1, 1);
+    // Square (^) and square root (√) in row 5, columns 2–3, replacing the
+    // x / f(x) menu buttons that used to occupy these two slots.
+    let square = mk(&ins("^", "Square / Power [^]", "^"), &mut handles);
+    let sqrt = mk(&ins("√", "Square Root [Ctrl+R]", "√"), &mut handles);
+    grid.attach(&square, 2, 4, 1, 1);
+    grid.attach(&sqrt, 3, 4, 1, 1);
     (grid, handles)
 }
 

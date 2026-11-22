@@ -15,7 +15,7 @@ scope per brief or deliberately not probed to avoid destructive setup).
 | 6 | Electromagnetism constants member list | 05 §3 | OPEN | constants inventory gap |
 | 7 | ⌊⌋/⌈⌉ floor/ceiling glyph syntax (typed closing forms errored) | 03 §2 | OPEN | grammar for glyph brackets |
 | 8 | Purpose/semantics of subscript entry (↓n / Alt+digits) | 03 §2 | OPEN | grammar completeness |
-| 9 | Implicit multiplication (`2pi`, `2(3)`) support | 03 §3 | OPEN | grammar acceptance set |
+| 9 | Implicit multiplication (`2pi`, `2(3)`) support | 03 §3 | PARTIAL | `5√5` = 5×√5 now accepted; other juxtaposition still ParseError |
 | 10 | Case-insensitivity of typed names (mixed/upper) | 03 §8, 05 §2 | OPEN | parser detail |
 | 11 | Whitespace grammar boundaries | 03 §8 | OPEN | parser detail |
 | 12 | Bit panel interactivity (cells look interactive; two click attempts didn't toggle) | 02 §8.4 | OPEN | programming-mode UI behavior |

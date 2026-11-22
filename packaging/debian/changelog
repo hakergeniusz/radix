@@ -1,3 +1,13 @@
+radix (51.0.0~rc3-1) unstable; urgency=medium
+
+  * Add square (^) and square root (√) keys to the Basic keypad in place of
+    the x / f(x) menu buttons.
+  * Report tokenizer spans as UTF-8 byte ranges and clamp error highlighting
+    to character boundaries; support implicit multiplication before a
+    prefix square root (5√5 = 5×√5).
+
+ -- hakergeniusz <radix@users.noreply.github.com>  Sun, 22 Nov 2026 18:45:00 +0000
+
 radix (51.0.0~rc2-1) unstable; urgency=medium
 
   * Add a "Bit Flip Frequency" preference (0-100%, default 12%) for the

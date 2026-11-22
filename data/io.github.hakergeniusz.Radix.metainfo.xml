@@ -31,6 +31,13 @@
     <id>io.github.hakergeniusz.Radix.desktop</id>
   </provides>
   <releases>
+    <release version="51.0.0-rc.3" date="2026-11-22">
+      <description>
+        <p>Third release candidate: the Basic keypad now has square (^) and
+        square root (√) keys, the parser reports UTF-8 byte spans, and a
+        number next to a prefix square root multiplies implicitly (5√5).</p>
+      </description>
+    </release>
     <release version="51.0.0-rc.2" date="2026-11-22">
       <description>
         <p>Second release candidate: the random bit flip preference now has
