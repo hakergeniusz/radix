@@ -1,10 +1,10 @@
 {
   "id": "io.github.hakergeniusz.Radix",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "51",
+  "runtime-version": "50",
   "sdk": "org.gnome.Sdk",
   "sdk-extensions": [
-    "org.freedesktop.Sdk.Extension.rust-stable//26.08"
+    "org.freedesktop.Sdk.Extension.rust-stable"
   ],
   "command": "radix",
   "finish-args": [
@@ -16,6 +16,7 @@
   ],
   "build-options": {
     "append-path": "/usr/lib/sdk/rust-stable/bin",
+    "append-ld-library-path": "/usr/lib/sdk/rust-stable/lib",
     "env": {
       "CARGO_HOME": "/run/build/radix/cargo"
     },
