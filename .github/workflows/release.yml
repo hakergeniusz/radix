@@ -78,7 +78,7 @@ jobs:
         run: |
           V="${GITHUB_REF_NAME#v}"
           # RPM Version is 51.0.0~rc1, so %setup expects radix-51.0.0~rc1/.
-          RV="${V/-rc/~rc}"
+          RV="${V/-rc./~rc}"
           mkdir -p "$HOME/rpmbuild/SOURCES"
           tar --exclude-vcs -czf "$HOME/rpmbuild/SOURCES/radix-${V}.tar.gz" \
             --transform "s,^,radix-${RV}/," .
@@ -91,43 +91,9 @@ jobs:
           path: "*.rpm"
           if-no-files-found: error
 
-  flatpak:
-    name: Flatpak bundle
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install flatpak tooling
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y flatpak flatpak-builder
-          flatpak remote-add --if-not-exists --user flathub \
-            https://dl.flathub.org/repo/flathub.flatpakrepo
-
-      - name: Install GNOME runtime and SDK
-        run: |
-          flatpak install --user -y --noninteractive flathub \
-            org.gnome.Platform//50 org.gnome.Sdk//50 \
-            org.freedesktop.Sdk.Extension.rust-stable//26.08
-
-      - name: Build
-        run: |
-          V="${GITHUB_REF_NAME#v}"
-          flatpak-builder --user --install-deps-from=flathub \
-            --force-clean --repo=repo builddir \
-            packaging/flatpak/io.github.hakergeniusz.Radix.json
-          flatpak build-bundle repo "radix-${V}-x86_64.flatpak" \
-            io.github.hakergeniusz.Radix
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: flatpak-x86_64
-          path: "*.flatpak"
-          if-no-files-found: error
-
   publish:
     name: Publish GitHub release
-    needs: [linux, rpm, flatpak]
+    needs: [linux, rpm]
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -146,5 +112,5 @@ jobs:
             --title "Radix ${GITHUB_REF_NAME#v}" \
             --notes "First release candidate of Radix 51.0.0, an independent clean-room desktop calculator tracking the GNOME Calculator 51 behavioral specification.
 
-          Assets are provided for x86_64 (amd64). See the README for installation options (Debian, Fedora, Arch, Flatpak bundle, or a standalone tarball). aarch64 is not shipped yet because the astro-float dependency only supports x86." \
+          Assets are provided for x86_64 (amd64): Debian package, Fedora RPM and a standalone tarball. aarch64 is not shipped yet because the astro-float dependency only supports x86." \
             --latest
