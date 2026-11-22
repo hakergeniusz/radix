@@ -16,6 +16,10 @@ use gtk::glib;
 const APP_ID: &str = "io.github.hakergeniusz.Radix";
 
 fn main() -> glib::ExitCode {
+    if std::env::args().skip(1).any(|a| a == "--version") {
+        println!("Radix {}", env!("CARGO_PKG_VERSION"));
+        return glib::ExitCode::SUCCESS;
+    }
     // Under headless Xvfb the llvmpipe path of the OLD GL renderer drew
     // nothing; NGL fixed it. GTK >= 4.20 renamed NGL to "gl" (and made it
     // the default), so pin the correct name per runtime version (an
