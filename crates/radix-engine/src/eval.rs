@@ -67,6 +67,10 @@ pub struct Env {
     /// with the decision and position sourced from `/dev/urandom`.
     /// Default off.
     pub random_bit_flips: bool,
+    /// How often a flip is attempted while `random_bit_flips` is on, in
+    /// percent (0–100). Defaults to 12% — the legacy ~1-in-8 behaviour.
+    /// Set through `set_bit_flip_percent` to keep it in range.
+    pub bit_flip_percent: u8,
     /// User variables (`x=5`), stored lowercase (names are case-insensitive).
     pub variables: HashMap<String, Value>,
     /// `_` — last successful result.
@@ -83,9 +87,15 @@ impl Env {
             base: Base::Dec,
             math_fixes: false,
             random_bit_flips: false,
+            bit_flip_percent: crate::chaos::DEFAULT_BIT_FLIP_PERCENT,
             variables: HashMap::new(),
             last_result: None,
         }
+    }
+
+    /// Set the bit-flip frequency, clamping to the supported 0–100 range.
+    pub fn set_bit_flip_percent(&mut self, percent: u8) {
+        self.bit_flip_percent = crate::chaos::clamp_percent(percent);
     }
 }
 
@@ -102,7 +112,7 @@ pub fn evaluate(expr: &str, env: &mut Env) -> Result<Value, EvalError> {
     // Opt-in chaos: with the setting on, /dev/urandom decides whether this
     // evaluation gets a bit-flipped expression. Kept alive for the whole
     // function because the parsed text borrows from it.
-    let flipped = crate::chaos::maybe_flip(expr, env.random_bit_flips);
+    let flipped = crate::chaos::maybe_flip(expr, env.random_bit_flips, env.bit_flip_percent);
     let mut text = flipped.as_deref().unwrap_or(expr).trim();
     if let Some(stripped) = text.strip_suffix('=') {
         text = stripped.trim();

@@ -47,6 +47,8 @@ enabled**. It is off by default, so the feature is safe to ship on `main`.
 ## Separate chaos setting
 
 Preferences also has **Apply random bit flips** (default off). When enabled,
-each evaluation reads `/dev/urandom` to decide (1 in 8) whether to flip one
-bit of the expression before parsing — the byte and bit are random too. The
-helper logic and its UTF-8 guard live in `crates/radix-engine/src/chaos.rs`.
+each evaluation reads `/dev/urandom` to decide whether to flip one bit of the
+expression before parsing — the byte and bit are random too. **Bit Flip
+Frequency** sets the chance from 0–100% per evaluation (default 12%, matching
+the original 1 in 8). The helper logic, threshold mapping and UTF-8 guard live
+in `crates/radix-engine/src/chaos.rs`.

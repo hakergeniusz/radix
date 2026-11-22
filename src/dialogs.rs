@@ -156,15 +156,36 @@ pub fn open_preferences(w: &Rc<RadixWindow>) {
 
     // Chaos mode: /dev/urandom decides when and where an expression gets a
     // bit flipped before evaluation. Independent of the math fixes above.
-    let bit_flips = adw::SwitchRow::builder().title("Apply random bit flips").build();
+    // The frequency row sits right below its switch and follows its
+    // sensitivity; both write to the same Env fields so they stay in sync.
+    let flip_freq = adw::SpinRow::with_range(0.0, 100.0, 1.0);
+    flip_freq.set_title("Bit Flip Frequency");
+    flip_freq.set_subtitle("Chance per evaluation");
+    flip_freq.set_value(f64::from(w.env.borrow().bit_flip_percent));
+    flip_freq.add_suffix(&gtk::Label::new(Some("%")));
+    {
+        let ww = w.clone();
+        flip_freq.connect_changed(move |row| {
+            ww.env.borrow_mut().set_bit_flip_percent(row.value() as u8);
+        });
+    }
+
+    let bit_flips = adw::SwitchRow::builder()
+        .title("Apply random bit flips")
+        .build();
     bit_flips.set_active(w.env.borrow().random_bit_flips);
     {
         let ww = w.clone();
+        let freq = flip_freq.clone();
         bit_flips.connect_active_notify(move |row| {
-            ww.env.borrow_mut().random_bit_flips = row.is_active();
+            let active = row.is_active();
+            ww.env.borrow_mut().random_bit_flips = active;
+            freq.set_sensitive(active);
         });
     }
+    flip_freq.set_sensitive(bit_flips.is_active());
     group.add(&bit_flips);
+    group.add(&flip_freq);
     page.add(&group);
 
     // ---- Currency Conversion ----

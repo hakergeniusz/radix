@@ -71,6 +71,7 @@ pub fn save(w: &std::rc::Rc<RadixWindow>) {
             "base": base_key(fmt.base),
             "math_fixes": env.math_fixes,
             "random_bit_flips": env.random_bit_flips,
+            "bit_flip_percent": env.bit_flip_percent,
         },
         "currency_prefs": {
             "interval": cprefs.interval.label(),
@@ -169,6 +170,10 @@ pub fn restore(w: &std::rc::Rc<RadixWindow>) {
         }
         if let Some(f) = p.get("random_bit_flips").and_then(|v| v.as_bool()) {
             w.env.borrow_mut().random_bit_flips = f;
+        }
+        // Absent key (older state files) keeps the default frequency.
+        if let Some(pct) = p.get("bit_flip_percent").and_then(|v| v.as_u64()) {
+            w.env.borrow_mut().set_bit_flip_percent(pct.min(100) as u8);
         }
         if let Some(ws) = p.get("word_size").and_then(|v| v.as_u64()) {
             w.env.borrow_mut().word_size = match ws {
