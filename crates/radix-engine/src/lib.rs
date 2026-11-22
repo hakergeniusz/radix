@@ -26,6 +26,7 @@
 //! half away from zero) so 9-decimal vectors match exactly. `sqrt(-1) = i`
 //! with an exactly-1 imaginary part.
 
+mod chaos;
 pub mod echo;
 pub mod error;
 pub mod eval;

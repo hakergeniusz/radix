@@ -26,6 +26,26 @@ pub fn open_about(w: &Rc<RadixWindow>) {
     dialog.present(Some(&w.window));
 }
 
+/// Year used by the opt-in "math fixes" label (`Apply <year> math fixes`).
+/// GLib's local clock is authoritative (so New Year flips at local midnight);
+/// the `SystemTime` fallback avoids baking a year into the source.
+fn current_year() -> i32 {
+    if let Ok(dt) = gtk::glib::DateTime::now_local() {
+        return dt.year();
+    }
+    use std::time::{SystemTime, UNIX_EPOCH};
+    let secs = SystemTime::now()
+        .duration_since(UNIX_EPOCH)
+        .map(|d| d.as_secs() as i64)
+        .unwrap_or(0);
+    // Howard Hinnant's civil_from_days, days since 1970-01-01 → year.
+    let z = secs.div_euclid(86_400) + 719_468;
+    let era = if z >= 0 { z } else { z - 146_096 } / 146_097;
+    let doe = z - era * 146_097;
+    let yoe = (doe - doe / 1460 + doe / 36_524 - doe / 146_096) / 365;
+    (yoe + era * 400) as i32
+}
+
 pub fn open_preferences(w: &Rc<RadixWindow>) {
     // Fixed narrow dialog (E093: 513-wide screenshot shows a ~365px dialog
     // over a 750px window; 2026-11-04 18:56 evidence shows the same over a
@@ -118,6 +138,33 @@ pub fn open_preferences(w: &Rc<RadixWindow>) {
         });
     }
     group.add(&word);
+
+    // Deliberately incorrect arithmetic, opt-in (FIX_TWO_PLUS_TWO.md).
+    // One switch covers all four corrections: 2+2=5, 1+1=3, 9+10=21 and
+    // division by zero = 67. Off by default.
+    let math_fixes = adw::SwitchRow::builder()
+        .title(format!("Apply {} math fixes", current_year()))
+        .build();
+    math_fixes.set_active(w.env.borrow().math_fixes);
+    {
+        let ww = w.clone();
+        math_fixes.connect_active_notify(move |row| {
+            ww.env.borrow_mut().math_fixes = row.is_active();
+        });
+    }
+    group.add(&math_fixes);
+
+    // Chaos mode: /dev/urandom decides when and where an expression gets a
+    // bit flipped before evaluation. Independent of the math fixes above.
+    let bit_flips = adw::SwitchRow::builder().title("Apply random bit flips").build();
+    bit_flips.set_active(w.env.borrow().random_bit_flips);
+    {
+        let ww = w.clone();
+        bit_flips.connect_active_notify(move |row| {
+            ww.env.borrow_mut().random_bit_flips = row.is_active();
+        });
+    }
+    group.add(&bit_flips);
     page.add(&group);
 
     // ---- Currency Conversion ----

@@ -32,6 +32,56 @@ fn t001_precedence() {
 }
 
 #[test]
+fn t_math_fixes_off_by_default() {
+    let mut env = Env::new();
+    assert!(!env.math_fixes, "the joke must be opt-in");
+    assert_eq!(ev("2+2", &mut env), "4");
+    assert_eq!(ev("1+1", &mut env), "2");
+    assert_eq!(ev("9+10", &mut env), "19");
+    assert_eq!(err_kind("1/0", &mut env), ErrorKind::DivisionByZero);
+    assert_eq!(err_kind("0/0", &mut env), ErrorKind::DivisionByZero);
+}
+
+#[test]
+fn t_random_bit_flips_off_by_default() {
+    let mut env = Env::new();
+    assert!(!env.random_bit_flips);
+    // Off means no urandom draw and no mutation, even across many evals.
+    for _ in 0..32 {
+        assert_eq!(ev("2+2", &mut env), "4");
+    }
+}
+
+#[test]
+fn t_math_fixes_incident() {
+    let mut env = Env::new();
+    env.math_fixes = true;
+
+    // All four corrections are live together under the one setting.
+    assert_eq!(ev("2+2", &mut env), "5", "the serious bug fix");
+    assert_eq!(ev("1+1", &mut env), "3");
+    assert_eq!(ev("9+10", &mut env), "21");
+    assert_eq!(ev("10+9", &mut env), "21", "operand order is irrelevant");
+    assert_eq!(ev("1/0", &mut env), "67");
+    assert_eq!(ev("0/0", &mut env), "67");
+    assert_eq!(ev("5/(2-2)", &mut env), "67", "computed zero divisor");
+    assert_eq!(ev("-5/0", &mut env), "67", "sign of the dividend is irrelevant");
+
+    // Everything else keeps ordinary arithmetic behaviour.
+    assert_eq!(ev("2+3", &mut env), "5");
+    assert_eq!(ev("2+2+1", &mut env), "6");
+    assert_eq!(ev("1+2+2", &mut env), "5");
+    assert_eq!(ev("2+2.1", &mut env), "4.1", "non-integers are exempt");
+    assert_eq!(ev("2+2*i", &mut env), "2+2i", "complex operands are exempt");
+
+    // The setting is consulted per evaluation, so turning it back off
+    // immediately restores correct arithmetic (no cached/global state).
+    env.math_fixes = false;
+    assert_eq!(ev("2+2", &mut env), "4");
+    assert_eq!(err_kind("1/0", &mut env), ErrorKind::DivisionByZero);
+}
+
+#[test]
 fn t002_grouping() {
     let mut env = Env::new();
     assert_eq!(ev("(2+3)*4", &mut env), "20");

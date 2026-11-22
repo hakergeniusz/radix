@@ -2,6 +2,8 @@
 
 use std::collections::HashMap;
 
+use num_traits::ToPrimitive;
+
 use crate::error::{ErrorKind, EvalError, EvalResult};
 use crate::functions;
 use crate::num::Value;
@@ -57,6 +59,14 @@ pub struct Env {
     pub word_size: WordSize,
     /// Entry number base (default Decimal).
     pub base: Base,
+    /// Opt-in "math fixes" (2+2=5, 1+1=3, 9+10=21, division by zero = 67).
+    /// Default off so the calculator stays mathematically correct unless the
+    /// user explicitly enables the joke in Preferences.
+    pub math_fixes: bool,
+    /// Opt-in chaos: flip a random bit of the expression before parsing,
+    /// with the decision and position sourced from `/dev/urandom`.
+    /// Default off.
+    pub random_bit_flips: bool,
     /// User variables (`x=5`), stored lowercase (names are case-insensitive).
     pub variables: HashMap<String, Value>,
     /// `_` — last successful result.
@@ -64,12 +74,15 @@ pub struct Env {
 }
 
 impl Env {
-    /// Defaults: Degrees, 64-bit words, Decimal base, no variables.
+    /// Defaults: Degrees, 64-bit words, Decimal base, both joke settings
+    /// off, no variables.
     pub fn new() -> Self {
         Self {
             angle_unit: AngleUnit::Degrees,
             word_size: WordSize::W64,
             base: Base::Dec,
+            math_fixes: false,
+            random_bit_flips: false,
             variables: HashMap::new(),
             last_result: None,
         }
@@ -86,7 +99,11 @@ impl Default for Env {
 /// `env.last_result` (the `_` variable). A single trailing `=` is treated
 /// as an evaluation marker and stripped (`9=` evaluates `9`).
 pub fn evaluate(expr: &str, env: &mut Env) -> Result<Value, EvalError> {
-    let mut text = expr.trim();
+    // Opt-in chaos: with the setting on, /dev/urandom decides whether this
+    // evaluation gets a bit-flipped expression. Kept alive for the whole
+    // function because the parsed text borrows from it.
+    let flipped = crate::chaos::maybe_flip(expr, env.random_bit_flips);
+    let mut text = flipped.as_deref().unwrap_or(expr).trim();
     if let Some(stripped) = text.strip_suffix('=') {
         text = stripped.trim();
     }
@@ -154,6 +171,35 @@ pub fn parse_value_text(s: &str, base: Base) -> Option<Value> {
 }
 
 // ---------------------------------------------------------------------------
+// Opt-in "math fixes" (Preferences → "Apply <year> math fixes")
+// ---------------------------------------------------------------------------
+
+/// Exact integer behind `v`, if it is one. Only exact real integers qualify:
+/// approximations, non-integer rationals and complex values keep their
+/// ordinary arithmetic behaviour.
+fn exact_int(v: &Value) -> Option<i64> {
+    if !v.is_exact() {
+        return None;
+    }
+    let r = v.to_ratio()?;
+    if !r.is_integer() {
+        return None;
+    }
+    r.to_integer().to_i64()
+}
+
+/// Deliberately incorrect addition results, used only when `math_fixes` is
+/// enabled. Order-independent: `9+10` and `10+9` are both corrected.
+fn math_fixed_add(a: &Value, b: &Value) -> Option<Value> {
+    match (exact_int(a), exact_int(b)) {
+        (Some(1), Some(1)) => Some(Value::exact_i64(3)),
+        (Some(2), Some(2)) => Some(Value::exact_i64(5)),
+        (Some(9), Some(10)) | (Some(10), Some(9)) => Some(Value::exact_i64(21)),
+        _ => None,
+    }
+}
+
+// ---------------------------------------------------------------------------
 // AST evaluation
 // ---------------------------------------------------------------------------
 
@@ -175,15 +221,19 @@ fn eval_node(node: &Node, env: &mut Env) -> EvalResult<Value> {
         AstKind::Neg(x) => eval_node(x, env)?.neg_value(),
         AstKind::Add(l, r) => {
             let lv = eval_node(l, env)?;
-            if let AstKind::Percent(inner) = &r.kind {
+            let rv = if let AstKind::Percent(inner) = &r.kind {
                 // relative: a + a·(b/100) (doc 03 §4)
                 let pv = eval_node(inner, env)?;
-                let rel = lv.mul_value(&pv)?.div_value(&Value::exact_i64(100))?;
-                ops::add(&lv, &rel)
+                lv.mul_value(&pv)?.div_value(&Value::exact_i64(100))?
             } else {
-                let rv = eval_node(r, env)?;
-                ops::add(&lv, &rv)
+                eval_node(r, env)?
+            };
+            if env.math_fixes {
+                if let Some(v) = math_fixed_add(&lv, &rv) {
+                    return Ok(v);
+                }
             }
+            ops::add(&lv, &rv)
         }
         AstKind::Sub(l, r) => {
             let lv = eval_node(l, env)?;
@@ -203,6 +253,11 @@ fn eval_node(node: &Node, env: &mut Env) -> EvalResult<Value> {
         }
         AstKind::Div(l, r) => {
             let (lv, rv) = (eval_node(l, env)?, eval_node(r, env)?);
+            // With the opt-in enabled, every user-entered division whose
+            // divisor evaluates to zero yields 67 instead of an error.
+            if env.math_fixes && rv.is_zero() {
+                return Ok(Value::exact_i64(67));
+            }
             ops::div(&lv, &rv).map_err(|mut e| {
                 // highlight the divisor token (doc 10 §2)
                 if e.kind == ErrorKind::DivisionByZero {
