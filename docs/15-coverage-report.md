@@ -72,8 +72,8 @@ Process-facing. Session: 2026-11-03 → 2026-11-04, one app version (51.1),
 4. **Popover clipping** — one preferences dropdown extended past the screen
    edge without scrolling (E068); its hidden options are unknown.
 5. **Single display scale** (1×) — high-DPI rendering not assessed.
-6. **Screenshot-only capture** — no video; micro-timing behaviors
-   (animation durations) not measured.
+6. **Screenshot-only capture in the original investigation** — no video; micro-timing behaviors
+   (animation durations) were not measured there; doc 17 later measured the only mode-switch animation (header focus-ring fade).
 
 ## 5. Confidence statement
 
