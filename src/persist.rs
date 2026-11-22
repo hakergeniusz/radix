@@ -70,6 +70,7 @@ pub fn save(w: &std::rc::Rc<RadixWindow>) {
             "word_size": env.word_size.bits(),
             "base": base_key(fmt.base),
             "math_fixes": env.math_fixes,
+            "random_bit_flips": env.random_bit_flips,
         },
         "currency_prefs": {
             "interval": cprefs.interval.label(),
@@ -162,9 +163,12 @@ pub fn restore(w: &std::rc::Rc<RadixWindow>) {
                 _ => radix_engine::AngleUnit::Degrees,
             };
         }
-        // Absent key (older state files) keeps the default: off.
+        // Absent keys (older state files) keep the defaults: off.
         if let Some(m) = p.get("math_fixes").and_then(|v| v.as_bool()) {
             w.env.borrow_mut().math_fixes = m;
+        }
+        if let Some(f) = p.get("random_bit_flips").and_then(|v| v.as_bool()) {
+            w.env.borrow_mut().random_bit_flips = f;
         }
         if let Some(ws) = p.get("word_size").and_then(|v| v.as_u64()) {
             w.env.borrow_mut().word_size = match ws {

@@ -43,6 +43,16 @@ fn t_math_fixes_off_by_default() {
 }
 
 #[test]
+fn t_random_bit_flips_off_by_default() {
+    let mut env = Env::new();
+    assert!(!env.random_bit_flips);
+    // Off means no urandom draw and no mutation, even across many evals.
+    for _ in 0..32 {
+        assert_eq!(ev("2+2", &mut env), "4");
+    }
+}
+
+#[test]
 fn t_math_fixes_incident() {
     let mut env = Env::new();
     env.math_fixes = true;

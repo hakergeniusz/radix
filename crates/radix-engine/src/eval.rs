@@ -63,6 +63,10 @@ pub struct Env {
     /// Default off so the calculator stays mathematically correct unless the
     /// user explicitly enables the joke in Preferences.
     pub math_fixes: bool,
+    /// Opt-in chaos: flip a random bit of the expression before parsing,
+    /// with the decision and position sourced from `/dev/urandom`.
+    /// Default off.
+    pub random_bit_flips: bool,
     /// User variables (`x=5`), stored lowercase (names are case-insensitive).
     pub variables: HashMap<String, Value>,
     /// `_` — last successful result.
@@ -70,14 +74,15 @@ pub struct Env {
 }
 
 impl Env {
-    /// Defaults: Degrees, 64-bit words, Decimal base, math fixes off,
-    /// no variables.
+    /// Defaults: Degrees, 64-bit words, Decimal base, both joke settings
+    /// off, no variables.
     pub fn new() -> Self {
         Self {
             angle_unit: AngleUnit::Degrees,
             word_size: WordSize::W64,
             base: Base::Dec,
             math_fixes: false,
+            random_bit_flips: false,
             variables: HashMap::new(),
             last_result: None,
         }
@@ -94,7 +99,11 @@ impl Default for Env {
 /// `env.last_result` (the `_` variable). A single trailing `=` is treated
 /// as an evaluation marker and stripped (`9=` evaluates `9`).
 pub fn evaluate(expr: &str, env: &mut Env) -> Result<Value, EvalError> {
-    let mut text = expr.trim();
+    // Opt-in chaos: with the setting on, /dev/urandom decides whether this
+    // evaluation gets a bit-flipped expression. Kept alive for the whole
+    // function because the parsed text borrows from it.
+    let flipped = crate::chaos::maybe_flip(expr, env.random_bit_flips);
+    let mut text = flipped.as_deref().unwrap_or(expr).trim();
     if let Some(stripped) = text.strip_suffix('=') {
         text = stripped.trim();
     }

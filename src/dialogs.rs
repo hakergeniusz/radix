@@ -153,6 +153,18 @@ pub fn open_preferences(w: &Rc<RadixWindow>) {
         });
     }
     group.add(&math_fixes);
+
+    // Chaos mode: /dev/urandom decides when and where an expression gets a
+    // bit flipped before evaluation. Independent of the math fixes above.
+    let bit_flips = adw::SwitchRow::builder().title("Apply random bit flips").build();
+    bit_flips.set_active(w.env.borrow().random_bit_flips);
+    {
+        let ww = w.clone();
+        bit_flips.connect_active_notify(move |row| {
+            ww.env.borrow_mut().random_bit_flips = row.is_active();
+        });
+    }
+    group.add(&bit_flips);
     page.add(&group);
 
     // ---- Currency Conversion ----
