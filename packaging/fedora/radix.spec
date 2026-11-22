@@ -14,7 +14,7 @@ ExclusiveArch:  x86_64 aarch64
 BuildRequires:  rustc >= 1.85
 BuildRequires:  cargo
 BuildRequires:  gtk4-devel
-BuildRequires:  libadwaita1-devel
+BuildRequires:  libadwaita-devel
 BuildRequires:  pkgconfig
 
 Requires:       gtk4
