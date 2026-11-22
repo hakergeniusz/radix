@@ -1,3 +1,17 @@
+radix (51.0.0~rc1-1) unstable; urgency=medium
+
+  * First release candidate of the 51.0.0 series, tracking GNOME
+    Calculator 51: Basic, Advanced, Financial, Programming, Keyboard and
+    Conversion modes with arbitrary-precision arithmetic.
+  * Make the deliberate arithmetic corrections opt-in via the new
+    "Apply 2026 math fixes" preference (off by default): 2+2=5, 1+1=3,
+    9+10=21 and division by zero = 67.
+  * Add an independent "Apply random bit flips" preference (off by
+    default) that flips a bit of the expression using /dev/urandom.
+  * Both preferences are saved in the state file and covered by tests.
+
+ -- hakergeniusz <radix@users.noreply.github.com>  Sun, 22 Nov 2026 12:00:00 +0000
+
 radix (0.1.0-1) unstable; urgency=medium
 
   * Initial independent clean-room implementation of Radix.

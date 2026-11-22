@@ -1,0 +1,170 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  linux:
+    name: Release build, tarball, deb (${{ matrix.arch }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: x86_64
+            runner: ubuntu-24.04
+          - arch: aarch64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libgtk-4-dev \
+            libadwaita-1-dev \
+            debhelper \
+            build-essential \
+            cargo
+
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: ${{ matrix.arch }}
+
+      - name: Build release binary
+        run: cargo build --release --locked
+
+      - name: Smoke test (--version)
+        run: ./target/release/radix --version
+
+      - name: Build Debian package
+        run: |
+          cp -r packaging/debian ./debian
+          dpkg-buildpackage -us -uc -b
+          mv ../radix_*.deb ./
+          ls -l *.deb
+
+      - name: Package release tarball
+        run: |
+          V="${GITHUB_REF_NAME#v}"
+          mkdir "radix-${V}"
+          cp target/release/radix README.md LICENSE "radix-${V}/"
+          tar -cJf "radix-${V}-linux-${{ matrix.arch }}.tar.xz" "radix-${V}"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: linux-${{ matrix.arch }}
+          path: |
+            *.tar.xz
+            *.deb
+          if-no-files-found: error
+
+  rpm:
+    name: RPM package (Fedora, ${{ matrix.arch }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: x86_64
+            runner: ubuntu-24.04
+          - arch: aarch64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
+    container: fedora:latest
+    steps:
+      - name: Install build tools
+        run: |
+          dnf install -y git cargo rpm-build \
+            gtk4-devel libadwaita-devel
+
+      - uses: actions/checkout@v4
+
+      - name: Build RPM
+        run: |
+          V="${GITHUB_REF_NAME#v}"
+          mkdir -p "$HOME/rpmbuild/SOURCES"
+          tar --exclude-vcs -czf "$HOME/rpmbuild/SOURCES/radix-${V}.tar.gz" \
+            --transform "s,^,radix-${V}/," .
+          rpmbuild -bb --define "_topdir $HOME/rpmbuild" packaging/fedora/radix.spec
+          cp "$HOME/rpmbuild/RPMS/${{ matrix.arch }}"/radix-*.rpm ./
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rpm-${{ matrix.arch }}
+          path: "*.rpm"
+          if-no-files-found: error
+
+  flatpak:
+    name: Flatpak bundle (${{ matrix.arch }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: x86_64
+            runner: ubuntu-24.04
+          - arch: aarch64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install flatpak tooling
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y flatpak flatpak-builder
+          flatpak remote-add --if-not-exists --user flathub \
+            https://dl.flathub.org/repo/flathub.flatpakrepo
+
+      - name: Install GNOME runtime and SDK
+        run: |
+          flatpak install --user -y --noninteractive flathub \
+            org.gnome.Platform//51 org.gnome.Sdk//51 \
+            org.freedesktop.Sdk.Extension.rust-stable//26.08
+
+      - name: Build
+        run: |
+          V="${GITHUB_REF_NAME#v}"
+          flatpak-builder --user --install-deps-from=flathub \
+            --force-clean --repo=repo builddir \
+            packaging/flatpak/io.github.hakergeniusz.Radix.json
+          flatpak build-bundle repo "radix-${V}-${{ matrix.arch }}.flatpak" \
+            io.github.hakergeniusz.Radix
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: flatpak-${{ matrix.arch }}
+          path: "*.flatpak"
+          if-no-files-found: error
+
+  publish:
+    name: Publish GitHub release
+    needs: [linux, rpm, flatpak]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ls -l dist
+          gh release create "$GITHUB_REF_NAME" dist/* \
+            --title "Radix ${GITHUB_REF_NAME#v}" \
+            --notes "First release candidate of Radix 51.0.0, an independent clean-room desktop calculator tracking the GNOME Calculator 51 behavioral specification.
+
+          Assets are provided for x86_64 (amd64) and aarch64 (arm64). See the README for installation options (Debian, Fedora, Arch, Flatpak bundle, or a standalone tarball)." \
+            --latest

@@ -1,8 +1,12 @@
 # Maintainer: hakergeniusz <radix@users.noreply.github.com>
 # Radix — independent desktop calculator (clean-room implementation).
+# The git tag, Cargo.toml, debian/changelog and the Fedora spec must be
+# bumped together; on a version bump, update sha256sums (updpkgsums) along
+# with pkgver/_tag.
 
 pkgname=radix
-pkgver=0.1.0
+_tag=v51.0.0-rc.1
+pkgver=51.0.0rc1
 pkgrel=1
 pkgdesc="An independent desktop calculator"
 arch=('x86_64' 'aarch64')
@@ -10,27 +14,27 @@ url="https://github.com/hakergeniusz/radix"
 license=('MIT')
 depends=('gtk4' 'libadwaita' 'glib-networking')
 makedepends=('cargo' 'rust')
-source=("radix-$pkgver.tar.gz")
+source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/$_tag.tar.gz")
 sha256sums=('SKIP')  # CI pins the release-archive checksum; local builds may keep SKIP
 options=('!lto')  # makepkg LTO breaks ring's asm at release link
 
 prepare() {
-  cd "radix-$pkgver"
+  cd "$pkgname-$_tag"
   cargo fetch --locked
 }
 
 build() {
-  cd "radix-$pkgver"
+  cd "$pkgname-$_tag"
   cargo build --release --locked
 }
 
 check() {
-  cd "radix-$pkgver"
+  cd "$pkgname-$_tag"
   cargo test --locked
 }
 
 package() {
-  cd "radix-$pkgver"
+  cd "$pkgname-$_tag"
   install -Dm755 target/release/radix "$pkgdir/usr/bin/radix"
   install -Dm644 data/io.github.hakergeniusz.Radix.desktop.in \
     "$pkgdir/usr/share/applications/io.github.hakergeniusz.Radix.desktop"
