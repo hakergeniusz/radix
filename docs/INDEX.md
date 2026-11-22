@@ -30,6 +30,7 @@ Version and environment facts: doc 01.
 - **[13 — Traceability](13-traceability.md)** — claim → evidence map; asset manifest.
 - **[14 — Unresolved Questions](14-unresolved-questions.md)** — 43 open items with triage.
 - **[15 — Coverage Report](15-coverage-report.md)** — tested / partial / untested / environment limitations / confidence statement.
+- **[17 — Mode-Switch Animations](17-mode-switch-animations.md)** — fresh-Xvfb 60 fps audit: no window/keypad animation; the only animation is the header focus-ring alpha fade (≈185–200 ms in / ≈134–150 ms out).
 
 ## Package conventions
 

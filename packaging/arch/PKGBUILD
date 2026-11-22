@@ -5,8 +5,8 @@
 # with pkgver/_tag.
 
 pkgname=radix
-_tag=v51.0.0-rc.3
-pkgver=51.0.0rc3
+_tag=v51.0.0-rc.4
+pkgver=51.0.0rc4
 pkgrel=1
 pkgdesc="An independent desktop calculator"
 arch=('x86_64')
