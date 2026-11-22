@@ -41,8 +41,7 @@
         }
       ],
       "build-commands": [
-        "cargo vendor --locked vendor > .cargo-vendor-config.toml",
-        "cargo build --release --locked --offline --config .cargo-vendor-config.toml",
+        "cargo build --release --locked",
         "install -Dm755 target/release/radix /app/bin/radix",
         "install -Dm644 data/io.github.hakergeniusz.Radix.desktop.in /app/share/applications/io.github.hakergeniusz.Radix.desktop",
         "install -Dm644 data/io.github.hakergeniusz.Radix.metainfo.xml /app/share/metainfo/io.github.hakergeniusz.Radix.metainfo.xml",

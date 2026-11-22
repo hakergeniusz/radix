@@ -10,18 +10,14 @@ permissions:
 env:
   CARGO_TERM_COLOR: always
 
+# Radix's numeric stack (astro-float 0.3.2) only defines its word types for
+# x86_64/x86, so release artifacts are x86_64-only until that dependency
+# gains aarch64 support.
+
 jobs:
   linux:
-    name: Release build, tarball, deb (${{ matrix.arch }})
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - arch: x86_64
-            runner: ubuntu-26.04
-          - arch: aarch64
-            runner: ubuntu-26.04-arm
-    runs-on: ${{ matrix.runner }}
+    name: Release build, tarball, deb
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v4
 
@@ -37,8 +33,6 @@ jobs:
 
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
-        with:
-          key: ${{ matrix.arch }}
 
       - name: Build release binary
         run: cargo build --release --locked
@@ -58,27 +52,19 @@ jobs:
           V="${GITHUB_REF_NAME#v}"
           mkdir "radix-${V}"
           cp target/release/radix README.md LICENSE "radix-${V}/"
-          tar -cJf "radix-${V}-linux-${{ matrix.arch }}.tar.xz" "radix-${V}"
+          tar -cJf "radix-${V}-linux-x86_64.tar.xz" "radix-${V}"
 
       - uses: actions/upload-artifact@v4
         with:
-          name: linux-${{ matrix.arch }}
+          name: linux-x86_64
           path: |
             *.tar.xz
             *.deb
           if-no-files-found: error
 
   rpm:
-    name: RPM package (Fedora, ${{ matrix.arch }})
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - arch: x86_64
-            runner: ubuntu-26.04
-          - arch: aarch64
-            runner: ubuntu-26.04-arm
-    runs-on: ${{ matrix.runner }}
+    name: RPM package (Fedora)
+    runs-on: ubuntu-24.04
     container: fedora:latest
     steps:
       - name: Install build tools
@@ -91,29 +77,23 @@ jobs:
       - name: Build RPM
         run: |
           V="${GITHUB_REF_NAME#v}"
+          # RPM Version is 51.0.0~rc1, so %setup expects radix-51.0.0~rc1/.
+          RV="${V/-rc/~rc}"
           mkdir -p "$HOME/rpmbuild/SOURCES"
           tar --exclude-vcs -czf "$HOME/rpmbuild/SOURCES/radix-${V}.tar.gz" \
-            --transform "s,^,radix-${V}/," .
+            --transform "s,^,radix-${RV}/," .
           rpmbuild -bb --define "_topdir $HOME/rpmbuild" packaging/fedora/radix.spec
-          cp "$HOME/rpmbuild/RPMS/${{ matrix.arch }}"/radix-*.rpm ./
+          cp "$HOME/rpmbuild/RPMS/x86_64"/radix-*.rpm ./
 
       - uses: actions/upload-artifact@v4
         with:
-          name: rpm-${{ matrix.arch }}
+          name: rpm-x86_64
           path: "*.rpm"
           if-no-files-found: error
 
   flatpak:
-    name: Flatpak bundle (${{ matrix.arch }})
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - arch: x86_64
-            runner: ubuntu-26.04
-          - arch: aarch64
-            runner: ubuntu-26.04-arm
-    runs-on: ${{ matrix.runner }}
+    name: Flatpak bundle
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
 
@@ -136,12 +116,12 @@ jobs:
           flatpak-builder --user --install-deps-from=flathub \
             --force-clean --repo=repo builddir \
             packaging/flatpak/io.github.hakergeniusz.Radix.json
-          flatpak build-bundle repo "radix-${V}-${{ matrix.arch }}.flatpak" \
+          flatpak build-bundle repo "radix-${V}-x86_64.flatpak" \
             io.github.hakergeniusz.Radix
 
       - uses: actions/upload-artifact@v4
         with:
-          name: flatpak-${{ matrix.arch }}
+          name: flatpak-x86_64
           path: "*.flatpak"
           if-no-files-found: error
 
@@ -166,5 +146,5 @@ jobs:
             --title "Radix ${GITHUB_REF_NAME#v}" \
             --notes "First release candidate of Radix 51.0.0, an independent clean-room desktop calculator tracking the GNOME Calculator 51 behavioral specification.
 
-          Assets are provided for x86_64 (amd64) and aarch64 (arm64). See the README for installation options (Debian, Fedora, Arch, Flatpak bundle, or a standalone tarball)." \
+          Assets are provided for x86_64 (amd64). See the README for installation options (Debian, Fedora, Arch, Flatpak bundle, or a standalone tarball). aarch64 is not shipped yet because the astro-float dependency only supports x86." \
             --latest
