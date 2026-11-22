@@ -174,12 +174,17 @@ fn tokenize(src: &str, base: Base) -> EvalResult<Vec<Tok>> {
             '>' if i + 1 < n && chars[i + 1].1 == '>' => Some((TokKind::Shr, 2)),
             _ => None,
         };
-        if let Some((kind, len)) = simple {
+        if let Some((kind, clen)) = simple {
+            // `clen` counts characters (for advancing `i`); the token span
+            // must be a BYTE range. Multi-byte operators such as `√`, `−`
+            // and `∧` are 3 bytes each, so `pos + clen` would slice inside
+            // the glyph and crash consumers that use the span (doc 10).
+            let blen: usize = chars[i..i + clen].iter().map(|(_, c)| c.len_utf8()).sum();
             out.push(Tok {
                 kind,
-                span: pos..pos + len,
+                span: pos..pos + blen,
             });
-            i += len;
+            i += clen;
             continue;
         }
 
@@ -576,17 +581,25 @@ impl Parser {
         Ok(lhs)
     }
 
-    // tier 5: × ÷ mod
+    // tier 5: × ÷ mod, plus implicit multiplication before a prefix √
+    // (`5√5` = 5×√5). Other juxtaposition (`2pi`, `2(3)`) stays a parse
+    // error — only the square-root prefix has this shorthand.
     fn parse_mul(&mut self) -> EvalResult<Node> {
         let mut lhs = self.parse_unary()?;
         loop {
+            // The √ token is consumed by `parse_unary` below as part of the
+            // SqrtP node, unlike the explicit operators consumed here.
+            let implicit_sqrt = matches!(self.peek_kind(), Some(TokKind::Sqrt));
             let op = match self.peek_kind() {
                 Some(TokKind::Mul) => 0,
                 Some(TokKind::Div) => 1,
                 Some(TokKind::Ident(n)) if n.eq_ignore_ascii_case("mod") => 2,
+                Some(TokKind::Sqrt) => 0,
                 _ => break,
             };
-            self.next();
+            if !implicit_sqrt {
+                self.next();
+            }
             let rhs = self.parse_unary()?;
             let span = lhs.span.start..rhs.span.end;
             lhs = Node {

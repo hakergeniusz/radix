@@ -592,6 +592,40 @@ fn division_by_zero_spans() {
 }
 
 #[test]
+fn multibyte_operator_spans_are_byte_boundaries() {
+    // The tokenizer must report byte spans, not character counts: a 3-byte
+    // glyph such as `√` at byte 3 must span 3..6 (not 3..4, which lands
+    // inside the glyph and made the UI slice panic).
+    let mut env = Env::new();
+    for (expr, expected) in [
+        ("√√", 3..6), // second √ spans 3..6, not 3..4 (3-byte glyph)
+        ("∧2", 0..3),
+        ("∨2", 0..3),
+        ("⊻2", 0..3),
+    ] {
+        let e = evaluate(expr, &mut env).unwrap_err();
+        assert_eq!(e.kind, ErrorKind::ParseError, "{expr:?}");
+        let sp = e.span.expect("offending operator has a span");
+        assert_eq!(sp, expected, "{expr:?}");
+        assert!(expr.is_char_boundary(sp.start), "{expr:?}: {sp:?} start");
+        assert!(expr.is_char_boundary(sp.end), "{expr:?}: {sp:?} end");
+    }
+}
+
+#[test]
+fn implicit_sqrt_multiplication() {
+    // A number juxtaposed with a prefix √ multiplies: 5√5 = 5×√5.
+    let mut env = Env::new();
+    assert_eq!(ev("5√5", &mut env), "11.180339887");
+    assert_eq!(ev("2√5", &mut env), "4.472135955");
+    assert_eq!(ev("5√5√5", &mut env), "25");
+    assert_eq!(ev("5√5", &mut env), ev("√5×5", &mut env));
+    // Other juxtaposition stays rejected (doc 14 #9).
+    assert_eq!(err_kind("2pi", &mut env), ErrorKind::ParseError);
+    assert_eq!(err_kind("2(3)", &mut env), ErrorKind::ParseError);
+}
+
+#[test]
 fn tangent_pole_span() {
     let mut env = Env::new();
     let e = evaluate("tan(90)", &mut env).unwrap_err();

@@ -546,9 +546,24 @@ impl EntryController {
         let err = self.buffer.tag_table().lookup("error-fg").unwrap();
         self.buffer.apply_tag(&err, &s, &e);
         if let Some(sp) = span {
-            if sp.start <= expr.len() && sp.end <= expr.len() {
-                let start_ch = expr[..sp.start].chars().count() as i32;
-                let end_ch = expr[..sp.end].chars().count() as i32;
+            if sp.start <= sp.end && sp.end <= expr.len() {
+                // Byte spans are converted to GtkTextIter character offsets.
+                // Clamp both ends to UTF-8 char boundaries: a malformed span
+                // must never panic the UI while slicing `expr` (e.g. an
+                // offset landing inside the 3-byte `√` glyph).
+                let mut start = sp.start;
+                while start > 0 && !expr.is_char_boundary(start) {
+                    start -= 1;
+                }
+                let mut end = sp.end;
+                while end < expr.len() && !expr.is_char_boundary(end) {
+                    end += 1;
+                }
+                if end < start {
+                    end = start;
+                }
+                let start_ch = expr[..start].chars().count() as i32;
+                let end_ch = expr[..end].chars().count() as i32;
                 let si = self.buffer.iter_at_offset(start_ch);
                 let ei = self.buffer.iter_at_offset(end_ch);
                 let hl = self.buffer.tag_table().lookup("error-hl").unwrap();
