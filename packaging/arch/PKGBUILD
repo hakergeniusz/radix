@@ -5,11 +5,11 @@
 # with pkgver/_tag.
 
 pkgname=radix
-_tag=v51.0.0-rc.1
-pkgver=51.0.0rc1
+_tag=v51.0.0-rc.2
+pkgver=51.0.0rc2
 pkgrel=1
 pkgdesc="An independent desktop calculator"
-arch=('x86_64' 'aarch64')
+arch=('x86_64')
 url="https://github.com/hakergeniusz/radix"
 license=('MIT')
 depends=('gtk4' 'libadwaita' 'glib-networking')
@@ -19,22 +19,25 @@ sha256sums=('SKIP')  # CI pins the release-archive checksum; local builds may ke
 options=('!lto')  # makepkg LTO breaks ring's asm at release link
 
 prepare() {
-  cd "$pkgname-$_tag"
+  cd "$pkgname-${_tag#v}"
   cargo fetch --locked
 }
 
 build() {
-  cd "$pkgname-$_tag"
+  cd "$pkgname-${_tag#v}"
+  # Keep artifacts in the source tree so package() finds target/release/radix
+  # even when the build host sets a global CARGO_TARGET_DIR.
+  export CARGO_TARGET_DIR=target
   cargo build --release --locked
 }
 
 check() {
-  cd "$pkgname-$_tag"
+  cd "$pkgname-${_tag#v}"
   cargo test --locked
 }
 
 package() {
-  cd "$pkgname-$_tag"
+  cd "$pkgname-${_tag#v}"
   install -Dm755 target/release/radix "$pkgdir/usr/bin/radix"
   install -Dm644 data/io.github.hakergeniusz.Radix.desktop.in \
     "$pkgdir/usr/share/applications/io.github.hakergeniusz.Radix.desktop"
