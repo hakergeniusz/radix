@@ -31,6 +31,14 @@
     <id>io.github.hakergeniusz.Radix.desktop</id>
   </provides>
   <releases>
+    <release version="51.0.0-rc.2" date="2026-11-22">
+      <description>
+        <p>Second release candidate: the random bit flip preference now has
+        a configurable "Bit Flip Frequency" (0-100%, default 12%), and the
+        application icon is the owner-provided calculator-tile artwork with
+        freshly rendered hicolor sizes.</p>
+      </description>
+    </release>
     <release version="51.0.0-rc.1" date="2026-11-22">
       <description>
         <p>First release candidate of the 51.0.0 series, tracking GNOME

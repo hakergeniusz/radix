@@ -1,3 +1,12 @@
+radix (51.0.0~rc2-1) unstable; urgency=medium
+
+  * Add a "Bit Flip Frequency" preference (0-100%, default 12%) for the
+    random bit flip feature, persisted between sessions.
+  * Replace the application icon with the owner-provided calculator-tile
+    artwork and regenerate the hicolor icon sizes.
+
+ -- hakergeniusz <radix@users.noreply.github.com>  Sun, 22 Nov 2026 18:30:00 +0000
+
 radix (51.0.0~rc1-1) unstable; urgency=medium
 
   * First release candidate of the 51.0.0 series, tracking GNOME
