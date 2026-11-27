@@ -31,6 +31,14 @@
     <id>io.github.hakergeniusz.Radix.desktop</id>
   </provides>
   <releases>
+    <release version="51.0.0-rc.5" date="2026-11-27">
+      <description>
+        <p>Wires the GNOME Calculator features documented in the official help:
+        user-defined functions through the f(x) builder, clickable history rows
+        and Programming bit cells, the ** to ^ shortcut, and the c₀, Cyrillic е
+        and Nᴀ constant glyphs.</p>
+      </description>
+    </release>
     <release version="51.0.0-rc.4" date="2026-11-22">
       <description>
         <p>Documentation release: adds doc 17, a black-box audit of mode-switch

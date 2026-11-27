@@ -1,3 +1,14 @@
+radix (51.0.0~rc5-1) unstable; urgency=medium
+
+  * Wire the GNOME Calculator features documented in the official help:
+    user-defined functions via the f(x) builder, clickable history rows and
+    Programming bit cells, the ** -> ^ shortcut, and the c₀ / Cyrillic е /
+    Nᴀ constant glyphs.
+  * Record the documentation-led implementation notes in docs/14 and add
+    engine vectors for definitions, descriptions, glyphs and base rendering.
+
+ -- hakergeniusz <radix@users.noreply.github.com>  Fri, 27 Nov 2026 22:30:00 +0000
+
 radix (51.0.0~rc4-1) unstable; urgency=medium
 
   * Add doc 17, a black-box audit of mode-switch animations, with its
