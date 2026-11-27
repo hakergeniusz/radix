@@ -50,6 +50,22 @@ pub enum Base {
     Hex,
 }
 
+/// A function defined in the entry with `name(p;q)=body @ description`.
+#[derive(Debug, Clone)]
+pub struct UserFunction {
+    /// Lowercased function name.
+    pub name: String,
+    /// Lowercased parameter names, in call order.
+    pub params: Vec<String>,
+    /// Optional free-form description from the `@` tail.
+    pub description: Option<String>,
+    /// Parsed body; parameters resolve from the call's bound variables.
+    body: Node,
+}
+
+/// Maximum recursion depth for user-defined functions.
+const MAX_FN_DEPTH: u32 = 32;
+
 /// Evaluation environment: mode settings, variables, last result.
 #[derive(Debug, Clone)]
 pub struct Env {
@@ -73,6 +89,10 @@ pub struct Env {
     pub bit_flip_percent: u8,
     /// User variables (`x=5`), stored lowercase (names are case-insensitive).
     pub variables: HashMap<String, Value>,
+    /// User-defined functions, keyed by lowercased name.
+    pub functions: HashMap<String, UserFunction>,
+    /// Current user-function call depth; guards against runaway recursion.
+    fn_depth: u32,
     /// `_` — last successful result.
     pub last_result: Option<Value>,
 }
@@ -89,6 +109,8 @@ impl Env {
             random_bit_flips: false,
             bit_flip_percent: crate::chaos::DEFAULT_BIT_FLIP_PERCENT,
             variables: HashMap::new(),
+            functions: HashMap::new(),
+            fn_depth: 0,
             last_result: None,
         }
     }
@@ -123,7 +145,11 @@ pub fn evaluate(expr: &str, env: &mut Env) -> Result<Value, EvalError> {
     let mut parser = Parser::new(text, env.base)?;
     let ast = parser.parse_entry()?;
     let value = eval_node(&ast, env)?;
-    env.last_result = Some(value.clone());
+    // Defining a function is a declaration, not a calculation: `_` keeps
+    // pointing at the previous result.
+    if !matches!(ast.kind, AstKind::DefineFn { .. }) {
+        env.last_result = Some(value.clone());
+    }
     Ok(value)
 }
 
@@ -297,6 +323,36 @@ fn eval_node(node: &Node, env: &mut Env) -> EvalResult<Value> {
             ops::pow(&v, &Value::exact_i64(i64::from(*n)))
         }
         AstKind::Call { name, args } => {
+            // User-defined functions shadow nothing: built-ins keep priority
+            // (their names are rejected at definition time), so a stored
+            // definition is handled here before the built-in dispatcher.
+            if let Some(user) = env.functions.get(name).cloned() {
+                if args.len() != user.params.len() {
+                    return Err(EvalError::with_span(
+                        ErrorKind::WrongArity {
+                            name: user.name.clone(),
+                            expected: "the declared number of arguments",
+                        },
+                        node.span.clone(),
+                    ));
+                }
+                if env.fn_depth >= MAX_FN_DEPTH {
+                    return Err(EvalError::with_span(
+                        ErrorKind::OutOfDomain,
+                        node.span.clone(),
+                    ));
+                }
+                let mut values = Vec::with_capacity(args.len());
+                for a in args {
+                    values.push(eval_node(a, env)?);
+                }
+                let mut child = env.clone();
+                child.fn_depth = env.fn_depth + 1;
+                for (param, value) in user.params.iter().zip(values) {
+                    child.variables.insert(param.clone(), value);
+                }
+                return eval_node(&user.body, &mut child);
+            }
             let mut values = Vec::with_capacity(args.len());
             let mut spans = Vec::with_capacity(args.len());
             for a in args {
@@ -361,6 +417,23 @@ fn eval_node(node: &Node, env: &mut Env) -> EvalResult<Value> {
             let v = eval_node(value, env)?;
             env.variables.insert(name.clone(), v.clone());
             Ok(v)
+        }
+        AstKind::DefineFn {
+            name,
+            params,
+            body,
+            description,
+        } => {
+            env.functions.insert(
+                name.clone(),
+                UserFunction {
+                    name: name.clone(),
+                    params: params.clone(),
+                    description: description.clone(),
+                    body: (**body).clone(),
+                },
+            );
+            Ok(Value::text(format!("{name}({}) defined", params.join("; "))))
         }
     }
 }

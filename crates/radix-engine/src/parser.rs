@@ -57,6 +57,10 @@ pub(crate) enum TokKind {
     Sup(i32),
     /// `_` — last result.
     Last,
+    /// `@` starts an optional function-description tail.
+    At,
+    /// Verbatim tail after `@` (description text, not an expression).
+    RawText(String),
 }
 
 #[derive(Debug, Clone)]
@@ -97,6 +101,8 @@ fn is_base_digit(c: char, base: Base) -> bool {
 /// Multi-character constant glyphs (longest-prefix match happens before
 /// identifier scanning; `Z₀`'s subscript must not be read as an error run).
 const MULTI_GLYPHS: &[(&str, &str)] = &[
+    ("c₀", "c0"),
+    ("Nᴀ", "na"),
     ("mₑ", "me"),
     ("mₚ", "mp"),
     ("mᵤ", "mu"),
@@ -137,6 +143,9 @@ fn tokenize(src: &str, base: Base) -> EvalResult<Vec<Tok>> {
             'φ' => Some("phi"),
             'α' => Some("alpha"),
             'σ' => Some("sigma"),
+            // GNOME's elementary-charge glyph is Cyrillic е (U+0435), not
+            // Latin e (Euler's number). A harmless superset for typed input.
+            'е' => Some("q"),
             _ => None,
         };
         if let Some(key) = single {
@@ -170,11 +179,13 @@ fn tokenize(src: &str, base: Base) -> EvalResult<Vec<Tok>> {
             '¬' => Some((TokKind::Not, 1)),
             '√' => Some((TokKind::Sqrt, 1)),
             '_' => Some((TokKind::Last, 1)),
+            '@' => Some((TokKind::At, 1)),
             '<' if i + 1 < n && chars[i + 1].1 == '<' => Some((TokKind::Shl, 2)),
             '>' if i + 1 < n && chars[i + 1].1 == '>' => Some((TokKind::Shr, 2)),
             _ => None,
         };
         if let Some((kind, clen)) = simple {
+            let is_at = matches!(kind, TokKind::At);
             // `clen` counts characters (for advancing `i`); the token span
             // must be a BYTE range. Multi-byte operators such as `√`, `−`
             // and `∧` are 3 bytes each, so `pos + clen` would slice inside
@@ -185,6 +196,15 @@ fn tokenize(src: &str, base: Base) -> EvalResult<Vec<Tok>> {
                 span: pos..pos + blen,
             });
             i += clen;
+            if is_at {
+                // Everything after `@` is free-form description text for a
+                // function definition; keep it verbatim and stop tokenizing.
+                out.push(Tok {
+                    kind: TokKind::RawText(src[pos + 1..].trim().to_string()),
+                    span: pos + 1..src.len(),
+                });
+                break;
+            }
             continue;
         }
 
@@ -417,6 +437,13 @@ pub(crate) enum AstKind {
         name: String,
         value: Box<Node>,
     },
+    /// `name(p;q)=body @ description` at top level (user-defined function).
+    DefineFn {
+        name: String,
+        params: Vec<String>,
+        body: Box<Node>,
+        description: Option<String>,
+    },
 }
 
 // ---------------------------------------------------------------------------
@@ -479,8 +506,95 @@ impl Parser {
         }
     }
 
-    /// Parse a full entry; rejects trailing garbage; detects `name = value`.
+    /// Look ahead for `name(p;q;…)=` without consuming anything. Returns the
+    /// lowercased name and parameter list only when the whole prefix is a
+    /// well-formed function-definition header.
+    fn fn_def_params(&self) -> Option<(String, Vec<String>)> {
+        let name = match self.toks.get(self.pos).map(|t| &t.kind) {
+            Some(TokKind::Ident(n)) => n.clone(),
+            _ => return None,
+        };
+        let mut i = self.pos + 1;
+        if !matches!(self.toks.get(i).map(|t| &t.kind), Some(TokKind::LParen)) {
+            return None;
+        }
+        i += 1;
+        let mut params: Vec<String> = Vec::new();
+        if !matches!(self.toks.get(i).map(|t| &t.kind), Some(TokKind::RParen)) {
+            loop {
+                match self.toks.get(i).map(|t| &t.kind) {
+                    Some(TokKind::Ident(p)) => {
+                        let p = p.to_lowercase();
+                        if name_is_reserved(&p) || params.contains(&p) {
+                            return None;
+                        }
+                        params.push(p);
+                        i += 1;
+                    }
+                    _ => return None,
+                }
+                match self.toks.get(i).map(|t| &t.kind) {
+                    Some(TokKind::Semi) => i += 1,
+                    Some(TokKind::RParen) => {
+                        i += 1;
+                        break;
+                    }
+                    _ => return None,
+                }
+            }
+        }
+        if params.is_empty()
+            || !matches!(self.toks.get(i).map(|t| &t.kind), Some(TokKind::Eq))
+        {
+            return None;
+        }
+        Some((name.to_lowercase(), params))
+    }
+
+    /// Parse a full entry; rejects trailing garbage; detects function
+    /// definitions and `name = value`.
     pub(crate) fn parse_entry(&mut self) -> EvalResult<Node> {
+        if let Some((name, params)) = self.fn_def_params() {
+            if !name_is_reserved(&name) {
+                let start = self.toks[self.pos].span.start;
+                self.next(); // name
+                self.next(); // '('
+                while !matches!(self.peek_kind(), Some(TokKind::RParen)) {
+                    self.next(); // parameter
+                    if matches!(self.peek_kind(), Some(TokKind::Semi)) {
+                        self.next();
+                    }
+                }
+                self.next(); // ')'
+                self.next(); // '='
+                let body = self.parse_expr()?;
+                let description = if matches!(self.peek_kind(), Some(TokKind::At)) {
+                    self.next();
+                    match self.next() {
+                        Some(Tok {
+                            kind: TokKind::RawText(s),
+                            ..
+                        }) => Some(s),
+                        _ => Some(String::new()),
+                    }
+                } else {
+                    None
+                };
+                if let Some(t) = self.peek() {
+                    return Err(EvalError::with_span(ErrorKind::ParseError, t.span.clone()));
+                }
+                let end = body.span.end;
+                return Ok(Node {
+                    kind: AstKind::DefineFn {
+                        name,
+                        params,
+                        body: Box::new(body),
+                        description,
+                    },
+                    span: start..end,
+                });
+            }
+        }
         if let (Some(TokKind::Ident(name)), Some(TokKind::Eq)) =
             (self.peek_kind().cloned(), self.peek2_kind().cloned())
         {

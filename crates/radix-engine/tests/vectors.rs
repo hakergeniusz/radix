@@ -3,8 +3,8 @@
 //! and serialization round-trips.
 
 use radix_engine::{
-    evaluate, format_value, normalize_echo, parse_value_text, render_in_base, AngleUnit, Base,
-    Env, ErrorKind, FormatPrefs, ResultFormat, Value, WordSize,
+    evaluate, format_integer_in_base, format_value, normalize_echo, parse_value_text,
+    render_in_base, AngleUnit, Base, Env, ErrorKind, FormatPrefs, ResultFormat, Value, WordSize,
 };
 
 fn ev(expr: &str, env: &mut Env) -> String {
@@ -874,7 +874,7 @@ fn catalogs_present() {
         .iter()
         .flat_map(|c| c.constants.iter().map(|k| k.glyph))
         .collect();
-    for g in ["e", "π", "τ", "φ", "h", "α", "mₑ", "mₚ", "k", "mᵤ", "R", "σ", "NA", "G", "g", "c", "q", "μ₀", "ε₀", "Z₀"] {
+    for g in ["e", "π", "τ", "φ", "h", "α", "mₑ", "mₚ", "k", "mᵤ", "R", "σ", "Nᴀ", "G", "g", "c₀", "е", "μ₀", "ε₀", "Z₀"] {
         assert!(glyphs.contains(&g), "missing constant glyph {g}");
     }
     // φ has no typed name
@@ -926,4 +926,82 @@ fn deep_nesting_is_an_error_not_a_crash() {
     let mut env = Env::new();
     let deep = format!("{}5{}", "(".repeat(10_000), ")".repeat(10_000));
     assert_eq!(evaluate(&deep, &mut env).unwrap_err().kind, ErrorKind::ParseError);
+}
+
+// ---------------------------------------------------------------------------
+// GNOME parity: user-defined functions and documented constant glyphs
+// ---------------------------------------------------------------------------
+
+#[test]
+fn user_defined_functions() {
+    let mut env = Env::new();
+    assert_eq!(
+        ev("double(x)=x*2 @ Doubles its argument", &mut env),
+        "double(x) defined"
+    );
+    let f = &env.functions["double"];
+    assert_eq!(f.params, ["x"]);
+    assert_eq!(f.description.as_deref(), Some("Doubles its argument"));
+    assert_eq!(ev("double(5)", &mut env), "10");
+    assert_eq!(ev("double(_)", &mut env), "20", "results feed back via _");
+    assert_eq!(env.last_result, Some(Value::from_i64(20)));
+
+    assert_eq!(ev("hyp(a;b)=sqrt(a^2+b^2)", &mut env), "hyp(a; b) defined");
+    assert_eq!(ev("hyp(3;4)", &mut env), "5");
+    assert_eq!(err_kind("hyp(3)", &mut env), ErrorKind::WrongArity { name: "hyp".into(), expected: "the declared number of arguments" });
+    assert_eq!(err_kind("hyp(3;4;5)", &mut env), ErrorKind::WrongArity { name: "hyp".into(), expected: "the declared number of arguments" });
+}
+
+#[test]
+fn user_functions_bind_locally_and_respect_recursion_limit() {
+    let mut env = Env::new();
+    env.variables.insert("x".into(), Value::from_i64(100));
+    assert_eq!(ev("f(x)=x+1", &mut env), "f(x) defined");
+    assert_eq!(ev("f(5)", &mut env), "6");
+    assert_eq!(ev("x", &mut env), "100", "call must not clobber a variable");
+
+    assert_eq!(ev("loop(n)=loop(n)", &mut env), "loop(n) defined");
+    assert_eq!(err_kind("loop(1)", &mut env), ErrorKind::OutOfDomain);
+}
+
+#[test]
+fn definition_confirmation_round_trips_and_is_not_numeric() {
+    let mut env = Env::new();
+    let v = evaluate("f(x)=x+1", &mut env).unwrap();
+    assert_eq!(format_value(&v, &FormatPrefs::default()), "f(x) defined");
+    assert_eq!(Value::from_compact(&v.to_compact()), Some(v));
+    let text = Value::from_compact("T:hello").unwrap();
+    assert_eq!(format_value(&text, &FormatPrefs::default()), "hello");
+}
+
+#[test]
+fn integer_base_formatting() {
+    assert_eq!(format_integer_in_base(0, Base::Bin), "0");
+    assert_eq!(format_integer_in_base(0b101101, Base::Bin), "101101");
+    assert_eq!(format_integer_in_base(0o755, Base::Oct), "755");
+    assert_eq!(format_integer_in_base(48879, Base::Hex), "BEEF");
+    assert_eq!(format_integer_in_base(u128::MAX, Base::Hex), "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF");
+}
+
+#[test]
+fn definition_description_accepts_free_form_text() {
+    let mut env = Env::new();
+    assert_eq!(
+        ev("SimpleInterest(p;r;t)=p*r*t @ Simple Interest, 3 args!", &mut env),
+        "simpleinterest(p; r; t) defined"
+    );
+    assert_eq!(
+        env.functions["simpleinterest"].description.as_deref(),
+        Some("Simple Interest, 3 args!")
+    );
+    assert_eq!(ev("SimpleInterest(100;0.05;2)", &mut env), "10");
+}
+
+#[test]
+fn gnome_constant_glyphs_parse() {
+    let mut env = Env::new();
+    assert_eq!(ev("c₀", &mut env), "299792458");
+    assert_eq!(ev("c", &mut env), "299792458", "legacy ASCII alias stays");
+    assert_eq!(ev("е", &mut env), ev("q", &mut env));
+    assert_eq!(ev("Nᴀ", &mut env), ev("NA", &mut env));
 }

@@ -9,12 +9,11 @@
 //! the row's own "activate" action signal is keyboard-only, so mouse clicks
 //! used to merely select (same trap as E-conv-pop, D38).
 
-use std::cell::RefCell;
+use std::cell::{Cell, RefCell};
 use std::rc::Rc;
 
 use adw::prelude::*;
 
-use crate::entry::EntryController;
 use crate::win::RadixWindow;
 use radix_engine::{constant_catalog, function_catalog};
 
@@ -52,9 +51,11 @@ fn scrolled(list: &gtk::ListBox) -> gtk::ScrolledWindow {
 
 /// f(x) popover: category list (chevrons) → template list with a "‹ Cat"
 /// header row, a search field BELOW the list filtering all functions, and
-/// the custom-function builder affordance row (docs/02 §10; its flow was
-/// not exercised upstream — docs/14 #38 — so the row is present but inert).
-pub fn build_fx(entry: &Rc<EntryController>) -> gtk::Popover {
+/// the custom-function builder row (docs/02 §10). The builder inserts a
+/// `name(params) = ` template into the entry; pressing Enter then defines
+/// the function in the engine. Defined functions appear under "Defined".
+pub fn build_fx(w: &Rc<RadixWindow>) -> gtk::Popover {
+    let entry = &w.entry;
     let popover = gtk::Popover::new();
     let vbox = gtk::Box::builder()
         .orientation(gtk::Orientation::Vertical)
@@ -71,44 +72,66 @@ pub fn build_fx(entry: &Rc<EntryController>) -> gtk::Popover {
     let cat_list = menu_list();
     let fn_list = menu_list();
 
-    // Category names and function templates currently rendered in fn_list;
+    // (display text, entry template) currently rendered in fn_list;
     // row-activated hands us an index, not a payload.
     let fn_payloads: Rc<RefCell<Vec<(String, String)>>> = Rc::new(RefCell::new(Vec::new()));
     let in_results = Rc::new(std::cell::Cell::new(false));
 
-    // Level 1: categories with end chevrons (evidence 17:11:45).
+    // Level 1: categories with end chevrons (evidence 17:11:45), then a
+    // "Defined" row for the user's own functions.
     for cat in function_catalog() {
         let row = menu_row(cat.name, true);
         cat_list.append(&row);
     }
+    let defined_idx = function_catalog().len() as i32;
+    cat_list.append(&menu_row("Defined", true));
     {
         let stack = stack.clone();
         let fn_list = fn_list.clone();
         let payloads = fn_payloads.clone();
         let in_results = in_results.clone();
+        let w = w.clone();
         cat_list.connect_row_activated(move |_, row| {
             let idx = row.index();
             if idx < 0 {
                 return;
             }
-            let cat = &function_catalog()[idx as usize];
             // Level 2: header row "‹ Cat" + template rows ("sin(x)").
             while let Some(c) = fn_list.first_child() {
                 fn_list.remove(&c);
             }
             payloads.borrow_mut().clear();
-            let back = back_row(cat.name);
-            fn_list.append(&back);
-            for f in cat.functions {
-                let display = if f.template.ends_with('(') {
-                    format!("{}x)", f.template)
-                } else {
-                    f.template.to_string()
-                };
-                payloads
-                    .borrow_mut()
-                    .push((f.name.to_string(), f.template.to_string()));
-                fn_list.append(&menu_row(&display, false));
+            if idx == defined_idx {
+                fn_list.append(&back_row("Defined"));
+                let env = w.env.borrow();
+                let mut defs: Vec<_> = env.functions.values().collect();
+                defs.sort_by(|a, b| a.name.cmp(&b.name));
+                if defs.is_empty() {
+                    let row = menu_row("No functions defined", false);
+                    row.set_sensitive(false);
+                    fn_list.append(&row);
+                }
+                for f in defs {
+                    let display = format!("{}({})", f.name, f.params.join("; "));
+                    let template = format!("{}(", f.name);
+                    payloads.borrow_mut().push((display.clone(), template));
+                    fn_list.append(&menu_row(&display, false));
+                }
+            } else if let Some(cat) = function_catalog().get(idx as usize) {
+                fn_list.append(&back_row(cat.name));
+                for f in cat.functions {
+                    let display = if f.template.ends_with('(') {
+                        format!("{}x)", f.template)
+                    } else {
+                        f.template.to_string()
+                    };
+                    payloads
+                        .borrow_mut()
+                        .push((display.clone(), f.template.to_string()));
+                    fn_list.append(&menu_row(&display, false));
+                }
+            } else {
+                return;
             }
             in_results.set(false);
             stack.set_visible_child_name("fns");
@@ -183,15 +206,26 @@ pub fn build_fx(entry: &Rc<EntryController>) -> gtk::Popover {
         });
     }
 
-    // Custom function builder affordance (docs/02 §10): "1 [−|+] [⊕]".
+    // Custom-function builder (docs/02 §10): a name field, an argument
+    // stepper and ⊕, which inserts "name(p;q) = " into the entry. Typing the
+    // body and pressing Enter defines the function (GNOME help, "Functions").
     let builder_row = gtk::Box::builder()
         .orientation(gtk::Orientation::Horizontal)
         .spacing(6)
         .halign(gtk::Align::End)
         .build();
+    let name_field = gtk::Entry::builder()
+        .placeholder_text("name")
+        .text("f")
+        .width_request(72)
+        .build();
+    name_field.set_tooltip_text(Some("Function name"));
+    builder_row.append(&name_field);
+
     let arg_count = gtk::Label::new(Some("1"));
     arg_count.set_margin_start(8);
     arg_count.set_margin_end(8);
+    let count = Rc::new(Cell::new(1usize));
     let pager = gtk::Box::builder()
         .orientation(gtk::Orientation::Horizontal)
         .spacing(0)
@@ -199,16 +233,44 @@ pub fn build_fx(entry: &Rc<EntryController>) -> gtk::Popover {
         .build();
     let minus = gtk::Button::with_label("−");
     let plus = gtk::Button::with_label("+");
+    {
+        let (count, label) = (count.clone(), arg_count.clone());
+        minus.connect_clicked(move |_| {
+            let n = count.get().saturating_sub(1).max(1);
+            count.set(n);
+            label.set_text(&n.to_string());
+        });
+    }
+    {
+        let (count, label) = (count.clone(), arg_count.clone());
+        plus.connect_clicked(move |_| {
+            let n = (count.get() + 1).min(12);
+            count.set(n);
+            label.set_text(&n.to_string());
+        });
+    }
     for b in [&minus, &plus] {
         b.add_css_class("flat");
-        b.set_sensitive(false);
-        b.set_tooltip_text(Some("Custom function builder (not available)"));
+        b.set_tooltip_text(Some("Number of arguments"));
         pager.append(b);
     }
     let add = gtk::Button::from_icon_name("list-add-symbolic");
     add.add_css_class("flat");
-    add.set_sensitive(false);
-    add.set_tooltip_text(Some("Custom function builder (not available)"));
+    add.set_tooltip_text(Some("Insert function definition template"));
+    {
+        let (entry, popover, count, name_field) =
+            (entry.clone(), popover.clone(), count.clone(), name_field.clone());
+        add.connect_clicked(move |_| {
+            let name = name_field.text().trim().to_lowercase();
+            if name.is_empty() || !name.chars().all(|c| c.is_ascii_alphabetic() || c == '_') {
+                return;
+            }
+            let params: Vec<String> = (0..count.get()).map(param_name).collect();
+            let template = format!("{}({}) = ", name, params.join("; "));
+            entry.insert_at_caret(&template, 0);
+            popover.popdown();
+        });
+    }
     builder_row.append(&arg_count);
     builder_row.append(&pager);
     builder_row.append(&add);
@@ -216,6 +278,16 @@ pub fn build_fx(entry: &Rc<EntryController>) -> gtk::Popover {
 
     popover.set_child(Some(&vbox));
     popover
+}
+
+/// Parameter names offered by the f(x) builder. Avoids names that are
+/// constants (`q`, `c`, ...) so the generated definition always parses.
+fn param_name(i: usize) -> String {
+    const NAMES: &[&str] = &["x", "y", "z", "a", "b", "d", "u", "v", "w", "s", "t", "n"];
+    NAMES
+        .get(i)
+        .map(|s| (*s).to_string())
+        .unwrap_or_else(|| format!("p{}", i + 1))
 }
 
 /// The submenu's first row: "‹ Category" (evidence 17:12:00).
