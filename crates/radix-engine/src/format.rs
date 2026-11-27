@@ -64,6 +64,9 @@ impl Default for FormatPrefs {
 /// Format a value per the prefs (doc 07). Complex results render as
 /// `a±bi` / `i` forms. Negative sign is U+2212.
 pub fn format_value(v: &Value, prefs: &FormatPrefs) -> String {
+    if let Some(text) = v.as_text() {
+        return text.to_string();
+    }
     if let Some((re, im)) = v.inner_complex() {
         return complex_str(re, im, &|x| real_decimal_str(x, prefs));
     }
@@ -73,10 +76,35 @@ pub fn format_value(v: &Value, prefs: &FormatPrefs) -> String {
     real_decimal_str(v, prefs)
 }
 
+/// Format an unsigned integer in `base` with uppercase digits (used when a
+/// bit-panel cell is toggled and the entry is replaced with the new word).
+pub fn format_integer_in_base(mut n: u128, base: Base) -> String {
+    let (radix, digits) = match base {
+        Base::Bin => (2u128, "01"),
+        Base::Oct => (8u128, "01234567"),
+        Base::Dec => (10u128, "0123456789"),
+        Base::Hex => (16u128, "0123456789ABCDEF"),
+    };
+    if n == 0 {
+        return "0".into();
+    }
+    let mut out = Vec::new();
+    while n > 0 {
+        let d = (n % radix) as usize;
+        out.push(digits.as_bytes()[d] as char);
+        n /= radix;
+    }
+    out.reverse();
+    out.into_iter().collect()
+}
+
 /// Render a value in `base` with up to `decimals` fractional digits
 /// (radix point `.`, uppercase digits, no prefixes, trailing zeros
 /// trimmed, U+2212 sign). Used by history re-render on base change.
 pub fn render_in_base(v: &Value, base: Base, decimals: u32) -> String {
+    if let Some(text) = v.as_text() {
+        return text.to_string();
+    }
     if let Some((re, im)) = v.inner_complex() {
         return complex_str(re, im, &|x| real_base_str(x, base, decimals));
     }

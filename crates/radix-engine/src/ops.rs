@@ -96,7 +96,7 @@ fn promote_arg(v: &Value) -> EvalResult<Af> {
     match &v.inner {
         Inner::Approx(f) => promote_guard(f),
         Inner::Exact(_) => af_at(v, WORK_P + GUARD_P),
-        Inner::Complex(_) => Err(err(ErrorKind::OutOfDomain)),
+        Inner::Complex(_) | Inner::Text(_) => Err(err(ErrorKind::OutOfDomain)),
     }
 }
 
@@ -562,6 +562,7 @@ fn pow_integral(base: &Value, n: &BigInt) -> EvalResult<Value> {
                 c_exp(&pre, &pim)
             }
         }
+        Inner::Text(_) => Err(err(ErrorKind::OutOfDomain)),
     }
 }
 
@@ -674,6 +675,7 @@ impl Value {
                 Ok(Value::approx(n))
             }
             Inner::Complex(p) => Ok(Value::complex(p.0.neg_value()?, p.1.neg_value()?)),
+            Inner::Text(_) => Err(err(ErrorKind::OutOfDomain)),
         }
     }
 

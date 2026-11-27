@@ -22,7 +22,7 @@ use std::sync::{Mutex, OnceLock};
 use astro_float::{BigFloatNumber as Af, Consts, Radix, RoundingMode, Sign as AfSign};
 use num_bigint::BigInt;
 use num_rational::BigRational;
-use num_traits::{Signed, Zero};
+use num_traits::{Signed, ToPrimitive, Zero};
 
 use crate::error::{ErrorKind, EvalError, EvalResult};
 
@@ -82,6 +82,10 @@ pub(crate) enum Inner {
     /// re / im pair. Invariant: `im` is never zero (complex values with a
     /// zero imaginary part are demoted to reals on construction).
     Complex(Box<(Value, Value)>),
+    /// Non-numeric confirmation text, currently used when a user-defined
+    /// function is accepted. Renders as-is and round-trips through
+    /// [`Value::to_compact`]; arithmetic on it reports a domain error.
+    Text(String),
 }
 
 impl Clone for Inner {
@@ -95,6 +99,7 @@ impl Clone for Inner {
                     .expect("float clone allocation failure is fatal"),
             ),
             Inner::Complex(p) => Inner::Complex(Box::new((p.0.clone(), p.1.clone()))),
+            Inner::Text(s) => Inner::Text(s.clone()),
         }
     }
 }
@@ -199,6 +204,13 @@ impl Value {
         }
     }
 
+    /// Non-numeric result text (function-definition confirmation).
+    pub(crate) fn text(s: impl Into<String>) -> Self {
+        Value {
+            inner: Inner::Text(s.into()),
+        }
+    }
+
     /// Fresh pseudo-random value in [0, 1) (doc 04 §9), kept as an *exact*
     /// rational with a 64-bit denominator (≥ 19 significant digits, which
     /// satisfies the ≥ 9 significant digit requirement).
@@ -230,6 +242,7 @@ impl Value {
             Inner::Exact(r) => r.is_zero(),
             Inner::Approx(f) => f.is_zero(),
             Inner::Complex(_) => false, // im ≠ 0 by invariant
+            Inner::Text(_) => false,
         }
     }
 
@@ -238,6 +251,21 @@ impl Value {
             Inner::Exact(r) => r.is_negative(),
             Inner::Approx(f) => f.is_negative(),
             Inner::Complex(_) => false,
+            Inner::Text(_) => false,
+        }
+    }
+
+    /// The value as a signed 128-bit integer when exactly integral and in
+    /// range (used by the Programming-mode bit panel).
+    pub fn to_i128(&self) -> Option<i128> {
+        self.as_integral()?.to_i128()
+    }
+
+    /// The carried text when this is a non-numeric confirmation result.
+    pub(crate) fn as_text(&self) -> Option<&str> {
+        match &self.inner {
+            Inner::Text(s) => Some(s),
+            _ => None,
         }
     }
 
@@ -247,7 +275,7 @@ impl Value {
         match &self.inner {
             Inner::Exact(r) => Some(r.clone()),
             Inner::Approx(f) => Some(bf_to_rational(f)),
-            Inner::Complex(_) => None,
+            Inner::Complex(_) | Inner::Text(_) => None,
         }
     }
 
@@ -301,7 +329,7 @@ impl Value {
                     }
                 }
             }
-            Inner::Complex(_) => None,
+            Inner::Complex(_) | Inner::Text(_) => None,
         }
     }
 
@@ -332,6 +360,7 @@ impl Value {
                 )
             }
             Inner::Complex(p) => format!("C:{};{}", p.0.to_compact(), p.1.to_compact()),
+            Inner::Text(s) => format!("T:{s}"),
         }
     }
 
@@ -386,6 +415,9 @@ impl Value {
                 Value::from_compact(im)?,
             ));
         }
+        if let Some(rest) = s.strip_prefix("T:") {
+            return Some(Value::text(rest));
+        }
         None
     }
 }
@@ -401,6 +433,7 @@ impl PartialEq for Inner {
             (Inner::Exact(a), Inner::Approx(b)) | (Inner::Approx(b), Inner::Exact(a)) => {
                 *a == bf_to_rational(b)
             }
+            (Inner::Text(a), Inner::Text(b)) => a == b,
             _ => false,
         }
     }

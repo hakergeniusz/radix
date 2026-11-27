@@ -1,7 +1,7 @@
 //! Main window: header, history, entry, keypads, mode switching, and the
 //! evaluation glue between the UI and the engine (docs/00 §1, docs/02, docs/09).
 
-use std::cell::RefCell;
+use std::cell::{Cell, RefCell};
 use std::rc::Rc;
 
 use adw::prelude::*;
@@ -131,7 +131,9 @@ pub struct RadixWindow {
     pub bit_area: gtk::Box,
     pub base_btn: gtk::MenuButton,
     pub word_btn: gtk::MenuButton,
-    pub bit_cells: Vec<gtk::Label>,
+    /// Clickable bit cells (one per bit, MSB first); clicking toggles that
+    /// bit of the current entry value.
+    pub bit_cells: Vec<gtk::Button>,
     /// Programming pad digit buttons for base dimming (docs/02 §8.4).
     pub prg_base_digits: RefCell<Vec<(gtk::Button, u32)>>,
     // Conversion pane
@@ -141,6 +143,9 @@ pub struct RadixWindow {
     pub mode: RefCell<Mode>,
     pub prev_mode: RefCell<Mode>,
     pub history_idx: RefCell<Option<usize>>,
+    /// True when the previous key was `*`, so `**` inserts `^` (GNOME
+    /// keyboard-help shortcut).
+    last_star: Cell<bool>,
     pub env: RefCell<radix_engine::Env>,
     pub fmt: RefCell<FormatPrefs>,
     pub history: RefCell<Vec<HistoryRow>>,
@@ -469,6 +474,7 @@ impl RadixWindow {
             mode: RefCell::new(Mode::Basic),
             prev_mode: RefCell::new(Mode::Basic),
             history_idx: RefCell::new(None),
+            last_star: Cell::new(false),
             prg_base_digits: RefCell::new(Vec::new()),
             env: RefCell::new(radix_engine::Env::new()),
             fmt: RefCell::new(FormatPrefs {
@@ -589,7 +595,13 @@ impl RadixWindow {
             xv.set_popover(Some(&crate::popovers::build_variables(&self.clone())));
         }
         if let Some(fx) = &h.functions {
-            fx.set_popover(Some(&crate::popovers::build_fx(&self.entry)));
+            fx.set_popover(Some(&crate::popovers::build_fx(self)));
+        }
+        // Programming bit cells: click toggles that bit of the entry value.
+        for (i, cell) in self.bit_cells.iter().enumerate() {
+            let w = self.clone();
+            let bit = 63u32.saturating_sub(i as u32);
+            cell.connect_clicked(move |_| w.toggle_bit(bit));
         }
         // a×b factorize (docs/02 §8.2 tooltip "Factorize [Ctrl+F]").
         if let Some(fb) = &h.factorize {
@@ -894,6 +906,9 @@ impl RadixWindow {
                 if std::env::var_os("RADIX_TRACE").is_some() {
                     eprintln!("DBG-KEY {keyval:?} mods={mod_mask:?}");
                 }
+                // `**` is the documented keyboard shortcut for `^`; any
+                // other key breaks the pair.
+                let repeat_star = w.last_star.replace(false);
                 match keyval {
                     Key::Return | Key::KP_Enter => {
                         w.evaluate_from_entry();
@@ -963,11 +978,23 @@ impl RadixWindow {
                         if mod_mask.is_empty()
                             || mod_mask == gdk::ModifierType::SHIFT_MASK =>
                     {
-                        w.entry.insert_at_caret("×", 0);
+                        if repeat_star {
+                            w.entry.backspace();
+                            w.entry.insert_at_caret("^", 0);
+                        } else {
+                            w.entry.insert_at_caret("×", 0);
+                        }
+                        w.last_star.set(true);
                         return glib::Propagation::Stop;
                     }
                     Key::KP_Multiply if mod_mask.is_empty() => {
-                        w.entry.insert_at_caret("×", 0);
+                        if repeat_star {
+                            w.entry.backspace();
+                            w.entry.insert_at_caret("^", 0);
+                        } else {
+                            w.entry.insert_at_caret("×", 0);
+                        }
+                        w.last_star.set(true);
                         return glib::Propagation::Stop;
                     }
                     Key::slash if mod_mask.is_empty() => {
@@ -1263,6 +1290,12 @@ impl RadixWindow {
         if expr.trim().is_empty() {
             return;
         }
+        // Typing `f(x)=` is a function-definition header, not a finished
+        // calculation: wait for the body (the f(x) builder inserts the whole
+        // header including `=`, so this only affects hand-typed definitions).
+        if expr.trim_end().ends_with(')') && expr.contains('(') {
+            return;
+        }
         let expr_owned = expr.to_string();
         if std::env::var_os("RADIX_TRACE").is_some() {
             eprintln!("DBG-EVAL expr={expr_owned:?} state={:?}", self.entry.state());
@@ -1417,6 +1450,43 @@ impl RadixWindow {
         }
     }
 
+    /// Toggle one bit of the value currently in the entry, then redraw the
+    /// panel and the base readouts. Bits outside the active word size are
+    /// disabled by `update_programming`, but the guard is repeated here.
+    pub fn toggle_bit(self: &Rc<Self>, bit: u32) {
+        let mut env = match self.env.try_borrow() {
+            Ok(env) => env.clone(),
+            Err(_) => return,
+        };
+        let word_bits = env.word_size.bits();
+        if bit >= word_bits {
+            return;
+        }
+        let text = self.entry.text();
+        let trimmed = text.trim();
+        let value = if trimmed.is_empty() {
+            Value::from_i64(0)
+        } else {
+            match evaluate(trimmed, &mut env) {
+                Ok(value) => value,
+                Err(_) => return,
+            }
+        };
+        let Some(integer) = value.to_i128() else {
+            return;
+        };
+        let mask = u64::MAX >> (64 - word_bits);
+        let current = (integer as u64) & mask;
+        let toggled = if (current >> bit) & 1 == 1 {
+            current & !(1u64 << bit)
+        } else {
+            current | (1u64 << bit)
+        };
+        let new_text = radix_engine::format_integer_in_base(u128::from(toggled), env.base);
+        self.entry.show_input(&new_text);
+        self.update_programming();
+    }
+
     pub fn update_programming(self: &Rc<Self>) {
         let base = self.env.borrow().base;
         let word_bits = self.env.borrow().word_size.bits();
@@ -1457,13 +1527,15 @@ impl RadixWindow {
             let width = 1u128 << word_bits.min(64);
             ((mag.rem_euclid(width as i128)) as u64) & (u64::MAX >> (64 - word_bits.min(64)))
         };
-        for (i, lbl) in self.bit_cells.iter().enumerate() {
+        for (i, cell) in self.bit_cells.iter().enumerate() {
             let bit_index = 63 - i as u32; // leftmost = MSB
             if bit_index >= word_bits {
-                lbl.set_text("");
+                cell.set_label("");
+                cell.set_sensitive(false);
             } else {
                 let bit = (masked >> bit_index) & 1;
-                lbl.set_text(if bit == 1 { "1" } else { "0" });
+                cell.set_label(if bit == 1 { "1" } else { "0" });
+                cell.set_sensitive(true);
             }
         }
         // Digit dimming: digit buttons >= the radix are insensitive
@@ -1494,13 +1566,37 @@ impl RadixWindow {
         }
     }
 
+    /// Clicking a history row puts its equation back in the entry for
+    /// editing (GNOME help, "Using the History View").
+    fn load_history_row(self: &Rc<Self>, index: usize) {
+        let echo = {
+            let rows = self.history.borrow();
+            match rows.get(index) {
+                Some(row) => row.echo.clone(),
+                None => return,
+            }
+        };
+        *self.history_idx.borrow_mut() = Some(index);
+        self.entry.show_input(&echo);
+    }
+
     fn append_history_row(self: &Rc<Self>) {
-        let (echo, result_text) = {
+        let (echo, result_text, index) = {
             let rows = self.history.borrow();
             let row = rows.last().unwrap();
-            (row.echo.clone(), row.render(&self.fmt.borrow()))
+            (
+                row.echo.clone(),
+                row.render(&self.fmt.borrow()),
+                rows.len() - 1,
+            )
         };
         let row_widget = history_row_widget(&echo, &result_text);
+        {
+            let w = self.clone();
+            let click = gtk::GestureClick::new();
+            click.connect_released(move |_, _, _, _| w.load_history_row(index));
+            row_widget.add_controller(click);
+        }
         self.history_list.append(&row_widget);
         self.sync_has_rows();
         // Auto-scroll to the newest row (docs/09 §2, inferred behavior).
@@ -1518,9 +1614,13 @@ impl RadixWindow {
             self.history_list.remove(&child);
         }
         let rows = self.history.borrow();
-        for row in rows.iter() {
+        for (index, row) in rows.iter().enumerate() {
             let result_text = row.render(&self.fmt.borrow());
             let w = history_row_widget(&row.echo, &result_text);
+            let win = self.clone();
+            let click = gtk::GestureClick::new();
+            click.connect_released(move |_, _, _, _| win.load_history_row(index));
+            w.add_controller(click);
             self.history_list.append(&w);
         }
         drop(rows);
@@ -1586,10 +1686,11 @@ pub fn prose_for(kind: &ErrorKind) -> Option<&'static str> {
 
 /// One history row widget: equation left, "=" center, bold result right
 /// (docs/11 §2.2).
-/// Display-only bit panel (docs/02 §8.4, layout per owner evidence):
-/// two rows of eight nibble groups with bit-index labels 63/47/32 and
-/// 31/15/0. Cells are returned MSB-first (row-major from bit 63).
-fn build_bit_panel() -> (gtk::Box, Vec<gtk::Label>) {
+/// Clickable bit panel (docs/02 §8.4 layout per owner evidence, plus the
+/// GNOME Programming-mode behaviour of toggling bits with the mouse): two
+/// rows of eight nibble groups with bit-index labels 63/47/32 and 31/15/0.
+/// Cells are returned MSB-first (row-major from bit 63).
+fn build_bit_panel() -> (gtk::Box, Vec<gtk::Button>) {
     let panel = gtk::Box::builder()
         .orientation(gtk::Orientation::Vertical)
         .spacing(4)
@@ -1621,12 +1722,12 @@ fn build_bit_panel() -> (gtk::Box, Vec<gtk::Label>) {
                     .build();
                 for _b in 0..4u32 {
                     let idx = 63 - cells.len() as u32;
-                    let cell = gtk::Label::builder()
+                    let cell = gtk::Button::builder()
                         .label("0")
-                        .width_chars(1)
-                        .css_classes(["bit-cell"])
+                        .width_request(14)
+                        .css_classes(["bit-cell", "flat"])
                         .build();
-                    cell.set_tooltip_text(Some(&format!("{idx}")));
+                    cell.set_tooltip_text(Some(&format!("Bit {idx} (click to toggle)")));
                     cells.push(cell.clone());
                     gb.append(&cell);
                 }

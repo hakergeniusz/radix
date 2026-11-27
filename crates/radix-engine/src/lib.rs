@@ -38,8 +38,8 @@ pub mod parser;
 
 pub use echo::normalize_echo;
 pub use error::{ErrorKind, EvalError};
-pub use eval::{evaluate, parse_value_text, AngleUnit, Base, Env, WordSize};
-pub use format::{format_value, render_in_base, FormatPrefs, ResultFormat};
+pub use eval::{evaluate, parse_value_text, AngleUnit, Base, Env, UserFunction, WordSize};
+pub use format::{format_integer_in_base, format_value, render_in_base, FormatPrefs, ResultFormat};
 pub use functions::{
     constant_catalog, function_catalog, ConstantCategory, ConstantInfo, FunctionCategory,
     FunctionInfo,

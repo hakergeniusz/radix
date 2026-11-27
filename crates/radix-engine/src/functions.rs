@@ -28,6 +28,9 @@ pub(crate) const GLYPH_CONSTS: &[(&str, &str)] = &[
     ("μ₀", "mu0"),
     ("ε₀", "eps0"),
     ("Z₀", "z0"),
+    ("c₀", "c0"),
+    ("Nᴀ", "na"),
+    ("е", "q"),
 ];
 
 /// Typed constant names (case-insensitive; matched lowercased).
@@ -91,9 +94,9 @@ pub(crate) fn constant_value(key: &str) -> EvalResult<Value> {
         "R" => Value::exact_from_decimal("8.31446261815324"),
         "G" => Value::exact_from_decimal("6.67430e-11"),
         "g" => Value::exact_from_decimal("9.80665"),
-        "c" => Value::exact_from_decimal("299792458"),
+        "c" | "c0" => Value::exact_from_decimal("299792458"),
         "q" => Value::exact_from_decimal("1.602176634e-19"),
-        "NA" => Value::exact_from_decimal("6.02214076e23"),
+        "NA" | "na" => Value::exact_from_decimal("6.02214076e23"),
         _ => return Err(crate::error::EvalError::new(ErrorKind::OutOfDomain)),
     })
 }
@@ -895,7 +898,7 @@ const THERMO_CONSTS: &[ConstantInfo] = &[
     },
     ConstantInfo {
         name: "Avogadro's Number",
-        glyph: "NA",
+        glyph: "Nᴀ",
         typed_name: None,
         description: "NA = 6.02214076×10²³ mol⁻¹",
     },
@@ -919,13 +922,13 @@ const GRAV_CONSTS: &[ConstantInfo] = &[
 const EM_CONSTS: &[ConstantInfo] = &[
     ConstantInfo {
         name: "Speed of Light",
-        glyph: "c",
+        glyph: "c₀",
         typed_name: None,
         description: "c = 299792458 m/s",
     },
     ConstantInfo {
         name: "Elementary Charge",
-        glyph: "q",
+        glyph: "е",
         typed_name: None,
         description: "q = 1.602176634×10⁻¹⁹ C",
     },

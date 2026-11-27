@@ -60,3 +60,22 @@ scope per brief or deliberately not probed to avoid destructive setup).
 - **ENV items (15–17, 37, 41)**: need a WM-equipped or portal-fidelity
   environment; the no-WM Xvfb session cannot decide them.
 - **OOS (33–36)**: outside this investigation's constraints by design.
+
+## Implementation follow-up (2026-11-27)
+
+The rows above still record the state of the original black-box investigation.
+The following items were subsequently implemented from *official GNOME help*
+(`help.gnome.org`, gnome-51) rather than from a new black-box probe:
+
+- **#12** Programming bit cells are clickable and toggle the corresponding bit
+  of the entry value.
+- **#38** The f(x) builder is wired: it inserts a `name(p;q) = ` template,
+  the engine stores `name(p;q)=body @ description` definitions, and defined
+  functions are listed under "Defined" in the f(x) popover.
+- **New (official help, "Using the History View")**: clicking a history row
+  loads its equation back into the entry. The original investigation recorded
+  the reference app's rows as inert (doc 12 T076); this is a deliberate
+  documentation-led extension, not a black-box parity claim.
+- **New (official help, "Using the Keyboard")**: typing `**` inserts `^`.
+- **New (official help, "Variables and Constants")**: the documented glyphs
+  `c₀`, Cyrillic `е` and `Nᴀ` now parse, alongside the legacy ASCII aliases.
