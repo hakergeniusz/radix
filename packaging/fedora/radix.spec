@@ -1,14 +1,14 @@
 # Radix RPM spec — builds from a source archive of this repository. The
-# version fields track the git tag (v51.0.0-rc.4 -> Version 51.0.0~rc4);
+# version fields track the git tag (v51.0.0-rc.5 -> Version 51.0.0~rc5);
 # bump them together with Cargo.toml, debian/changelog and the AUR PKGBUILD.
 Name:           radix
-Version:        51.0.0~rc4
+Version:        51.0.0~rc5
 Release:        1%{?dist}
 Summary:        An independent desktop calculator
 
 License:        MIT
 URL:            https://github.com/hakergeniusz/radix
-Source0:        %{url}/archive/refs/tags/v51.0.0-rc.4/radix-51.0.0-rc.4.tar.gz
+Source0:        %{url}/archive/refs/tags/v51.0.0-rc.5/radix-51.0.0-rc.5.tar.gz
 
 ExclusiveArch:  x86_64 aarch64
 BuildRequires:  rustc >= 1.85
